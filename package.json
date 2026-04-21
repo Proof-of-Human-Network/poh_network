@@ -1,0 +1,29 @@
+{
+  "name": "eval-server",
+  "version": "1.0.0",
+  "description": "EVM contract + REST API eval server — returns true/false from multi-language expressions",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "start:all": "node scripts/launch.js prod",
+    "dev:all": "node scripts/launch.js dev"
+  },
+  "dependencies": {
+    "@solana/spl-token": "^0.4.14",
+    "@solana/web3.js": "^1.98.4",
+    "axios": "^1.6.8",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
+    "express": "^4.18.3",
+    "multer": "^2.1.0",
+    "node-cron": "^4.2.1",
+    "redis": "^5.11.0",
+    "vm2": "^3.9.19"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PHN | Proof of Human Network</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Human-powered Proof of Human Network</h1>
+
+    <div class="container">
+      <div class="nav">
+        <a class="nav-link active" onclick="showSection('checker')">Checker</a>
+        <a class="nav-link" onclick="showSection('listing')">Listing</a>
+        <a class="nav-link" onclick="showSection('votes')">Votes</a>
+      </div>
+
+      <!-- Checker Section -->
+      <div id="checker" class="section active">
+        <input
+          type="text"
+          id="scan-input"
+          placeholder="Wallet Address (EVM/SOL)"
+        />
+        <input
+          type="text"
+          id="checker-wallet"
+          placeholder="Your Wallet Address (for VOTE burn)"
+        />
+        <input
+          type="text"
+          id="checker-tx"
+          placeholder="Burn Transaction Hash"
+        />
+        <button onclick="runCheck()">Execute Scan</button>
+        <div id="checker-results" style="margin-top: 2rem"></div>
+      </div>
+
+      <!-- Listing Section -->
+      <div id="listing" class="section">
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem">
+          <select id="listing-type">
+            <option value="evm">EVM Contract</option>
+            <option value="solana">Solana Program</option>
+            <option value="rest">REST API</option>
+          </select>
+          <input
+            type="number"
+            id="listing-chain"
+            placeholder="Chain ID (e.g. 1)"
+          />
+        </div>
+        <input type="text" id="listing-addr" placeholder="Address / URL" />
+        <input
+          type="text"
+          id="listing-method"
+          placeholder="Method (hex/endpoint)"
+        />
+        <textarea
+          id="listing-desc"
+          placeholder="Mandatory Description"
+        ></textarea>
+        <input
+          type="text"
+          id="listing-tx"
+          placeholder="Payment Transaction Hash (0.01 SOL/method)"
+        />
+        <button onclick="submitListing()">Add Method</button>
+        <hr style="border-color: #333; margin: 2rem 0" />
+        <p style="font-size: 0.8rem; color: #888">Batch Upload (CSV)</p>
+        <input type="file" id="listing-csv" accept=".csv" />
+        <button onclick="uploadCSV()">Upload CSV</button>
+      </div>
+
+      <!-- Votes Section -->
+      <div id="votes" class="section">
+        <div id="voting-list"></div>
+      </div>
+    </div>
+
+    <div class="footer">PROXIMA CORE | PROOF OF HUMAN</div>
+
+    <script>
+      function showSection(id) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-link")
+          .forEach((l) => l.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        event.target.classList.add("active");
+        if (id === "votes") loadVoting();
+      }
+
+      async function runCheck() {
+        const input = document.getElementById("scan-input").value;
+        const wallet = document.getElementById("checker-wallet").value;
+        const tx = document.getElementById("checker-tx").value;
+        const resultsDiv = document.getElementById("checker-results");
+        resultsDiv.innerHTML = "<p>Scanning network...</p>";
+
+        const res = await fetch("/checker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ input, walletAddress: wallet, txHash: tx }),
+        });
+        const data = await res.json();
+
+        if (data.error) {
+          resultsDiv.innerHTML = `<p style="color: red">${data.error}</p>`;
+        } else {
+          resultsDiv.innerHTML =
+            "<h3>Results:</h3>" +
+            data.result
+              .map(
+                (r) => `
+                    <div class="card">
+                        <p>${r.description}</p>
+                        <p>${r.result ? "✅ HUMAN DETECTED" : "❌ NO EVIDENCE"}</p>
+                    </div>
+                `,
+              )
+              .join("");
+        }
+      }
+
+      async function submitListing() {
+        // Placeholder for single listing submit
+        alert("Submitting listing...");
+      }
+
+      async function loadVoting() {
+        const res = await fetch("/methods/verifyer");
+        const data = await res.json();
+        const list = document.getElementById("voting-list");
+        list.innerHTML = data
+          .map(
+            (m) => `
+                <div class="card">
+                    <p>${m.description}</p>
+                    <p class="score">Score: ${m.score}</p>
+                    <div style="display:flex; gap: 0.5rem">
+                        <button style="width:auto" onclick="vote('${m.id}', 'description', true)">Verify</button>
+                        <button style="width:auto; background: #333; color: #fff" onclick="vote('${m.id}', 'description', false)">Reject</button>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      async function vote(methodId, type, voteVal) {
+        const tx = prompt("Enter Gas Fee TxHash:");
+        if (!tx) return;
+        const wallet = prompt("Enter Your Wallet Address:");
+
+        const res = await fetch("/methods/verifyer/vote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            methodId,
+            type,
+            vote: voteVal,
+            walletAddress: wallet,
+            txHash: tx,
+          }),
+        });
+        const data = await res.json();
+        if (data.status === "voted") loadVoting();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1447 @@
+[
+  {
+    "instruction": "Summarise the following text.",
+    "input": "The quick brown fox jumps over the lazy dog.",
+    "output": "A fox jumps over a dog."
+  },
+  {
+    "instruction": "Translate the sentence to French.",
+    "input": "Hello, how are you?",
+    "output": "Bonjour, comment allez-vous ?"
+  },
+  {
+    "instruction": "Write a short poem about the sea.",
+    "input": "",
+    "output": "The waves crash on the shore,\nSalt in the air, seagulls soar,\nEndless blue beneath the sun,\nThe sea and I are one."
+  },
+  {
+    "instruction": "Explain what a neural network is in simple terms.",
+    "input": "",
+    "output": "A neural network is a computer system inspired by the human brain. It consists of layers of interconnected nodes that learn patterns from data by adjusting their connections during training."
+  },
+  {
+    "instruction": "Classify the sentiment of this review.",
+    "input": "The product arrived on time and exceeded my expectations. Highly recommend!",
+    "output": "Positive"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"17722067079647lw11z61u\",\"score\":0,\"created_at\":\"2026-02-27T15:38:27.964Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.01",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772206969324l0v57xnx4\",\"score\":0,\"created_at\":\"2026-02-27T15:42:49.324Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772206986059or1034hpc\",\"score\":0,\"created_at\":\"2026-02-27T15:43:06.059Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772207069319lqyipviac\",\"score\":0,\"created_at\":\"2026-02-27T15:44:29.319Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772207107351hkz33tnkf\",\"score\":0,\"created_at\":\"2026-02-27T15:45:07.351Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772207154098w05bsxg84\",\"score\":0,\"created_at\":\"2026-02-27T15:45:54.098Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for Test USDC Check",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"0x70a08231\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"description\":\"Test USDC Check\",\"id\":\"1772207208834cl514pu9v\",\"score\":0,\"created_at\":\"2026-02-27T15:46:48.834Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Test USDC Check",
+    "input": "Type: description, Vote: true, StakeWeight: 0.5",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Analyze implementation for aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Voter assessment for method: aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "Type: undefined, Vote: false, StakeWeight: 0.01",
+    "output": "Not human nature"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Analyze implementation for Why would bot stake? ",
+    "input": "{\"type\":\"rest\",\"chainId\":1,\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address=0xa291190c69f360E8969F62047de98c3Dc0b87D59&network=56\",\"method\":\"On-chain aaaBTC Staking\",\"description\":\"Why would bot stake? \",\"headers\":\"{}\",\"id\":\"1776686707271u2yn87tkz\",\"score\":0,\"created_at\":\"2026-04-20T12:05:07.271Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Voter assessment for method: Why would bot stake? ",
+    "input": "Type: undefined, Vote: true, StakeWeight: 0.01",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Verification response for 0x9C753c52D85fFE8F818b9c77A012F9C847747ac4 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Analyze implementation for Staked amount more than 0",
+    "input": "{\"type\":\"rest\",\"chainId\":1,\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address=0xa291190c69f360E8969F62047de98c3Dc0b87D59&network=56\",\"method\":\"\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"expression\":\"data.total_staked_amount > 0\",\"lang\":\"js\",\"description\":\"Staked amount more than 0\",\"headers\":\"{}\",\"id\":\"1776687796757m1hl2vm11\",\"score\":0,\"created_at\":\"2026-04-20T12:23:16.757Z\"}",
+    "output": "Human"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Why would bot stake? ",
+    "input": "{\"type\":\"rest\",\"chainId\":1,\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address=0xa291190c69f360E8969F62047de98c3Dc0b87D59&network=56\",\"method\":\"On-chain aaaBTC Staking\",\"description\":\"Why would bot stake? \",\"headers\":\"{}\",\"id\":\"1776686707271u2yn87tkz\",\"score\":0,\"created_at\":\"2026-04-20T12:05:07.271Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Staked amount more than 0",
+    "input": "{\"type\":\"rest\",\"chainId\":1,\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address=0xa291190c69f360E8969F62047de98c3Dc0b87D59&network=56\",\"method\":\"\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"expression\":\"data.total_staked_amount > 0\",\"lang\":\"js\",\"description\":\"Staked amount more than 0\",\"headers\":\"{}\",\"id\":\"1776687796757m1hl2vm11\",\"score\":0,\"created_at\":\"2026-04-20T12:23:16.757Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake check — active BSC staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=56\",\"method\":\"GET\",\"description\":\"Assetux onchain stake check — active BSC staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for G8bFssuQsNxmMopW9bjYgA4iuUZ7z8uELiNL6UKvSjyy using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for G8bFssuQsNxmMopW9bjYgA4iuUZ7z8uELiNL6UKvSjyy using SOL balance > 0.01 SOL — wallet has been funded, not a freshly created bot address",
+    "input": "{\"type\":\"solana\",\"address\":\"\",\"method\":\"getBalance\",\"description\":\"SOL balance > 0.01 SOL — wallet has been funded, not a freshly created bot address\",\"expression\":\"result > 10000000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776689122827sol_balance\",\"score\":0,\"created_at\":\"2026-04-20T12:45:22.824Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for G8bFssuQsNxmMopW9bjYgA4iuUZ7z8uELiNL6UKvSjyy using Solana transaction count > 5 — wallet has history of real on-chain activity",
+    "input": "{\"type\":\"solana\",\"address\":\"\",\"method\":\"getTransactionCount\",\"description\":\"Solana transaction count > 5 — wallet has history of real on-chain activity\",\"expression\":\"result > 5\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776689122828sol_txcount\",\"score\":0,\"created_at\":\"2026-04-20T12:45:22.824Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for G8bFssuQsNxmMopW9bjYgA4iuUZ7z8uELiNL6UKvSjyy using USDC balance on Solana > 0 — real users typically hold stablecoins",
+    "input": "{\"type\":\"solana\",\"address\":\"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\"method\":\"getTokenBalance\",\"description\":\"USDC balance on Solana > 0 — real users typically hold stablecoins\",\"expression\":\"result > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776689122829sol_usdc\",\"score\":0,\"created_at\":\"2026-04-20T12:45:22.824Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Voter assessment for method: aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "Type: method, Vote: true, StakeWeight: 0.01",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Voter assessment for method: SOL balance > 0.01 SOL — wallet has been funded, not a freshly created bot address",
+    "input": "Type: method, Vote: true, StakeWeight: 0.01",
+    "output": "Representative of human nature"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0xa291190c69f360E8969F62047de98c3Dc0b87D59 using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x5bcF2be3Bf0243655f121C85763A0a063Bb8152c\",\"method\":\"balanceOf\",\"description\":\"aaaBTC Balance indicates that user has bought it with real funds\",\"headers\":\"{}\",\"id\":\"1776669357845xluzjjrep\",\"score\":0,\"created_at\":\"2026-04-20T07:15:57.845Z\",\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using aaaBTC onchain stake check — active staker indicates real user with financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}\",\"method\":\"GET\",\"description\":\"aaaBTC onchain stake check — active staker indicates real user with financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"headers\":\"{}\",\"id\":\"1776688380812assetux_stake\",\"score\":0.1,\"created_at\":\"2026-04-20T12:33:00.812Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Berachain — native BERA balance > 0.1 (real user funded their wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Berachain — native BERA balance > 0.1 (real user funded their wallet)\",\"expression\":\"result[0] > 100000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461266Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Berachain — tx count > 3 (wallet has on-chain history)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Berachain — tx count > 3 (wallet has on-chain history)\",\"expression\":\"result[0] > 3n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461267Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Berachain — BGT governance token balance > 0 (earned via liquidity provision)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x656107c5e44B2F0E7a56823b9a4A61Deb98c4fDc\",\"method\":\"balanceOf\",\"description\":\"Berachain — BGT governance token balance > 0 (earned via liquidity provision)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461268Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0xFCBD14DC51f0A4d49d5E53C2E0950e0bC26d0Dce\",\"method\":\"balanceOf\",\"description\":\"Berachain — HONEY stablecoin balance > 0 (user has interacted with Berachain DeFi)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461269Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Berachain — WBERA balance > 0 (used DEX swaps on Berachain)",
+    "input": "{\"type\":\"evm\",\"chainId\":80094,\"address\":\"0x7507c1dc16935B82698e4C63f2746A2fCf994dF8\",\"method\":\"balanceOf\",\"description\":\"Berachain — WBERA balance > 0 (used DEX swaps on Berachain)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461270Berachai\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Ethereum — native ETH balance > 0.01 ETH (funded wallet)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Ethereum — native ETH balance > 0.01 ETH (funded wallet)\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461271Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Ethereum — tx count > 10 (established wallet with history)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Ethereum — tx count > 10 (established wallet with history)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461272Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48\",\"method\":\"balanceOf\",\"description\":\"Ethereum — USDC balance > 10 (holds stablecoins, real economic activity)\",\"expression\":\"result[0] > 10000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461273Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0xBcca60bB61934080951369a648Fb03DF4F96263C\",\"method\":\"balanceOf\",\"description\":\"Ethereum — AAVE aUSDC deposit > 0 (active DeFi user, not a bot)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461274Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Ethereum — Proof of Humanity registration (biometrically verified human)",
+    "input": "{\"type\":\"evm\",\"chainId\":1,\"address\":\"0x327a29fcE0a6490E4236240Be176dAA282EcCfdF\",\"method\":\"isRegistered\",\"description\":\"Ethereum — Proof of Humanity registration (biometrically verified human)\",\"expression\":\"result[0] === true\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"bool\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461275Ethereum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Base — native ETH balance > 0.001 (wallet used on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Base — native ETH balance > 0.001 (wallet used on Base)\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461276Base_—_n\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Base — tx count > 5 (active Base user)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Base — tx count > 5 (active Base user)\",\"expression\":\"result[0] > 5n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461277Base_—_t\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Base — USDC balance > 5 (holds stablecoins on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"method\":\"balanceOf\",\"description\":\"Base — USDC balance > 5 (holds stablecoins on Base)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461278Base_—_U\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)",
+    "input": "{\"type\":\"evm\",\"chainId\":8453,\"address\":\"0x4200000000000000000000000000000000000006\",\"method\":\"balanceOf\",\"description\":\"Base — WETH balance > 0 (has wrapped ETH, used DeFi on Base)\",\"expression\":\"result[0] > 0n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461279Base_—_W\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Arbitrum — native ETH balance > 0.001",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"Arbitrum — native ETH balance > 0.001\",\"expression\":\"result[0] > 1000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461280Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)",
+    "input": "{\"type\":\"evm\",\"chainId\":42161,\"address\":\"0xaf88d065e77c8cC2239327C5EDb3A432268e5831\",\"method\":\"balanceOf\",\"description\":\"Arbitrum — USDC balance > 5 (active Arbitrum DeFi user)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461281Arbitrum\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Polygon — tx count > 10 (active Polygon user)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"Polygon — tx count > 10 (active Polygon user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461282Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Polygon — USDC balance > 5 (stablecoin holder on Polygon)",
+    "input": "{\"type\":\"evm\",\"chainId\":137,\"address\":\"0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359\",\"method\":\"balanceOf\",\"description\":\"Polygon — USDC balance > 5 (stablecoin holder on Polygon)\",\"expression\":\"result[0] > 5000000n\",\"lang\":\"js\",\"decimals\":6,\"abiTypes\":\"[\\\"address\\\"]\",\"returnTypes\":\"[\\\"uint256\\\"]\",\"headers\":\"{}\",\"id\":\"1776780461283Polygon_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using BSC — native BNB balance > 0.01 BNB",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getBalance\",\"description\":\"BSC — native BNB balance > 0.01 BNB\",\"expression\":\"result[0] > 10000000000000000n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461284BSC_—_na\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using BSC — tx count > 10 (active BSC user)",
+    "input": "{\"type\":\"evm\",\"chainId\":56,\"address\":\"\",\"method\":\"eth_getTransactionCount\",\"description\":\"BSC — tx count > 10 (active BSC user)\",\"expression\":\"result[0] > 10n\",\"lang\":\"js\",\"decimals\":18,\"abiTypes\":\"[]\",\"returnTypes\":\"[]\",\"headers\":\"{}\",\"id\":\"1776780461285BSC_—_tx\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using NFT ownership on ETH — humans collect NFTs; bots typically hold none",
+    "input": "{\"type\":\"rest\",\"address\":\"https://eth-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on ETH — humans collect NFTs; bots typically hold none\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461286NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using NFT ownership on Polygon — real users acquire NFTs across chains",
+    "input": "{\"type\":\"rest\",\"address\":\"https://polygon-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Polygon — real users acquire NFTs across chains\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461287NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using NFT ownership on Base — presence of Base NFTs indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://base-mainnet.g.alchemy.com/nft/v3/AG7k40zCqOp_DTsQL1m7P/getNFTsForOwner?owner={address}&pageSize=1\",\"method\":\"GET\",\"description\":\"NFT ownership on Base — presence of Base NFTs indicates real user\",\"expression\":\"data.totalCount > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461288NFT_owne\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "Evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Farcaster social profile — real humans build decentralised social presence",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.farcaster.xyz/v2/user-by-verification?address={address}\",\"method\":\"GET\",\"description\":\"Farcaster social profile — real humans build decentralised social presence\",\"expression\":\"data.result && data.result.user && data.result.user.fid > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461289Farcaste\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using ENS reverse lookup — owning an ENS name signals identity investment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://ensdata.net/{address}\",\"method\":\"GET\",\"description\":\"ENS reverse lookup — owning an ENS name signals identity investment\",\"expression\":\"data.ens && data.ens.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461290ENS_reve\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Etherscan — first transaction > 90 days ago (aged wallet, likely real user)",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.etherscan.io/api?module=account&action=txlist&address={address}&page=1&offset=1&sort=asc\",\"method\":\"GET\",\"description\":\"Etherscan — first transaction > 90 days ago (aged wallet, likely real user)\",\"expression\":\"data.status === \\\"1\\\" && data.result && data.result[0] && (Date.now()/1000 - parseInt(data.result[0].timeStamp)) > 7776000\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461291Ethersca\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Assetux onchain stake ETH — active ETH staker indicates financial commitment",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=1\",\"method\":\"GET\",\"description\":\"Assetux onchain stake ETH — active ETH staker indicates financial commitment\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461292Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Assetux onchain stake Polygon — staker on Polygon indicates real user",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.assetux.com/oat/check-onchain-stake?address={address}&network=137\",\"method\":\"GET\",\"description\":\"Assetux onchain stake Polygon — staker on Polygon indicates real user\",\"expression\":\"data.has_active_stake === 1\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461293Assetux_\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Lens Protocol profile — real users build on-chain social identity",
+    "input": "{\"type\":\"rest\",\"address\":\"https://api.lens.dev/profile/by-address/{address}\",\"method\":\"GET\",\"description\":\"Lens Protocol profile — real users build on-chain social identity\",\"expression\":\"data && data.id && data.id.length > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461294Lens_Pro\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Verification response for 0x64eeA6154C645Bac1a948A17Ab9017E5Ccc0720E using Snapshot voting power — active DAO governance participants are real humans",
+    "input": "{\"type\":\"rest\",\"address\":\"https://hub.snapshot.org/api/scores?network=1&addresses[]={address}&strategies=[{\\\"name\\\":\\\"erc20-balance-of\\\",\\\"params\\\":{\\\"address\\\":\\\"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2\\\",\\\"decimals\\\":18}}]&snapshot=latest\",\"method\":\"GET\",\"description\":\"Snapshot voting power — active DAO governance participants are real humans\",\"expression\":\"data.result && data.result.scores && Object.values(data.result.scores[0] || {})[0] > 0\",\"lang\":\"js\",\"abiTypes\":\"\",\"returnTypes\":\"\",\"headers\":\"{}\",\"id\":\"1776780461295Snapshot\",\"score\":0,\"created_at\":\"2026-04-21T14:07:41.266Z\"}",
+    "output": "No evidence of human activity"
+  },
+  {
+    "instruction": "Voter assessment for method: aaaBTC Balance indicates that user has bought it with real funds",
+    "input": "Type: method, Vote: false, StakeWeight: 0.01",
+    "output": "Not human nature"
+  }
+]
