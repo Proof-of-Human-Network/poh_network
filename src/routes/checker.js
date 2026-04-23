@@ -12,6 +12,10 @@ const { parse } = require('csv-parse/sync');
 const { getCachedResponse, setCachedResponse } = require('../utils/redis');
 const { getVoteTokenStake, verifyBurnTransaction } = require('../utils/solana');
 const brain = require('../utils/brain');
+const {
+  getProfile, getProfiles, consumeFreeScan, calcScanCost,
+  getFreeScansLeft, distributeRewards, isIpAbuse, recordIp,
+} = require('../utils/profiles');
 
 const upload = multer({ dest: 'uploads/' });
 
@@ -44,18 +48,21 @@ function appendToDataset(record) {
 /**
  * POST /checker
  * Scans a wallet or profile against registered methods.
- * Burns 1 VOTE token per method.
+ * First 100 scans per wallet are free (one free-tier per IP).
+ * Beyond free tier: costs POH tokens with bulk curve pricing.
  */
 router.post('/', upload.single('csv'), async (req, res, next) => {
   console.log('[checker] Received scan request');
   try {
-    const { input, walletAddress, chainIds: chainFilter, txHash } = req.body;
-    
+    const { input, walletAddress, chainIds: chainFilter, txHash, apiKey } = req.body;
+    const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+                  || req.socket?.remoteAddress
+                  || null;
+
     let inputs = [];
     if (req.file) {
       const content = fs.readFileSync(req.file.path, 'utf-8');
       const records = parse(content, { columns: true, skip_empty_lines: true });
-      // Assume the CSV has an 'address' or 'input' column, or use the first column
       inputs = records.map(r => r.address || r.input || Object.values(r)[0]);
       fs.unlinkSync(req.file.path);
     } else if (input) {
@@ -63,12 +70,46 @@ router.post('/', upload.single('csv'), async (req, res, next) => {
     }
 
     if (inputs.length === 0) return res.status(400).json({ error: 'No input provided' });
-    
-    if (!txHash) return res.status(400).json({ error: 'Burn transaction hash required' });
 
-    // Verify Burn: 1 VOTE per data row
-    const isPaid = await verifyBurnTransaction(txHash, inputs.length, walletAddress);
-    if (!isPaid) return res.status(402).json({ error: `Burn verification failed for ${inputs.length} VOTE` });
+    // ── Auth: API key OR wallet ────────────────────────────────────────────
+    let effectiveWallet = walletAddress;
+    if (apiKey) {
+      const profiles = getProfiles();
+      const match = Object.values(profiles).find(p => p.apiKey === apiKey);
+      if (!match) return res.status(401).json({ error: 'Invalid API key' });
+      effectiveWallet = match.address;
+    }
+
+    // ── Free tier check ───────────────────────────────────────────────────
+    const freeLeft = effectiveWallet ? getFreeScansLeft(effectiveWallet) : 0;
+    const isFree   = freeLeft >= inputs.length;
+
+    if (!isFree) {
+      // Paid path: verify POH burn transaction
+      if (!txHash) {
+        const { total, perAddress } = calcScanCost(inputs.length);
+        return res.status(402).json({
+          error: 'Payment required',
+          required: total,
+          perAddress,
+          count: inputs.length,
+          freeScansLeft: freeLeft,
+        });
+      }
+      const isPaid = await verifyBurnTransaction(txHash, inputs.length, effectiveWallet);
+      if (!isPaid) return res.status(402).json({ error: `Burn verification failed for ${inputs.length} POH` });
+    } else {
+      // Free tier: IP abuse check
+      if (effectiveWallet && isIpAbuse(clientIp, effectiveWallet)) {
+        return res.status(403).json({ error: 'Free tier already used from this IP on another wallet' });
+      }
+      if (effectiveWallet) recordIp(effectiveWallet, clientIp);
+    }
+
+    // Consume free scans or record paid scan
+    if (isFree && effectiveWallet) {
+      for (let i = 0; i < inputs.length; i++) consumeFreeScan(effectiveWallet);
+    }
 
     const allResults = [];
 
@@ -185,10 +226,25 @@ router.post('/', upload.single('csv'), async (req, res, next) => {
       await setCachedResponse(cacheKey, { data: results, methodCount: methods.length });
     }
 
+    // ── Reward distribution (50% of paid POH to method owners) ──────────
+    if (!isFree && txHash) {
+      const { total } = calcScanCost(inputs.length);
+      const executedIds = [...new Set(allResults.map(r => r.methodId))];
+      const allMethods  = getMethods();
+      const weights     = brain.getWeights();
+      distributeRewards(total, executedIds, allMethods, weights);
+    }
+
     // ── Brain analysis (async — don't block the response) ────────────────
     const scanKey = inputs[0] || 'batch';
     brainPending[scanKey] = { status: 'pending', startedAt: Date.now() };
-    res.json({ result: allResults, count: allResults.length, source: 'processed', brainKey: scanKey });
+    res.json({
+      result: allResults,
+      count: allResults.length,
+      source: 'processed',
+      brainKey: scanKey,
+      freeScansLeft: effectiveWallet ? getFreeScansLeft(effectiveWallet) : null,
+    });
 
     // Run in background
     const allMethods = getMethods();
@@ -214,6 +270,27 @@ router.get('/brain/:key', (req, res) => {
   const entry = brainPending[req.params.key];
   if (!entry) return res.json({ status: 'not_found' });
   res.json(entry);
+});
+
+/**
+ * GET /checker/pricing?count=N
+ * Returns cost breakdown for N addresses.
+ */
+router.get('/pricing', (req, res) => {
+  const count = Math.max(1, parseInt(req.query.count) || 1);
+  const { total, rate, perAddress } = calcScanCost(count);
+  res.json({
+    count,
+    perAddress,
+    total,
+    tiers: [
+      { minAddresses: 1,   rate: 1.00, label: '1–9' },
+      { minAddresses: 10,  rate: 0.85, label: '10–49' },
+      { minAddresses: 50,  rate: 0.70, label: '50–99' },
+      { minAddresses: 100, rate: 0.55, label: '100–499' },
+      { minAddresses: 500, rate: 0.40, label: '500+' },
+    ],
+  });
 });
 
 module.exports = router;

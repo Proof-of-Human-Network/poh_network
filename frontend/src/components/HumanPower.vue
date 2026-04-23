@@ -1,17 +1,27 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import axios from 'axios'
 import {
   Search, PlusSquare, Vote, ShieldCheck,
-  Activity, Trash2, FileUp
+  Activity, Trash2, FileUp, SquareArrowDown, PersonStanding, FolderCode, CreditCard, Bitcoin
 } from 'lucide-vue-next'
-import { 
-  Connection, 
-  PublicKey, 
-  Transaction, 
-  SystemProgram, 
-  LAMPORTS_PER_SOL 
+import {
+  Connection,
+  PublicKey,
+  Transaction,
+  SystemProgram,
+  LAMPORTS_PER_SOL
 } from '@solana/web3.js'
+import {
+  getAssociatedTokenAddress,
+  createTransferInstruction,
+  TOKEN_PROGRAM_ID,
+} from '@solana/spl-token'
+import {
+  getPohBalance, getStakeInfo, getGlobalState,
+  stakeTokens, unstakeTokens, registerMethod,
+  castVote as castVoteOnChain, claimStakerRewards,
+} from '../pohProgram.js'
 // import {
 //   createBurnInstruction,
 //   getAssociatedTokenAddress
@@ -98,16 +108,17 @@ async function disconnectWallet() {
 }
 
 // ── Config ────────────────────────────────────────────────────────────────────
-const VOTE_MINT = ref('')
+const POH_MINT = ref('')
 const FEE_RECIPIENT = ref('')
 const SOLANA_RPC = ref('https://api.devnet.solana.com')
 
 const fetchConfig = async () => {
   try {
     const res = await axios.get('/config')
-    VOTE_MINT.value = res.data.VOTE_MINT
+    POH_MINT.value = res.data.POH_MINT
     FEE_RECIPIENT.value = res.data.FEE_RECIPIENT
     SOLANA_RPC.value = res.data.SOLANA_RPC
+    STAKING_CONTRACT.value = res.data.STAKING_CONTRACT || ''
   } catch (err) {
     console.error('Failed to fetch config', err)
   }
@@ -153,6 +164,14 @@ function isWalletAddress(input) {
   return false
 }
 
+const detectedChain = computed(() => {
+  const v = scanInput.value?.trim()
+  if (!v) return null
+  if (/^0x[0-9a-fA-F]{40}$/.test(v)) return 'evm'
+  if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(v)) return 'solana'
+  return null
+})
+
 async function resolveToAddress(input) {
   const trimmed = input.trim()
   if (isWalletAddress(trimmed)) return trimmed
@@ -197,11 +216,11 @@ const runCheck = async () => {
     }
     isResolving.value = false
 
-    // ── Burn VOTE tokens ──────────────────────────────────────────────────
+    // ── Burn POH tokens ──────────────────────────────────────────────────
     // const connection = new Connection(SOLANA_RPC.value, 'confirmed')
     // const count = resolvedInputs.length
-    // if (!VOTE_MINT.value || VOTE_MINT.value.startsWith('YOUR_')) throw new Error('VOTE_MINT not configured on server — set VOTE_TOKEN_MINT in .env')
-    // const mintPubkey = new PublicKey(VOTE_MINT.value)
+    // if (!POH_MINT.value || POH_MINT.value.startsWith('YOUR_')) throw new Error('POH_MINT not configured on server — set POH_TOKEN_MINT in .env')
+    // const mintPubkey = new PublicKey(POH_MINT.value)
     // const walletPubkey = new PublicKey(walletAddress.value)
     // const ata = await getAssociatedTokenAddress(mintPubkey, walletPubkey)
     // const tx = new Transaction().add(
@@ -313,29 +332,48 @@ function pickMethod(fn) {
   }
 }
 
+const LISTING_FEE_POH = 1000 // 1000 POH
+
 const submitListing = async () => {
-  if (!connected.value) { error.value = 'Please connect wallet to pay 0.01 SOL fee'; return }
+  if (!connected.value) { error.value = 'Please connect your wallet'; return }
+  if (pohBalance.value < LISTING_FEE_POH) {
+    error.value = `Insufficient POH — need ${LISTING_FEE_POH} POH, you have ${pohBalance.value.toFixed(2)}`
+    return
+  }
   loading.value = true
   try {
-    if (!FEE_RECIPIENT.value || FEE_RECIPIENT.value.startsWith('YOUR_')) throw new Error('FEE_RECIPIENT not configured on server — set FEE_RECIPIENT in .env')
-    const tx = new Transaction().add(
-      SystemProgram.transfer({
-        fromPubkey: new PublicKey(walletAddress.value),
-        toPubkey: new PublicKey(FEE_RECIPIENT.value),
-        lamports: 0.01 * LAMPORTS_PER_SOL
-      })
+    // Generate deterministic method ID for on-chain registration
+    const methodId = crypto.randomUUID().replace(/-/g, '')
+
+    // Get current total_methods index for PDA derivation
+    const global = await getGlobalState(SOLANA_RPC.value)
+    const methodIndex = global?.totalMethods ?? 0
+
+    // Register on-chain: pays 1000 POH, splits 50/50 deployer/stakers
+    const txHash = await registerMethod(
+      walletProvider.value, walletAddress.value, POH_MINT.value, SOLANA_RPC.value,
+      methodId, methodIndex
     )
-    const txHash = await signAndSendTransaction(tx)
+
+    // Register in backend with the on-chain txHash + methodId
     const headerObj = headers.value.reduce((a, h) => { if (h.key) a[h.key] = h.value; return a }, {})
-    const payload = { ...listing.value, headers: JSON.stringify(headerObj), txHash, walletAddress: walletAddress.value }
-    // For REST, the backend uses `method` as the HTTP verb
+    const payload = {
+      ...listing.value,
+      headers: JSON.stringify(headerObj),
+      txHash,
+      walletAddress: walletAddress.value,
+      onChainMethodId: methodId,
+      onChainIndex: methodIndex,
+    }
     if (listing.value.type === 'rest') payload.method = listing.value.httpMethod
     await axios.post('/methods/listing', payload)
-    alert('Listing successfully registered')
+
+    await loadPohBalance()
+    alert(`Method registered! Paid ${LISTING_FEE_POH} POH — 500 to deployer, 500 distributed to stakers.`)
     listing.value = { type: 'evm', chainId: 1, address: '', method: '', abiTypes: '', returnTypes: '', decimals: '', expression: '', lang: 'js', description: '', body: '', httpMethod: 'GET' }
     headers.value = [{ key: '', value: '' }]
   } catch (err) {
-    error.value = err.message || 'Payment or Registration failed'
+    error.value = err.message || 'Registration failed'
   } finally {
     loading.value = false
   }
@@ -420,9 +458,162 @@ const graphEdges = [
   { id: 'e-w2', x1: 350, y1: 170, x2: 460, y2: 310 },
 ]
 
+// ── 4. Profile ────────────────────────────────────────────────────────────────
+const profileData   = ref(null)
+const profileLoading = ref(false)
+const profileError  = ref(null)
+const signupLoading = ref(false)
+const STAKING_CONTRACT = ref('')
+
+const BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+function encodeBase58(bytes) {
+  let n = BigInt('0x' + Array.from(bytes, b => b.toString(16).padStart(2, '0')).join(''))
+  let result = ''
+  while (n > 0n) { result = BASE58_ALPHABET[Number(n % 58n)] + result; n /= 58n }
+  for (const b of bytes) { if (b !== 0) break; result = '1' + result }
+  return result
+}
+
+async function loadProfile() {
+  if (!walletAddress.value) return
+  profileLoading.value = true
+  profileError.value = null
+  try {
+    const res = await axios.get(`/profile/${walletAddress.value}`)
+    profileData.value = res.data
+  } catch (err) {
+    if (err.response?.status === 404) profileData.value = null
+    else profileError.value = err.response?.data?.error || 'Failed to load profile'
+  } finally {
+    profileLoading.value = false
+  }
+}
+
+async function signupProfile() {
+  if (!walletAddress.value || !walletProvider.value) { error.value = 'Connect wallet first'; return }
+  signupLoading.value = true
+  profileError.value = null
+  try {
+    const message = `poh-profile-v1:${walletAddress.value}:${Date.now()}`
+    const messageBytes = new TextEncoder().encode(message)
+    const { signature } = await walletProvider.value.signMessage(messageBytes, 'utf8')
+    const bs58sig = encodeBase58(signature)
+    await axios.post('/profile/signup', { address: walletAddress.value, signature: bs58sig, message })
+    await loadProfile()
+  } catch (err) {
+    profileError.value = err.response?.data?.error || err.message || 'Signup failed'
+  } finally {
+    signupLoading.value = false
+  }
+}
+
+async function rotateApiKey() {
+  if (!walletAddress.value) return
+  try {
+    const res = await axios.post('/profile/apikey/rotate', { address: walletAddress.value })
+    if (profileData.value?.profile) profileData.value.profile.apiKey = res.data.apiKey
+  } catch (err) {
+    profileError.value = err.response?.data?.error || 'Rotate failed'
+  }
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).catch(() => {})
+}
+
+// ── 5. Staking ────────────────────────────────────────────────────────────────
+const stakeAmount    = ref('')
+const unstakeAmount  = ref('')
+const stakeLoading   = ref(false)
+const unstakeLoading = ref(false)
+const stakeMessage   = ref(null)
+const pohBalance     = ref(0)
+const stakedBalance  = ref(0)
+const claimable      = ref(0)
+const totalStaked    = ref(0)
+const claimLoading   = ref(false)
+
+async function loadPohBalance() {
+  if (!walletAddress.value || !POH_MINT.value) return
+  pohBalance.value = await getPohBalance(walletAddress.value, POH_MINT.value, SOLANA_RPC.value)
+  const info = await getStakeInfo(walletAddress.value, SOLANA_RPC.value)
+  stakedBalance.value = info.staked
+  claimable.value     = info.pendingRewards
+  const global = await getGlobalState(SOLANA_RPC.value)
+  if (global) totalStaked.value = global.totalStaked
+}
+
+async function submitStake() {
+  if (!connected.value) { error.value = 'Connect wallet to stake'; return }
+  const amount = parseFloat(stakeAmount.value)
+  if (!amount || amount <= 0) { stakeMessage.value = 'Enter a valid POH amount'; return }
+  if (amount > pohBalance.value) { stakeMessage.value = 'Insufficient POH balance'; return }
+  stakeLoading.value = true
+  stakeMessage.value = null
+  try {
+    const txHash = await stakeTokens(
+      walletProvider.value, walletAddress.value, POH_MINT.value, SOLANA_RPC.value, amount
+    )
+    stakeMessage.value = `Staked ${amount} POH ✓`
+    stakeAmount.value = ''
+    await loadPohBalance()
+  } catch (err) {
+    stakeMessage.value = err.message || 'Stake failed'
+  } finally {
+    stakeLoading.value = false
+  }
+}
+
+async function submitUnstake() {
+  if (!connected.value) { error.value = 'Connect wallet to unstake'; return }
+  const amount = parseFloat(unstakeAmount.value)
+  if (!amount || amount <= 0) { stakeMessage.value = 'Enter a valid POH amount'; return }
+  if (amount > stakedBalance.value) { stakeMessage.value = 'Insufficient staked balance'; return }
+  unstakeLoading.value = true
+  stakeMessage.value = null
+  try {
+    const txHash = await unstakeTokens(
+      walletProvider.value, walletAddress.value, POH_MINT.value, SOLANA_RPC.value, amount
+    )
+    stakeMessage.value = `Unstaked ${amount} POH ✓`
+    unstakeAmount.value = ''
+    await loadPohBalance()
+  } catch (err) {
+    stakeMessage.value = err.message || 'Unstake failed'
+  } finally {
+    unstakeLoading.value = false
+  }
+}
+
+async function claimRewards() {
+  if (!connected.value) { error.value = 'Connect wallet to claim'; return }
+  claimLoading.value = true
+  stakeMessage.value = null
+  try {
+    await claimStakerRewards(
+      walletProvider.value, walletAddress.value, POH_MINT.value, SOLANA_RPC.value
+    )
+    stakeMessage.value = `Claimed ${claimable.value.toFixed(4)} POH ✓`
+    await loadPohBalance()
+  } catch (err) {
+    stakeMessage.value = err.message || 'Claim failed'
+  } finally {
+    claimLoading.value = false
+  }
+}
+
+function goTo (url) {
+  window.open(url, '_blank')
+}
+
+watch(walletAddress, (addr) => {
+  if (addr && POH_MINT.value) loadPohBalance()
+})
+
 onMounted(async () => {
   await fetchConfig()
   if (currentSection.value === 'votes') loadVoting()
+  if (connected.value) loadPohBalance()
 })
 </script>
 
@@ -430,7 +621,7 @@ onMounted(async () => {
   <div class="app-container">
     <header class="header">
       <div @click="showSection('landing')" class="logo">
-        <img src="/assetux-icon.png" alt="POH Logo">
+        <img src="/poh-icon.png" alt="POH Logo">
       </div>
 
       <!-- Desktop nav -->
@@ -443,6 +634,15 @@ onMounted(async () => {
         </button>
         <button :class="['nav-btn', { active: currentSection === 'votes' }]" @click="showSection('votes'); loadVoting()">
           <Vote class="icon" :size="14" /> Vote
+        </button>
+        <button :class="['nav-btn', { active: currentSection === 'staking' }]" @click="showSection('staking')">
+          <SquareArrowDown class="icon" :size="14" /> Stake
+        </button>
+        <button :class="['nav-btn', { active: currentSection === 'profile' }]" @click="showSection('profile'); loadProfile()">
+          <PersonStanding class="icon" :size="14" /> Profile
+        </button>
+        <button :class="['nav-btn', { active: currentSection === 'api' }]" @click="showSection('api')">
+          <FolderCode class="icon" :size="14" /> API
         </button>
       </nav>
 
@@ -473,6 +673,9 @@ onMounted(async () => {
         <button :class="['mobile-nav-btn', { active: currentSection === 'checker' }]" @click="showSection('checker')">Scan</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'listing' }]" @click="showSection('listing')">List</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'votes' }]" @click="showSection('votes'); loadVoting()">Vote</button>
+        <button :class="['mobile-nav-btn', { active: currentSection === 'api' }]" @click="showSection('api')">API</button>
+        <button :class="['mobile-nav-btn', { active: currentSection === 'staking' }]" @click="showSection('staking')">Stake</button>
+        <button :class="['mobile-nav-btn', { active: currentSection === 'profile' }]" @click="showSection('profile'); loadProfile()">Profile</button>
         <div class="mobile-menu-divider"></div>
         <button v-if="!connected" @click="showWalletModal = true; mobileMenuOpen = false" class="mobile-nav-btn mobile-connect">
           Connect Wallet
@@ -507,34 +710,131 @@ onMounted(async () => {
         <section class="landing-hero">
           <div class="landing-tag">PROOF OF HUMAN</div>
           <h1 class="landing-title">Decentralized<br>Human Verification</h1>
-          <p class="landing-sub">On-chain evidence.<br>Community-powered detection of real wallets.</p>
-          <button class="neon-btn landing-cta" @click="showSection('checker')">Start Scanning →</button>
+          <p class="landing-sub">On-chain evidence. Community-powered signal.<br>100 free scans per wallet. API access. Community rewards.</p>
+          <div class="landing-cta-row">
+            <button class="neon-btn landing-cta" @click="showSection('checker')">Start Scanning →</button>
+            <button class="outline-btn landing-cta" @click="showSection('api')">View API Docs</button>
+          </div>
         </section>
 
-        <div class="landing-divider"></div>
+        <!-- How it works -->
+        <section class="how-section">
+          <div class="network-label">HOW IT WORKS</div>
+          <div class="how-grid">
+            <div class="how-col">
+              <div class="how-step-title">Detection</div>
+              <ul class="how-list">
+                <li>Community submits methods — EVM contract calls, Solana programs, or REST APIs</li>
+                <li>Each method runs a sandboxed expression against live on-chain data</li>
+                <li>Methods are independently scored and weighted by community consensus</li>
+                <li>All methods execute in parallel per scan</li>
+              </ul>
+            </div>
+            <div class="how-col">
+              <div class="how-step-title">AI Brain</div>
+              <ul class="how-list">
+                <li>Multi-role Ollama pipeline — Evaluator, Learner, Compiler on separate models</li>
+                <li>Evaluator interprets top 5 signals with explicit per-method weights, runs a second pass to catch overconfidence</li>
+                <li>Learner updates weights after every community vote (±0.05 max drift)</li>
+                <li>Compiler rewrites a compact brain state hourly — no hallucination, stats only</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <div class="network-label">$POH Token</div>
+
+        <section class="landing-token">
+          <p class="token-desc">Fair launch via bonding curve. No VC rounds. No pre-mine. Every scan either burns $POH or flows 50% back to method contributors. Stake to govern signal quality.</p>
+
+          <div class="token-split">
+            <div class="split-row">
+              <span class="split-label">Community Reward Pool</span>
+              <span class="split-pct">80%</span>
+            </div>
+            <div class="split-bar"><div class="split-fill" style="width:80%"></div></div>
+            <div class="split-note">Method owner rewards, staking APY, bonding curve</div>
+
+            <div class="split-row" style="margin-top:1.25rem">
+              <span class="split-label">Team &amp; Contributors</span>
+              <span class="split-pct">20%</span>
+            </div>
+            <div class="split-bar"><div class="split-fill" style="width:20%; background:#333"></div></div>
+            <div class="split-note">1 month cliff · 6 month linear vesting</div>
+          </div>
+
+          <div class="token-economics">
+            <div class="econ-row">
+              <span class="econ-label">Per scan cost</span>
+              <span class="econ-val">1 POH (bulk discounts up to 60%)</span>
+            </div>
+            <div class="econ-row">
+              <span class="econ-label">Method owner share</span>
+              <span class="econ-val">50% of each paid scan, weighted by score × stake</span>
+            </div>
+            <div class="econ-row">
+              <span class="econ-label">Free tier</span>
+              <span class="econ-val">100 scans per wallet, no token required</span>
+            </div>
+            <div class="econ-row">
+              <span class="econ-label">Stake utility</span>
+              <span class="econ-val">Amplifies vote weight in method scoring consensus</span>
+            </div>
+          </div>
+
+          <div class="token-features">
+            <div class="token-feat">Bonding Curve Fair Launch</div>
+            <div class="token-feat">Scan Fee → Method Rewards</div>
+            <div class="token-feat">Stake-Weighted Voting</div>
+            <div class="token-feat">100 Free Scans / Wallet</div>
+          </div>
+
+          <div class="landing-cta-row">
+            <button class="outline-btn landing-cta" @click="goTo('https://cyreneai.com/projects/poh')">
+              <Bitcoin class="icon" :size="24" /> Trade $POH
+            </button>
+            <button
+             class="neon-btn landing-cta"
+             style="font-size: 1.0625rem;" 
+             @click="goTo('https://exchange.assetux.com/?fromChain=SOL&toChain=SOL&fromToken=SOL&toToken=POH&amount=1')"
+             >
+              <CreditCard class="icon" :size="24" /> Buy $POH
+            </button>
+          </div>
+        </section>
 
         <section class="landing-utilities">
           <div class="utility-card">
-            <div class="utility-icon"><Search :size="20" /></div>
+            <div class="utility-icon"><Search :size="48" /></div>
             <div class="utility-name">Scan</div>
             <div class="utility-desc">Verify any EVM or Solana wallet against all registered detection methods. Get an instant AI verdict on human vs bot probability.</div>
             <button class="utility-link" @click="showSection('checker')">Open Scanner →</button>
           </div>
           <div class="utility-card">
-            <div class="utility-icon"><PlusSquare :size="20" /></div>
+            <div class="utility-icon"><PlusSquare :size="48" /></div>
             <div class="utility-name">List</div>
-            <div class="utility-desc">Submit a new on-chain detection method — smart contract call, Solana program, or REST API. Pay 0.01 SOL. Earn rewards when your method is used.</div>
+            <div class="utility-desc">Submit a new on-chain detection method — smart contract call, Solana program, or REST API. Pay 1000 POH. 50% distributed to stakers, 50% to protocol. Earn scan rewards forever.</div>
             <button class="utility-link" @click="showSection('listing')">Submit Method →</button>
           </div>
           <div class="utility-card">
-            <div class="utility-icon"><Vote :size="20" /></div>
+            <div class="utility-icon"><Vote :size="48" /></div>
             <div class="utility-name">Vote</div>
-            <div class="utility-desc">Review submitted methods in the consensus queue. Your VOTE stake weight determines your influence. Curate signal from noise.</div>
+            <div class="utility-desc">Review submitted methods in the consensus queue. Your POH stake weight determines your influence. Curate signal from noise.</div>
             <button class="utility-link" @click="showSection('votes'); loadVoting()">Open Queue →</button>
           </div>
+          <div class="utility-card">
+            <div class="utility-icon"><ShieldCheck :size="48" /></div>
+            <div class="utility-name">API</div>
+            <div class="utility-desc">Integrate human verification directly into your app. First 100 scans free per wallet. Bulk pricing with curve discounts for large batches.</div>
+            <button class="utility-link" @click="showSection('api')">API Docs →</button>
+          </div>
+          <div class="utility-card">
+            <div class="utility-icon"><Activity :size="48" /></div>
+            <div class="utility-name">Stake</div>
+            <div class="utility-desc">Stake POH to amplify your vote weight in method scoring. Higher stake = more influence over which detection signals matter.</div>
+            <button class="utility-link" @click="showSection('staking')">Stake POH →</button>
+          </div>
         </section>
-
-        <div class="landing-divider"></div>
 
         <!-- Network graph -->
         <section class="network-section">
@@ -561,38 +861,6 @@ onMounted(async () => {
           </div>
         </section>
 
-        <div class="landing-divider"></div>
-
-        <section class="landing-token">
-          <div class="token-header">
-            <span class="token-ticker">$VOTE</span>
-            <span class="token-label">Network Token</span>
-          </div>
-          <p class="token-desc">Fair launch via bonding curve. No VC rounds. No pre-mine. Tokens unlock utility across the entire verification stack.</p>
-
-          <div class="token-split">
-            <div class="split-row">
-              <span class="split-label">Community Reward Pool</span>
-              <span class="split-pct">80%</span>
-            </div>
-            <div class="split-bar"><div class="split-fill" style="width:80%"></div></div>
-            <div class="split-note">Distributed via bonding curve, scan fees, and staking rewards</div>
-
-            <div class="split-row" style="margin-top:1.25rem">
-              <span class="split-label">Team &amp; Contributors</span>
-              <span class="split-pct">20%</span>
-            </div>
-            <div class="split-bar"><div class="split-fill" style="width:20%; background:#333"></div></div>
-            <div class="split-note">1 month cliff · 6 month linear vesting</div>
-          </div>
-
-          <div class="token-features">
-            <div class="token-feat">Bonding Curve Fair Launch</div>
-            <div class="token-feat">Scan Fee Burn</div>
-            <div class="token-feat">Stake-Weighted Voting</div>
-            <div class="token-feat">Method Reward Distribution</div>
-          </div>
-        </section>
       </div>
 
       <!-- Checker -->
@@ -618,6 +886,11 @@ onMounted(async () => {
               <FileUp :size="16" />
             </label>
           </div>
+          <div v-if="detectedChain" class="chain-pill-row">
+            <span :class="['chain-pill', `chain-pill--${detectedChain}`]">
+              {{ detectedChain === 'evm' ? 'EVM — running EVM + REST methods' : 'Solana — running Solana + REST methods' }}
+            </span>
+          </div>
           <div v-if="resolvedInputDisplay" class="resolved-display">
             ↳ <span class="resolved-address">{{ resolvedInputDisplay }}</span>
           </div>
@@ -625,7 +898,7 @@ onMounted(async () => {
             <span class="file-name">{{ batchFile.name }} — {{ batchRowCount }} addresses</span>
             <button @click="batchFile = null; batchRowCount = 0; batchRows = []" class="mini-btn"><Trash2 :size="12" /></button>
           </div>
-          <button @click="runCheck" :disabled="loading || (!scanInput && !batchFile)" class="scan-btn">
+          <button @click="runCheck" :disabled="loading || (!scanInput && !batchFile)" class="submit-listing-btn">
             {{ isResolving ? 'Resolving...' : loading ? 'Scanning...' : batchFile ? 'Scan Batch' : 'Scan Wallet' }}
           </button>
         </div>
@@ -660,6 +933,11 @@ onMounted(async () => {
 
       <!-- Listing -->
       <div v-if="currentSection === 'listing'" class="content-section">
+        <div class="listing-header">
+          <div class="scan-tag">METHOD LISTING</div>
+          <h2 class="scan-title">Submit a detection method</h2>
+          <p class="scan-sub">Define an on-chain check and pay 1000 POH to register it. 500 POH goes to stakers immediately, 500 to the protocol. Earn rewards when your method is used in scans.</p>
+        </div>
         <div class="form-section">
           <div class="form-label-row">
             <span class="form-section-label">Method Type</span>
@@ -835,8 +1113,14 @@ onMounted(async () => {
           <div class="form-label-row"><span class="form-section-label">Description</span></div>
           <div class="input-group">
             <textarea v-model="listing.description" placeholder="What does this method detect? What constitutes human evidence?" class="premium-textarea" rows="2"></textarea>
-            <button @click="submitListing" :disabled="loading || !listing.description" class="neon-btn">
-              {{ loading ? 'Confirming...' : 'Submit Method — 0.01 SOL' }}
+            <div class="listing-fee-row">
+              <span class="listing-fee-label">Listing fee: <strong>1000 POH</strong></span>
+              <span class="listing-fee-balance" :class="{ insufficient: pohBalance < 1000 }">
+                Balance: {{ pohBalance.toFixed(2) }} POH
+              </span>
+            </div>
+            <button @click="submitListing" :disabled="loading || !listing.description || pohBalance < 1000" class="submit-listing-btn">
+              {{ loading ? 'Confirming on-chain...' : 'Submit Method — 1000 POH' }}
             </button>
           </div>
         </div>
@@ -847,7 +1131,7 @@ onMounted(async () => {
         <div class="votes-header">
           <div class="scan-tag">CONSENSUS QUEUE</div>
           <h2 class="scan-title">Review detection methods</h2>
-          <p class="scan-sub">Vote on whether each method reliably distinguishes humans from bots. Your VOTE stake weight determines your influence.</p>
+          <p class="scan-sub">Vote on whether each method reliably distinguishes humans from bots. Your POH stake weight determines your influence.</p>
         </div>
 
         <div v-if="loading" class="empty-state"><p>Loading...</p></div>
@@ -894,10 +1178,10 @@ onMounted(async () => {
 
             <div class="vcs-actions">
               <button class="vcs-btn vcs-btn-yes" :disabled="voteSubmitting" @click="castVote(true)">
-                {{ voteSubmitting ? '...' : '✓ Legitimate' }}
+                {{ voteSubmitting ? '...' : '✓ Human' }}
               </button>
               <button class="vcs-btn vcs-btn-no" :disabled="voteSubmitting" @click="castVote(false)">
-                ✗ Malicious
+                ✗ Robot
               </button>
               <button class="vcs-btn vcs-btn-skip" @click="castVote('skip')">
                 Skip →
@@ -906,13 +1190,308 @@ onMounted(async () => {
           </div>
         </div>
       </div>
+
+      <!-- Profile -->
+      <div v-if="currentSection === 'profile'" class="profile-page">
+        <div class="scan-hero">
+          <div class="scan-tag">PROFILE</div>
+          <h2 class="scan-title">Your POH Account</h2>
+          <p class="scan-sub">Sign in with your Solana wallet to access your API key, track rewards, and manage your submitted methods.</p>
+        </div>
+
+        <div v-if="!connected" class="profile-connect-prompt">
+          <p class="prompt-text">Connect your Solana wallet to view your profile.</p>
+          <button class="submit-listing-btn" @click="showWalletModal = true">Connect Wallet</button>
+        </div>
+
+        <template v-else>
+          <div v-if="profileError" class="profile-error">{{ profileError }}</div>
+
+          <div v-if="profileLoading" class="empty-state"><p>Loading profile...</p></div>
+
+          <div v-else-if="!profileData" class="profile-signup-card">
+            <p class="signup-desc">No profile found for this wallet. Create one to get your API key and start earning rewards from submitted methods.</p>
+            <button class="submit-listing-btn" :disabled="signupLoading" @click="signupProfile()">
+              {{ signupLoading ? 'Signing...' : 'Create Profile' }}
+            </button>
+          </div>
+
+          <template v-else>
+            <!-- Stats row -->
+            <div class="profile-stats">
+              <div class="pstat-card">
+                <div class="pstat-val">{{ profileData.profile?.freeScansLeft ?? 100 }}</div>
+                <div class="pstat-label">Free Scans Left</div>
+              </div>
+              <div class="pstat-card">
+                <div class="pstat-val">{{ profileData.profile?.totalScans ?? 0 }}</div>
+                <div class="pstat-label">Total Scans</div>
+              </div>
+              <div class="pstat-card">
+                <div class="pstat-val">{{ ((profileData.profile?.balance ?? 0) / 1e6).toFixed(2) }}</div>
+                <div class="pstat-label">Balance (POH)</div>
+              </div>
+              <div class="pstat-card">
+                <div class="pstat-val">{{ profileData.earned ? (profileData.earned / 1e6).toFixed(2) : '0.00' }}</div>
+                <div class="pstat-label">Total Earned</div>
+              </div>
+            </div>
+
+            <!-- API Key -->
+            <div class="profile-card">
+              <div class="profile-card-header">
+                <span class="profile-card-title">API Key</span>
+                <button class="mini-btn" @click="rotateApiKey()">Rotate</button>
+              </div>
+              <div class="apikey-row">
+                <code class="apikey-display">{{ profileData.profile?.apiKey }}</code>
+                <button class="mini-btn" @click="copyText(profileData.profile?.apiKey)">Copy</button>
+              </div>
+              <p class="profile-hint">Pass as <code>apiKey</code> in POST /checker body. Identify scans without wallet interaction.</p>
+            </div>
+
+            <!-- Submitted methods -->
+            <div class="profile-card">
+              <div class="profile-card-header">
+                <span class="profile-card-title">Submitted Methods</span>
+                <span class="profile-card-count">{{ profileData.methods?.length ?? 0 }}</span>
+              </div>
+              <div v-if="!profileData.methods?.length" class="profile-empty">
+                No methods submitted yet.
+                <button class="utility-link no-margin" @click="showSection('listing')">Submit one →</button>
+              </div>
+              <div v-else class="method-list-profile">
+                <div v-for="m in profileData.methods" :key="m.id" class="mlist-row">
+                  <div class="mlist-main">
+                    <span class="mlist-type">{{ m.type?.toUpperCase() }}</span>
+                    <span class="mlist-desc">{{ m.description }}</span>
+                  </div>
+                  <div class="mlist-meta">
+                    <span class="mlist-score">score {{ m.score?.toFixed(1) ?? '0.0' }}</span>
+                    <span class="mlist-earned">{{ ((profileData.pending) / 1e6).toFixed(4) }} POH pending</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
+
+      <!-- API -->
+      <div v-if="currentSection === 'api'" class="api-page">
+        <div class="scan-hero">
+          <div class="scan-tag">API REFERENCE</div>
+          <h2 class="scan-title">Integrate POH</h2>
+          <p class="scan-sub">Simple HTTP API. First 100 scans free per wallet. Authenticate with an API key from your profile.</p>
+        </div>
+
+        <!-- Pricing table -->
+        <div class="api-section">
+          <div class="api-section-title">Pricing</div>
+          <div class="pricing-table">
+            <div class="pt-row pt-head">
+              <span>Batch size</span><span>Rate</span><span>Example</span>
+            </div>
+            <div class="pt-row">
+              <span>1 – 9 addresses</span><span>1.00 POH / addr</span><span>5 addrs = 5 POH</span>
+            </div>
+            <div class="pt-row">
+              <span>10 – 49 addresses</span><span>0.85 POH / addr</span><span>20 addrs = 17 POH</span>
+            </div>
+            <div class="pt-row">
+              <span>50 – 99 addresses</span><span>0.70 POH / addr</span><span>70 addrs = 49 POH</span>
+            </div>
+            <div class="pt-row">
+              <span>100 – 499 addresses</span><span>0.55 POH / addr</span><span>200 addrs = 110 POH</span>
+            </div>
+            <div class="pt-row">
+              <span>500+ addresses</span><span>0.40 POH / addr</span><span>1000 addrs = 400 POH</span>
+            </div>
+            <div class="pt-row pt-free">
+              <span>Free tier</span><span>0 POH</span><span>First 100 scans per wallet</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Endpoint docs -->
+        <div class="api-section">
+          <div class="api-section-title">POST /checker</div>
+          <div class="api-card">
+            <div class="api-desc">Scan one or more wallet addresses against all registered detection methods. Returns per-method results and a <code>brainKey</code> for async AI verdict polling.</div>
+            <div class="api-params">
+              <div class="param-row"><code>input</code><span>string or array — wallet address(es) to scan</span></div>
+              <div class="param-row"><code>walletAddress</code><span>your Solana wallet (for free tier tracking)</span></div>
+              <div class="param-row"><code>apiKey</code><span>API key from your profile (alternative to walletAddress)</span></div>
+              <div class="param-row"><code>txHash</code><span>POH burn transaction hash (required for paid scans)</span></div>
+              <div class="param-row"><code>chainIds</code><span>comma-separated chain IDs to filter EVM methods (optional)</span></div>
+              <div class="param-row"><code>csv</code><span>multipart file upload — CSV with address column (batch mode)</span></div>
+            </div>
+            <div class="code-block">
+              <div class="code-lang">curl</div>
+              <pre class="code-pre">curl -X POST https://poh.assetux.com/checker \
+  -H "Content-Type: application/json" \
+  -d '{
+    "input": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+    "apiKey": "your-api-key-here"
+  }'</pre>
+            </div>
+            <div class="code-block">
+              <div class="code-lang">JavaScript</div>
+              <pre class="code-pre">const res = await fetch('/checker', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    input: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+    apiKey: 'your-api-key-here'
+  })
+})
+const { result, brainKey, freeScansLeft } = await res.json()</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="api-section">
+          <div class="api-section-title">GET /checker/brain/:key</div>
+          <div class="api-card">
+            <div class="api-desc">Poll for the async AI verdict after a scan. <code>brainKey</code> is returned by POST /checker. Returns <code>status: "pending" | "done" | "error"</code>.</div>
+            <div class="code-block">
+              <div class="code-lang">curl</div>
+              <pre class="code-pre">curl https://poh.assetux.com/checker/brain/0xabc123...</pre>
+            </div>
+            <div class="api-params">
+              <div class="param-row"><code>verdict</code><span>HUMAN | AI | UNCERTAIN | UNKNOWN</span></div>
+              <div class="param-row"><code>confidence</code><span>0.0 – 1.0</span></div>
+              <div class="param-row"><code>reasoning</code><span>short technical explanation</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="api-section">
+          <div class="api-section-title">GET /checker/pricing?count=N</div>
+          <div class="api-card">
+            <div class="api-desc">Returns cost breakdown for a given batch size before committing.</div>
+            <div class="code-block">
+              <div class="code-lang">curl</div>
+              <pre class="code-pre">curl "https://poh.assetux.com/checker/pricing?count=100"
+# → { count: 100, perAddress: 0.55, total: 55000000, tiers: [...] }</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="api-section">
+          <div class="api-section-title">GET /profile/:address</div>
+          <div class="api-card">
+            <div class="api-desc">Returns profile stats, submitted methods, and reward totals for a wallet address.</div>
+            <div class="code-block">
+              <div class="code-lang">curl</div>
+              <pre class="code-pre">curl https://poh.assetux.com/profile/YourSolanaWalletAddressHere</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="api-cta">
+          <p>Get your API key from your <button class="utility-link" @click="showSection('profile'); loadProfile()">profile →</button></p>
+        </div>
+      </div>
+
+      <!-- Staking -->
+      <div v-if="currentSection === 'staking'" class="staking-page">
+        <div class="scan-hero">
+          <div class="scan-tag">STAKING</div>
+          <h2 class="scan-title">Stake POH</h2>
+          <p class="scan-sub">Your staked POH balance determines your vote weight when scoring detection methods. Higher stake = more signal in the consensus.</p>
+        </div>
+
+        <div class="staking-grid">
+          <div class="staking-info-card">
+            <div class="si-title">How staking works</div>
+            <ul class="si-list">
+              <li>Stake POH tokens to increase your voting power in the method scoring queue</li>
+              <li>Vote weight = base 1 + stake-weighted multiplier</li>
+              <li>AI Learner uses community vote weights when updating per-method signal weights</li>
+              <li>Top stakers gain outsized influence over which detection methods rank highest</li>
+              <li>Unstake at any time — no lockup period in v1</li>
+            </ul>
+          </div>
+
+          <div class="staking-info-card">
+            <div class="si-title">Reward flow</div>
+            <ul class="si-list">
+              <li>Every paid scan distributes 50% of POH cost to method owners</li>
+              <li>Distribution is weighted by method score × AI weight</li>
+              <li>Your stake improves method scores → more rewards to method owners you back</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stake-form-card">
+          <div class="stake-form-title">Manage Stake</div>
+          <div v-if="!connected" class="prompt-text">
+            <button class="utility-link" @click="showWalletModal = true">Connect wallet →</button>
+          </div>
+          <template v-else>
+            <!-- Balances -->
+            <div class="stake-balance-row">
+              <div class="sbal-item">
+                <div class="sbal-val">{{ pohBalance.toFixed(2) }}</div>
+                <div class="sbal-label">Wallet POH</div>
+              </div>
+              <div class="sbal-item">
+                <div class="sbal-val">{{ stakedBalance.toFixed(2) }}</div>
+                <div class="sbal-label">Staked</div>
+              </div>
+              <div class="sbal-item">
+                <div class="sbal-val">{{ totalStaked.toFixed(0) }}</div>
+                <div class="sbal-label">Total Staked</div>
+              </div>
+              <div class="sbal-item sbal-claimable">
+                <div class="sbal-val">{{ claimable.toFixed(4) }}</div>
+                <div class="sbal-label">Claimable</div>
+              </div>
+            </div>
+
+            <!-- Stake -->
+            <div class="stake-action-row">
+              <div class="flex-input">
+                <input type="number" v-model="stakeAmount" placeholder="POH to stake" class="premium-input flex-grow" min="0" step="1" />
+                <button class="neon-btn" :disabled="stakeLoading || !stakeAmount" @click="submitStake()">
+                  {{ stakeLoading ? '...' : 'Stake' }}
+                </button>
+              </div>
+              <button class="max-btn" @click="stakeAmount = pohBalance.toFixed(2)">MAX</button>
+            </div>
+
+            <!-- Unstake -->
+            <div class="stake-action-row">
+              <div class="flex-input">
+                <input type="number" v-model="unstakeAmount" placeholder="POH to unstake" class="premium-input flex-grow" min="0" step="1" />
+                <button class="outline-btn" :disabled="unstakeLoading || !unstakeAmount" @click="submitUnstake()">
+                  {{ unstakeLoading ? '...' : 'Unstake' }}
+                </button>
+              </div>
+              <button class="max-btn" @click="unstakeAmount = stakedBalance.toFixed(2)">MAX</button>
+            </div>
+
+            <!-- Claim rewards -->
+            <div v-if="claimable > 0" class="stake-claim-row">
+              <span class="claim-desc">{{ claimable.toFixed(4) }} POH from staking rewards</span>
+              <button class="neon-btn" :disabled="claimLoading" @click="claimRewards()">
+                {{ claimLoading ? 'Claiming...' : 'Claim Rewards' }}
+              </button>
+            </div>
+
+            <div v-if="stakeMessage" class="stake-message">{{ stakeMessage }}</div>
+            <p class="profile-hint" style="margin-top:0.75rem">
+              Contract: <code>{{ STAKING_CONTRACT?.slice(0, 20) }}…</code>
+            </p>
+          </template>
+        </div>
+      </div>
+
     </main>
 
     <footer class="footer">
-      <div class="footer-content">
-        <Activity :size="14" />
-        <span>POWERED BY HUMAN CONSENSUS ENGINE</span>
-      </div>
+      <div class="network-label">Connect</div>
     </footer>
   </div>
 </template>
@@ -921,7 +1500,7 @@ onMounted(async () => {
 /* ── Landing ─────────────────────────────────────────────────────────────── */
 .landing {
   max-width: 1280px;
-  margin: 0 auto 4rem;
+  margin: 0 auto 0;
   padding: 0 0 2rem;
 }
 
@@ -931,7 +1510,7 @@ onMounted(async () => {
 }
 
 .landing-tag {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: #444;
@@ -940,7 +1519,7 @@ onMounted(async () => {
 }
 
 .landing-title {
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-size: clamp(2.75rem, 7.5vw, 4.38rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.05;
@@ -949,15 +1528,19 @@ onMounted(async () => {
 }
 
 .landing-sub {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #555;
   line-height: 1.7;
   margin-bottom: 2rem;
 }
 
 .landing-cta {
-  font-size: 1.25rem;
+  font-size: 1.56rem;
   padding: 1rem 1.75rem;
+  display: flex;
+  align-items: center;   /* vertical center */
+  justify-content: center; /* horizontal center (optional) */
+  gap: 8px; /* space between icon and text */
 }
 
 .landing-divider {
@@ -971,7 +1554,6 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: #111;
   border: 1px solid #111;
   border-radius: 8px;
   overflow: hidden;
@@ -989,29 +1571,35 @@ onMounted(async () => {
 .utility-icon { color: #fff; }
 
 .utility-name {
-  font-size: 1rem;
+  margin-top: 25px;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: -0.02em;
 }
 
 .utility-desc {
-  font-size: 1rem;
+  margin-top: 25px;
+  font-size: 1.25rem;
   color: #555;
   line-height: 1.6;
   flex-grow: 1;
 }
 
 .utility-link {
+  margin-top: 25px;
   background: none;
   border: none;
   color: #888;
-  font-size: 1rem;
+  font-size: 1.25rem;
   cursor: pointer;
   padding: 0;
   text-align: left;
   transition: color 0.15s;
-  margin-top: 0.25rem;
+}
+
+.no-margin {
+  margin: 0 !important;
 }
 
 .utility-link:hover { color: #fff; }
@@ -1021,7 +1609,6 @@ onMounted(async () => {
   border: 1px solid #1a1a1a;
   border-radius: 8px;
   padding: 2rem;
-  margin: 10rem 0;
 }
 
 .token-header {
@@ -1032,27 +1619,27 @@ onMounted(async () => {
 }
 
 .token-ticker {
-  font-size: 1.3rem;
+  font-size: 1.62rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: -0.02em;
 }
 
 .token-label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #444;
 }
 
 .token-desc {
-  font-size: 1.15rem;
+  font-size: 1.44rem;
   color: #555;
   line-height: 1.6;
-  margin-bottom: 1.75rem;
+  margin-bottom: 3.75rem;
 }
 
-.token-split { margin-bottom: 1.75rem; }
+.token-split { margin-bottom: 3.75rem; }
 
 .split-row {
   display: flex;
@@ -1061,8 +1648,8 @@ onMounted(async () => {
   margin-bottom: 0.4rem;
 }
 
-.split-label { font-size: 1rem; color: #888; }
-.split-pct { font-size: 0.9rem; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+.split-label { font-size: 1.25rem; color: #888; }
+.split-pct { font-size: 1.12rem; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
 
 .split-bar {
   height: 2px;
@@ -1078,7 +1665,7 @@ onMounted(async () => {
 }
 
 .split-note {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #3a3a3a;
 }
 
@@ -1086,14 +1673,92 @@ onMounted(async () => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-bottom: 3.75rem;
 }
 
 .token-feat {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #555;
   border: 1px solid #1a1a1a;
   border-radius: 4px;
   padding: 0.3rem 1rem;
+}
+
+/* ── How it works ────────────────────────────────────────────────────────── */
+.how-section { margin: 0 0 3rem; }
+
+.how-label {
+  font-size: 0.81rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #333;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #111;
+  border: 1px solid #111;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.how-col {
+  background: #000;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.how-step-title {
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.how-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.how-list li {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.55;
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.how-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #2a2a2a;
+}
+
+.how-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #444;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+  margin-right: 0.35rem;
+  vertical-align: middle;
 }
 
 /* ── Network graph ───────────────────────────────────────────────────────── */
@@ -1102,12 +1767,12 @@ onMounted(async () => {
 }
 
 .network-label {
-  font-size: 1rem;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: #333;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin: 10rem 0 3rem 0;
   text-align: center;
 }
 
@@ -1142,7 +1807,7 @@ onMounted(async () => {
 .g-node--wallet { fill: #111; stroke: #333; }
 
 .g-label {
-  font-size: 9px;
+  font-size: 11px;
   fill: #444;
   font-family: -apple-system, sans-serif;
   pointer-events: none;
@@ -1160,7 +1825,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #444;
 }
 
@@ -1179,63 +1844,69 @@ onMounted(async () => {
 
 /* ── Form sections (Listing) ─────────────────────────────────────────────── */
 .form-section {
-  border: 1px solid #1a1a1a;
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
+  border: 1px solid #161616;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  margin-bottom: 0.75rem;
+  background: #050505;
 }
 
 .form-label-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #111;
 }
 
 .form-section-label {
   font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #444;
+  letter-spacing: 0.16em;
+  color: #3a3a3a;
 }
 
 .field-label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 500;
   color: #555;
   margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
 }
 
 .field-hint-inline {
-  color: #333;
+  color: #2e2e2e;
   font-weight: 400;
-  margin-left: 0.35rem;
-  font-size: 1rem;
+  margin-left: 0.3rem;
+  font-size: 0.68rem;
 }
 
-.field-hint { font-size: 0.75rem; color: #555; margin-top: 0.25rem; }
-.field-hint--warn { color: #888; }
+.field-hint { font-size: 0.72rem; color: #444; margin-top: 0.3rem; }
+.field-hint--warn { color: #666; }
 
 .type-tabs {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.3rem;
   flex-wrap: wrap;
 }
 
 .type-tab {
   background: none;
   border: 1px solid #1a1a1a;
-  color: #555;
-  padding: 0.45rem 0.9rem;
-  border-radius: 5px;
+  color: #444;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
   font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.15s;
   white-space: nowrap;
 }
 
-.type-tab:hover { border-color: #333; color: #aaa; }
+.type-tab:hover { border-color: #2a2a2a; color: #aaa; }
 .type-tab.active { background: #fff; color: #000; border-color: #fff; font-weight: 600; }
 
 .form-row {
@@ -1246,8 +1917,31 @@ onMounted(async () => {
 }
 
 .form-col { flex: 1; min-width: 0; }
-.form-col-sm { flex: 0 0 130px; min-width: 0; }
+.form-col-sm { flex: 0 0 100px; min-width: 0; }
 .form-col-lg { flex: 2; min-width: 0; }
+
+.listing-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.submit-listing-btn {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+}
+
+.submit-listing-btn:hover:not(:disabled) { opacity: 0.88; }
+.submit-listing-btn:disabled { opacity: 0.2; cursor: not-allowed; }
 
 /* ── Scan page ───────────────────────────────────────────────────────────── */
 .scan-page {
@@ -1262,7 +1956,7 @@ onMounted(async () => {
 }
 
 .scan-tag {
-  font-size: 0.65rem;
+  font-size: 0.81rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: #444;
@@ -1271,7 +1965,7 @@ onMounted(async () => {
 }
 
 .scan-title {
-  font-size: 1.75rem;
+  font-size: 2.19rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: #fff;
@@ -1279,7 +1973,7 @@ onMounted(async () => {
 }
 
 .scan-sub {
-  font-size: 1.25rem;
+  font-size: 1.56rem;
   color: #555;
   line-height: 1.6;
 }
@@ -1310,7 +2004,7 @@ onMounted(async () => {
   outline: none;
   padding: 0.9rem 1rem;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1.12rem;
 }
 
 .scan-input::placeholder { color: #333; }
@@ -1337,7 +2031,7 @@ onMounted(async () => {
   padding: 1.25rem;
   border-radius: 7px;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.56rem;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -1364,7 +2058,7 @@ onMounted(async () => {
   margin-bottom: 0.5rem;
 }
 
-.brain-conf { font-size: 1rem; color: #444; margin-top: 0.5rem; }
+.brain-conf { font-size: 1.25rem; color: #444; margin-top: 0.5rem; }
 
 .results-header { margin-bottom: 0.75rem; }
 
@@ -1390,7 +2084,7 @@ onMounted(async () => {
 
 .result-desc {
   flex: 1;
-  font-size: 0.82rem;
+  font-size: 1.02rem;
   color: #777;
   line-height: 1.4;
 }
@@ -1431,7 +2125,7 @@ onMounted(async () => {
 }
 
 .vote-progress-label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #444;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
@@ -1454,13 +2148,13 @@ onMounted(async () => {
 }
 
 .vcs-chain {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #333;
   letter-spacing: 0.05em;
 }
 
 .vmc-type {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #444;
@@ -1470,14 +2164,14 @@ onMounted(async () => {
 }
 
 .vmc-score {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #444;
   font-variant-numeric: tabular-nums;
   margin-left: auto;
 }
 
 .vcs-desc {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #ccc;
   line-height: 1.6;
   font-weight: 400;
@@ -1490,24 +2184,24 @@ onMounted(async () => {
 }
 
 .vcs-detail-label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #333;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
   flex-shrink: 0;
-  width: 100px;
+  width: 130px;
 }
 
 .vcs-detail-val {
-  font-size: 0.75rem;
+  font-size: 0.94rem;
   color: #555;
   font-family: 'JetBrains Mono', monospace;
   word-break: break-all;
 }
 
 .vcs-code {
-  font-size: 0.75rem;
+  font-size: 0.94rem;
   color: #666;
   font-family: 'JetBrains Mono', monospace;
   background: #080808;
@@ -1539,7 +2233,7 @@ onMounted(async () => {
   border: 1px solid #1a1a1a;
   border-radius: 6px;
   padding: 0.65rem 1rem;
-  font-size: 0.825rem;
+  font-size: 1.03rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
@@ -1599,7 +2293,7 @@ onMounted(async () => {
 }
 
 .logo img {
-  height: 28px;
+  height: 64px;
   opacity: 0.9;
 }
 
@@ -1616,7 +2310,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   padding: 0.5rem 0.9rem;
   border-radius: 6px;
@@ -1648,7 +2342,7 @@ onMounted(async () => {
   padding: 0.5rem 1.3rem;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.25rem;
   cursor: pointer;
   transition: opacity 0.15s;
 }
@@ -1673,7 +2367,7 @@ onMounted(async () => {
 
 .address-text {
   font-family: 'JetBrains Mono', 'SF Mono', monospace;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #aaa;
 }
 
@@ -1681,7 +2375,7 @@ onMounted(async () => {
   background: none;
   border: none;
   color: #444;
-  font-size: 1rem;
+  font-size: 1.25rem;
   cursor: pointer;
   padding: 0;
   transition: color 0.15s;
@@ -1710,13 +2404,13 @@ onMounted(async () => {
 }
 
 .modal-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
   color: #aaa;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .wallet-option {
@@ -1729,7 +2423,7 @@ onMounted(async () => {
   border: 1px solid #1e1e1e;
   border-radius: 7px;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1.12rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
@@ -1750,7 +2444,7 @@ onMounted(async () => {
   border-radius: 6px;
   margin-top: 0.25rem;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.25rem;
   transition: color 0.15s, border-color 0.15s;
 }
 
@@ -1765,7 +2459,7 @@ onMounted(async () => {
 }
 
 .hero .title {
-  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-size: clamp(2.5rem, 7.5vw, 4.06rem);
   line-height: 1.1;
   margin-bottom: 1.25rem;
   color: #fff;
@@ -1773,7 +2467,7 @@ onMounted(async () => {
 }
 
 .hero .subtitle {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #555;
   max-width: 520px;
   margin: 0 auto;
@@ -1787,7 +2481,7 @@ onMounted(async () => {
   color: #ef4444;
   padding: 1rem 1rem;
   border-radius: 6px;
-  font-size: 1.15rem;
+  font-size: 1.44rem;
   margin-bottom: 1.25rem;
   cursor: pointer;
   max-width: 700px;
@@ -1818,37 +2512,48 @@ onMounted(async () => {
 .premium-input,
 .premium-select,
 .premium-textarea {
+  width: 100%;
   background: #080808;
   border: 1px solid #1e1e1e;
   border-radius: 7px;
-  padding: 1.15rem 1rem;
-  max-width: 100%;
-  color: #fff;
-  font-size: 1.25rem;
-  transition: border-color 0.15s;
+  padding: 0.6rem 0.85rem;
+  color: #e0e0e0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  transition: border-color 0.15s, background 0.15s;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .premium-textarea {
   min-height: 80px;
   resize: vertical;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .premium-input::placeholder,
-.premium-textarea::placeholder { color: #333; }
+.premium-textarea::placeholder { color: #2a2a2a; }
 
 .premium-input:focus,
 .premium-select:focus,
 .premium-textarea:focus {
   outline: none;
-  border-color: #333;
-  background: #0a0a0a;
+  border-color: #2a2a2a;
+  background: #0c0c0c;
+}
+
+.premium-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23444'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
 }
 
 .premium-select option { background: #111; }
 
-.flex-input { display: contents; gap: 0.5rem; }
+.flex-input { display: flex; gap: 0.5rem; align-items: stretch; }
 
 .file-label {
   display: flex;
@@ -1877,10 +2582,36 @@ onMounted(async () => {
   border-radius: 6px;
 }
 
-.file-name { font-size: 1rem; color: #666; }
+.file-name { font-size: 1.25rem; color: #666; }
+
+.chain-pill-row {
+  padding-left: 0.1rem;
+}
+
+.chain-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.chain-pill--evm {
+  color: #555;
+  border-color: #222;
+  background: #0a0a0a;
+}
+
+.chain-pill--solana {
+  color: #7c4dbb;
+  border-color: #2a1a44;
+  background: #0c0810;
+}
 
 .resolved-display {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #555;
   padding-left: 0.25rem;
 }
@@ -1895,12 +2626,14 @@ onMounted(async () => {
   background: #080808;
   border: 1px solid #1e1e1e;
   color: #555;
-  padding: 0.5rem 0.6rem;
+  padding: 0.6rem 0.85rem;
   border-radius: 6px;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
-  font-size: 1rem;
+  font-size: 0.8rem;
   white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-end;
 }
 
 .mini-btn:hover { color: #aaa; border-color: #2a2a2a; }
@@ -1923,26 +2656,26 @@ onMounted(async () => {
 }
 
 .abi-picker-label {
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.65rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #444;
 }
 
-.abi-picker-count { font-size: 1rem; color: #333; }
+.abi-picker-count { font-size: 0.72rem; color: #333; }
 
-.abi-picker-list { max-height: 12rem; overflow-y: auto; }
+.abi-picker-list { max-height: 10rem; overflow-y: auto; }
 
 .abi-fn-btn {
   width: 100%;
   text-align: left;
-  padding: 0.6rem 0.9rem;
+  padding: 0.5rem 0.9rem;
   background: none;
   border: none;
   border-bottom: 1px solid #111;
-  color: #888;
-  font-size: 1rem;
+  color: #777;
+  font-size: 0.8rem;
   font-family: 'JetBrains Mono', monospace;
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
@@ -1959,7 +2692,7 @@ onMounted(async () => {
 }
 
 .section-title {
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #3a3a3a;
@@ -1976,7 +2709,7 @@ onMounted(async () => {
 }
 
 .method-desc {
-  font-size: 1.25rem;
+  font-size: 1.56rem;
   color: #888;
   line-height: 1.4;
 }
@@ -1985,7 +2718,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #3a3a3a;
 }
 
@@ -1996,7 +2729,7 @@ onMounted(async () => {
 .status-badge {
   padding: 0.25rem 0.6rem;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   white-space: nowrap;
@@ -2033,7 +2766,7 @@ onMounted(async () => {
 }
 
 .brain-label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 700;
@@ -2041,13 +2774,13 @@ onMounted(async () => {
 }
 
 .brain-reasoning {
-  font-size: 1.15rem;
+  font-size: 1.44rem;
   color: #777;
   line-height: 1.5;
 }
 
 .brain-analyzing {
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #444;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -2060,7 +2793,7 @@ onMounted(async () => {
 /* ── Votes ───────────────────────────────────────────────────────────────── */
 .queue-container { max-width: 520px; margin: 0 auto; }
 
-.method-preview p { color: #666; font-size: 0.95rem; line-height: 1.6; }
+.method-preview p { color: #666; font-size: 1.19rem; line-height: 1.6; }
 
 .vote-btn-yes {
   background: var(--green) !important;
@@ -2074,8 +2807,6 @@ onMounted(async () => {
 
 /* ── Footer bar ──────────────────────────────────────────────────────────── */
 .footer {
-  padding: 2rem 0;
-  border-top: 1px solid #111;
   margin-top: auto;
 }
 
@@ -2085,9 +2816,13 @@ onMounted(async () => {
   justify-content: center;
   gap: 0.5rem;
   color: #2a2a2a;
-  font-size: 1rem;
+  font-size: 1.25rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.site-footer {
+  padding: 3.25rem 1.5rem;
 }
 
 
@@ -2097,7 +2832,7 @@ onMounted(async () => {
 }
 
 .vote-queue-label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #333;
@@ -2110,7 +2845,7 @@ onMounted(async () => {
 }
 
 .method-preview p {
-  font-size: 0.95rem;
+  font-size: 1.19rem;
   color: #888;
   line-height: 1.6;
   margin-bottom: 1.25rem;
@@ -2122,8 +2857,8 @@ onMounted(async () => {
   margin-bottom: 0.5rem;
 }
 
-.vote-score-label { font-size: 1rem; color: #444; }
-.vote-score-value { font-size: 1rem; color: #666; font-variant-numeric: tabular-nums; }
+.vote-score-label { font-size: 1.25rem; color: #444; }
+.vote-score-value { font-size: 1.25rem; color: #666; font-variant-numeric: tabular-nums; }
 
 .vote-actions {
   display: flex;
@@ -2138,7 +2873,7 @@ onMounted(async () => {
   gap: 1rem;
   padding: 5rem 0;
   color: #2a2a2a;
-  font-size: 1.25rem;
+  font-size: 1.56rem;
 }
 
 /* ── Header right group ──────────────────────────────────────────────────── */
@@ -2219,7 +2954,7 @@ onMounted(async () => {
   border: none;
   color: #666;
   text-align: left;
-  font-size: 1.1rem;
+  font-size: 1.38rem;
   font-weight: 500;
   padding: 0.75rem 0.5rem;
   cursor: pointer;
@@ -2252,8 +2987,345 @@ onMounted(async () => {
   .mobile-menu    { display: block; }
 
   .landing-utilities { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; }
   .form-row { flex-direction: column; }
   .form-col-sm { flex: unset; width: 100%; }
   .form-col-lg { flex: unset; width: 100%; }
+  .profile-stats { grid-template-columns: 1fr 1fr; }
+  .pricing-table .pt-row { grid-template-columns: 1fr; gap: 0.15rem; }
+  .staking-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Landing CTA row ─────────────────────────────────────────────────────── */
+.landing-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.outline-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.outline-btn:hover { border-color: #555; color: #ccc; }
+
+/* ── Token economics ─────────────────────────────────────────────────────── */
+.token-economics {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0 3.75rem 0;
+}
+.econ-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #111;
+  gap: 1rem;
+}
+.econ-row:last-child { border-bottom: none; }
+.econ-label { color: #555; font-size: 0.875rem; white-space: nowrap; }
+.econ-val { color: #999; font-size: 0.875rem; text-align: right; }
+
+/* ── Profile page ────────────────────────────────────────────────────────── */
+.profile-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+.profile-connect-prompt {
+  text-align: center;
+  padding: 3rem 1rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+.prompt-text { color: #555; margin-bottom: 1.25rem; font-size: 1.0625rem; }
+
+.profile-signup-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.signup-desc { color: #555; margin-bottom: 1.5rem; line-height: 1.6; }
+
+.profile-error {
+  background: #1a0000;
+  border: 1px solid #330000;
+  color: #ff4444;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.pstat-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.pstat-val { font-size: 1.75rem; font-weight: 700; color: #fff; }
+.pstat-label { font-size: 0.8125rem; color: #555; margin-top: 0.25rem; }
+
+.profile-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+.profile-card-title { font-size: 0.9375rem; font-weight: 600; color: #ccc; }
+.profile-card-count {
+  background: #111;
+  border: 1px solid #222;
+  color: #666;
+  font-size: 0.8125rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+}
+
+.apikey-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.apikey-display {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #888;
+  word-break: break-all;
+}
+.profile-hint { font-size: 0.8125rem; color: #444; margin-top: 0.5rem; }
+.profile-hint code { background: #111; padding: 0.1rem 0.3rem; border-radius: 3px; color: #888; }
+
+.profile-empty { color: #444; font-size: 0.9375rem; display: flex; gap: 0.5rem; align-items: center; }
+
+.method-list-profile { display: flex; flex-direction: column; gap: 0.5rem; }
+.mlist-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background: #050505;
+  border: 1px solid #111;
+  border-radius: 6px;
+  gap: 1rem;
+}
+.mlist-main { display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0; }
+.mlist-type {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #555;
+  background: #0c0c0c;
+  border: 1px solid #1e1e1e;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.mlist-desc { font-size: 0.9375rem; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mlist-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; white-space: nowrap; }
+.mlist-score { font-size: 0.8125rem; color: #555; }
+.mlist-earned { font-size: 0.8125rem; color: #888; }
+
+/* ── API page ────────────────────────────────────────────────────────────── */
+.api-page { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+.api-section { margin-bottom: 2.5rem; }
+.api-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #1a1a1a;
+  font-family: monospace;
+}
+.api-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.api-desc {
+  padding: 1rem 1.25rem;
+  color: #666;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #111;
+}
+.api-desc code { background: #111; padding: 0.1rem 0.3rem; border-radius: 3px; color: #888; font-size: 0.875rem; }
+.api-params { padding: 0.75rem 1.25rem; border-bottom: 1px solid #111; display: flex; flex-direction: column; gap: 0.4rem; }
+.param-row { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.9rem; }
+.param-row code { color: #fff; font-size: 0.875rem; background: #0c0c0c; border: 1px solid #1e1e1e; padding: 0.1rem 0.35rem; border-radius: 3px; white-space: nowrap; }
+.param-row span { color: #555; }
+
+.code-block { border-top: 1px solid #111; }
+.code-lang {
+  padding: 0.35rem 1.25rem;
+  font-size: 0.75rem;
+  color: #444;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #050505;
+  border-bottom: 1px solid #0d0d0d;
+}
+.code-pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  background: #030303;
+  color: #888;
+  font-size: 0.875rem;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.pricing-table {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pt-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #111;
+  font-size: 0.9375rem;
+  gap: 1rem;
+}
+.pt-row:last-child { border-bottom: none; }
+.pt-head { font-size: 0.8125rem; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.05em; background: #050505; }
+.pt-free { background: #0a0f0a; color: #5a8a5a; }
+.pt-row span:nth-child(2) { color: #aaa; }
+.pt-row span:nth-child(3) { color: #555; }
+
+.api-cta {
+  text-align: center;
+  padding: 2rem;
+  color: #555;
+  font-size: 1.0625rem;
+}
+
+/* ── Staking page ────────────────────────────────────────────────────────── */
+.staking-page { max-width: 900px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+.staking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.staking-info-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.si-title { font-size: 1rem; font-weight: 600; color: #ccc; margin-bottom: 1rem; }
+.si-list { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.si-list li { color: #666; font-size: 0.9375rem; line-height: 1.5; }
+
+.stake-form-card {
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.stake-form-title { font-size: 1.0625rem; font-weight: 600; color: #ccc; margin-bottom: 1.25rem; }
+.stake-message { margin-top: 0.75rem; font-size: 0.9375rem; color: #888; }
+
+/* ── Stake balance row ───────────────────────────────────────────────────── */
+.stake-balance-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.sbal-item {
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  padding: 0.875rem 0.75rem;
+  text-align: center;
+}
+.sbal-val { font-size: 1.25rem; font-weight: 700; color: #fff; }
+.sbal-label { font-size: 0.75rem; color: #555; margin-top: 0.2rem; }
+.sbal-claimable .sbal-val { color: #5a8a5a; }
+
+.stake-action-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.max-btn {
+  background: none;
+  border: 1px solid #222;
+  color: #555;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+.max-btn:hover { border-color: #444; color: #aaa; }
+
+.stake-claim-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #0a0f0a;
+  border: 1px solid #1a2a1a;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.claim-desc { font-size: 0.9375rem; color: #5a8a5a; }
+
+/* ── Listing fee row ─────────────────────────────────────────────────────── */
+.listing-fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  font-size: 0.9375rem;
+}
+.listing-fee-label { color: #888; }
+.listing-fee-balance { color: #666; }
+.listing-fee-balance.insufficient { color: #aa4444; }
+
+@media (max-width: 680px) {
+  .stake-balance-row { grid-template-columns: 1fr 1fr; }
+  .stake-action-row { flex-wrap: wrap; }
+  .stake-claim-row { flex-direction: column; align-items: flex-start; }
 }
 </style>

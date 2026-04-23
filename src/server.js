@@ -8,9 +8,11 @@ const path = require('path');
 app.use(express.json());
 app.get('/config', (req, res) => {
   res.json({
-    SOLANA_RPC: process.env.SOLANA_RPC || 'https://api.devnet.solana.com',
-    VOTE_MINT: process.env.VOTE_TOKEN_MINT || '',
-    FEE_RECIPIENT: process.env.FEE_RECIPIENT || ''
+    SOLANA_RPC:   process.env.SOLANA_RPC      || 'https://api.devnet.solana.com',
+    POH_MINT:     process.env.POH_TOKEN_MINT  || '',
+    VOTE_MINT:    process.env.VOTE_TOKEN_MINT || '',
+    FEE_RECIPIENT: process.env.FEE_RECIPIENT  || '',
+    STAKING_CONTRACT: process.env.STAKING_CONTRACT || '',
   });
 });
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
@@ -21,6 +23,7 @@ app.use('/rest', require('./routes/rest'));
 app.use('/methods', require('./routes/methods'));
 app.use('/checker', require('./routes/checker'));
 app.use('/abi', require('./routes/abi'));
+app.use('/profile', require('./routes/profile'));
 
 // Health check
 app.get('/', (req, res) => {

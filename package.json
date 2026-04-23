@@ -13,6 +13,7 @@
     "@solana/spl-token": "^0.4.14",
     "@solana/web3.js": "^1.98.4",
     "axios": "^1.6.8",
+    "bs58": "^6.0.0",
     "csv-parse": "^6.1.0",
     "dotenv": "^16.4.5",
     "ethers": "^6.11.1",
@@ -20,6 +21,7 @@
     "multer": "^2.1.0",
     "node-cron": "^4.2.1",
     "redis": "^5.11.0",
+    "tweetnacl": "^1.0.3",
     "vm2": "^3.9.19"
   },
   "devDependencies": {

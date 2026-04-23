@@ -39,7 +39,7 @@ async function verifySolPayment(txHash, expectedAmountInSol, recipientAddress) {
 }
 
 /**
- * Gets the relative weight of a user's VOTE token stake.
+ * Gets the relative weight of a user's POH token stake.
  * @param {string} walletAddress 
  * @returns {Promise<number>} Weight between 0 and 1
  */
@@ -47,7 +47,7 @@ async function getVoteTokenStake(walletAddress) {
   try {
     if (walletAddress.includes('...')) return 0.5; // Mock stake for test addresses
     
-    const mintAddress = process.env.VOTE_TOKEN_MINT;
+    const mintAddress = process.env.POH_TOKEN_MINT;
     if (!mintAddress) return 0.1; // Default power if not configured
 
     const mintPubkey = new PublicKey(mintAddress);
@@ -83,13 +83,13 @@ async function getSolBalance(walletAddress) {
 }
 
 /**
- * Gets the VOTE token balance of a wallet.
+ * Gets the POH token balance of a wallet.
  * @param {string} walletAddress 
  * @returns {Promise<number>}
  */
 async function getVoteBalance(walletAddress) {
   try {
-    const mintAddress = process.env.VOTE_TOKEN_MINT;
+    const mintAddress = process.env.POH_TOKEN_MINT;
     if (!mintAddress) return 0;
     const mintPubkey = new PublicKey(mintAddress);
     const walletPubkey = new PublicKey(walletAddress);
@@ -102,7 +102,7 @@ async function getVoteBalance(walletAddress) {
 }
 
 /**
- * Verifies if a transaction hash corresponds to a burn of VOTE tokens.
+ * Verifies if a transaction hash corresponds to a burn of POH tokens.
  * @param {string} txHash 
  * @param {number} expectedAmount 
  * @param {string} walletAddress 
