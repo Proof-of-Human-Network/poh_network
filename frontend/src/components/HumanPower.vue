@@ -3,7 +3,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import axios from 'axios'
 import BrainGraph from './BrainGraph.vue'
 import {
-  Search, PlusSquare, Vote, ShieldCheck,
+  Search, PlusSquare, Vote, Code,
   Activity, Trash2, FileUp, SquareArrowDown, PersonStanding, FolderCode, CreditCard, Bitcoin
 } from 'lucide-vue-next'
 import {
@@ -799,7 +799,7 @@ onUnmounted(() => {
           <Search class="icon" :size="14" /> Scan
         </button>
         <button :class="['nav-btn', { active: currentSection === 'listing' }]" @click="showSection('listing')">
-          <PlusSquare class="icon" :size="14" /> List
+          <PlusSquare class="icon" :size="14" /> Train
         </button>
         <button :class="['nav-btn', { active: currentSection === 'votes' }]" @click="showSection('votes'); loadVoting()">
           <Vote class="icon" :size="14" /> Vote
@@ -840,7 +840,7 @@ onUnmounted(() => {
       <div class="mobile-menu-inner">
         <button :class="['mobile-nav-btn', { active: currentSection === 'landing' }]" @click="showSection('landing')">POH</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'checker' }]" @click="showSection('checker')">Scan</button>
-        <button :class="['mobile-nav-btn', { active: currentSection === 'listing' }]" @click="showSection('listing')">List</button>
+        <button :class="['mobile-nav-btn', { active: currentSection === 'listing' }]" @click="showSection('listing')">Train</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'votes' }]" @click="showSection('votes'); loadVoting()">Vote</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'api' }]" @click="showSection('api')">API</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'staking' }]" @click="showSection('staking')">Stake</button>
@@ -998,38 +998,308 @@ onUnmounted(() => {
           </div>
         </section>
 
-        <div style="margin-top: 10rem;" class="network-label">FEATURES</div>
+        <!-- ── Features (full-screen panels) ──────────────────────────────────────── -->
+        <section class="feat-screen">
+          <div class="feat-left">
+            <div class="feat-tag">SCAN</div>
+            <h2 class="feat-title">Verify any wallet<br>in seconds</h2>
+            <p class="feat-body">Paste an EVM address, Solana address, or ENS name. POH runs 120+ detection methods in parallel — contract calls, on-chain balances, identity graphs, real-world assets — and returns an AI verdict instantly.</p>
+            <button class="feat-cta" @click="showSection('checker')">Try the Scanner →</button>
+          </div>
+          <div class="feat-right">
+            <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Card background -->
+              <rect x="10" y="10" width="400" height="300" rx="14" fill="#090909" stroke="#1a1a1a"/>
+              <!-- Input bar -->
+              <rect x="28" y="30" width="310" height="36" rx="7" fill="#111" stroke="#222"/>
+              <text x="42" y="53" fill="#333" font-size="11" font-family="monospace">0xd8dA6BF26964aF9D7eEd9e03E534...</text>
+              <rect x="346" y="30" width="52" height="36" rx="7" fill="#161616" stroke="#222"/>
+              <text x="355" y="53" fill="#666" font-size="11" font-family="monospace">Scan</text>
+              <!-- Divider -->
+              <line x1="28" y1="80" x2="392" y2="80" stroke="#161616"/>
+              <!-- Method rows — animated in sequence -->
+              <g class="scan-row-1">
+                <rect x="28" y="90" width="364" height="28" rx="5" fill="#0d0d0d"/>
+                <circle cx="42" cy="104" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/></circle>
+                <text x="54" y="108" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/>ETH balance &gt; 0.01</text>
+                <text x="346" y="108" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/>✓</text>
+              </g>
+              <g class="scan-row-2">
+                <rect x="28" y="122" width="364" height="28" rx="5" fill="#0d0d0d"/>
+                <circle cx="42" cy="136" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/></circle>
+                <text x="54" y="140" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/>ENS name registered</text>
+                <text x="346" y="140" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/>✓</text>
+              </g>
+              <g>
+                <rect x="28" y="154" width="364" height="28" rx="5" fill="#0d0d0d"/>
+                <circle cx="42" cy="168" r="4" fill="#ef4444"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/></circle>
+                <text x="54" y="172" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/>Galxe identity</text>
+                <text x="340" y="172" fill="#ef4444" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/>✗</text>
+              </g>
+              <g>
+                <rect x="28" y="186" width="364" height="28" rx="5" fill="#0d0d0d"/>
+                <circle cx="42" cy="200" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/></circle>
+                <text x="54" y="204" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/>Farcaster profile</text>
+                <text x="346" y="204" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/>✓</text>
+              </g>
+              <g>
+                <rect x="28" y="218" width="364" height="28" rx="5" fill="#0d0d0d"/>
+                <circle cx="42" cy="232" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/></circle>
+                <text x="54" y="236" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/>Pax Gold (PAXG) holder</text>
+                <text x="346" y="236" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/>✓</text>
+              </g>
+              <!-- Verdict badge -->
+              <rect x="28" y="260" width="364" height="38" rx="8" fill="#0f1f0f" stroke="#1a4a1a">
+                <animate attributeName="opacity" values="0;1" dur="0.4s" begin="2s" fill="freeze"/>
+                <animate attributeName="stroke" values="#111;#22c55e;#1a4a1a" dur="0.6s" begin="2s" fill="freeze"/>
+              </rect>
+              <text x="115" y="284" fill="#22c55e" font-size="13" font-weight="600" font-family="monospace">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.1s" fill="freeze"/>
+                HUMAN · 87% confidence
+              </text>
+            </svg>
+          </div>
+        </section>
 
-        <section class="landing-utilities">
-          <div class="utility-card">
-            <div class="utility-icon"><Search :size="48" /></div>
-            <div class="utility-name">Scan</div>
-            <div class="utility-desc">Verify any EVM or Solana wallet against all registered detection methods. Get an instant AI verdict on human vs bot probability.</div>
-            <button class="utility-link" @click="showSection('checker')">Open Scanner →</button>
+        <section class="feat-screen feat-screen--alt">
+          <div class="feat-right">
+            <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Signal nodes orbiting a center brain -->
+              <!-- Center node -->
+              <circle cx="210" cy="160" r="32" fill="#0d0d0d" stroke="#222"/>
+              <text x="199" y="155" fill="#fff" font-size="9" font-family="monospace">AI</text>
+              <text x="193" y="167" fill="#555" font-size="8" font-family="monospace">BRAIN</text>
+              <!-- Pulsing ring -->
+              <circle cx="210" cy="160" r="32" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.4">
+                <animate attributeName="r" values="32;48;32" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.4;0;0.4" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+              <!-- EVM node top-left -->
+              <circle cx="90" cy="80" r="22" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="78" y="84" fill="#3b82f6" font-size="8" font-family="monospace">EVM</text>
+              <line x1="110" y1="97" x2="182" y2="133" stroke="#1e1e1e" stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="14;0" dur="1s" repeatCount="indefinite"/>
+              </line>
+              <circle r="3" fill="#3b82f6">
+                <animateMotion path="M110,97 L182,133" dur="1.2s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Solana node top-right -->
+              <circle cx="330" cy="80" r="22" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="314" y="84" fill="#9945ff" font-size="8" font-family="monospace">SOL</text>
+              <line x1="310" y1="97" x2="238" y2="133" stroke="#1e1e1e" stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="14;0" dur="0.9s" repeatCount="indefinite"/>
+              </line>
+              <circle r="3" fill="#9945ff">
+                <animateMotion path="M310,97 L238,133" dur="0.9s" repeatCount="indefinite"/>
+              </circle>
+              <!-- REST node left -->
+              <circle cx="60" cy="180" r="22" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="46" y="184" fill="#f59e0b" font-size="8" font-family="monospace">REST</text>
+              <line x1="82" y1="175" x2="178" y2="162" stroke="#1e1e1e" stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="14;0" dur="1.4s" repeatCount="indefinite"/>
+              </line>
+              <circle r="3" fill="#f59e0b">
+                <animateMotion path="M82,175 L178,162" dur="1.4s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Galxe node right -->
+              <circle cx="360" cy="180" r="22" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="344" y="184" fill="#ec4899" font-size="8" font-family="monospace">ID</text>
+              <line x1="338" y1="175" x2="242" y2="162" stroke="#1e1e1e" stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="14;0" dur="1.1s" repeatCount="indefinite"/>
+              </line>
+              <circle r="3" fill="#ec4899">
+                <animateMotion path="M338,175 L242,162" dur="1.1s" repeatCount="indefinite"/>
+              </circle>
+              <!-- RWA node bottom-left -->
+              <circle cx="110" cy="260" r="22" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="99" y="264" fill="#22c55e" font-size="8" font-family="monospace">RWA</text>
+              <line x1="130" y1="245" x2="190" y2="190" stroke="#1e1e1e" stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="14;0" dur="1.3s" repeatCount="indefinite"/>
+              </line>
+              <circle r="3" fill="#22c55e">
+                <animateMotion path="M130,245 L190,190" dur="1.3s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Count label -->
+              <text x="175" y="310" fill="#333" font-size="10" font-family="monospace" text-anchor="middle">120+ active signals</text>
+            </svg>
           </div>
-          <div class="utility-card">
-            <div class="utility-icon"><PlusSquare :size="48" /></div>
-            <div class="utility-name">List</div>
-            <div class="utility-desc">Submit a new on-chain detection method — smart contract call, Solana program, or REST API. Pay 1000 POH. 50% distributed to stakers, 50% to protocol. Earn scan rewards forever.</div>
-            <button class="utility-link" @click="showSection('listing')">Submit Method →</button>
+          <div class="feat-left">
+            <div class="feat-tag">SIGNALS</div>
+            <h2 class="feat-title">Evidence from<br>every layer</h2>
+            <p class="feat-body">EVM balances, Solana programs, REST identity APIs, real-world asset holdings, Galxe profiles, web3.bio social links, ZNS domains. Every signal runs in parallel. No single point of failure.</p>
+            <button class="feat-cta" @click="showSection('votes'); loadVoting()">Browse Methods →</button>
           </div>
-          <div class="utility-card">
-            <div class="utility-icon"><Vote :size="48" /></div>
-            <div class="utility-name">Vote</div>
-            <div class="utility-desc">Review submitted methods in the consensus queue. Your POH stake weight determines your influence. Curate signal from noise.</div>
-            <button class="utility-link" @click="showSection('votes'); loadVoting()">Open Queue →</button>
+        </section>
+
+        <section class="feat-screen">
+          <div class="feat-left">
+            <div class="feat-tag">AI BRAIN</div>
+            <h2 class="feat-title">On-device AI,<br>zero cloud calls</h2>
+            <p class="feat-body">A local LLM reads every signal, weighs community-trained scores, and outputs a structured verdict with confidence and reasoning. Runs on Ollama or Qvac. Private by default — your scan data never leaves your server.</p>
+            <button class="feat-cta" @click="showSection('checker')">See a Verdict →</button>
           </div>
-          <div class="utility-card">
-            <div class="utility-icon"><ShieldCheck :size="48" /></div>
-            <div class="utility-name">API</div>
-            <div class="utility-desc">Integrate human verification directly into your app. First 100 scans free per wallet. Bulk pricing with curve discounts for large batches.</div>
-            <button class="utility-link" @click="showSection('api')">API Docs →</button>
+          <div class="feat-right">
+            <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="400" height="300" rx="14" fill="#090909" stroke="#1a1a1a"/>
+              <!-- Signals in -->
+              <text x="28" y="42" fill="#333" font-size="9" font-family="monospace">SIGNALS</text>
+              <rect x="28" y="52" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
+              <text x="36" y="67" fill="#22c55e" font-size="9" font-family="monospace">✓ ETH balance</text>
+              <rect x="28" y="78" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
+              <text x="36" y="93" fill="#22c55e" font-size="9" font-family="monospace">✓ ENS registered</text>
+              <rect x="28" y="104" width="140" height="22" rx="4" fill="#1a0d0d" stroke="#3a1a1a"/>
+              <text x="36" y="119" fill="#ef4444" font-size="9" font-family="monospace">✗ Galxe profile</text>
+              <rect x="28" y="130" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
+              <text x="36" y="145" fill="#22c55e" font-size="9" font-family="monospace">✓ PAXG holder</text>
+              <rect x="28" y="156" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
+              <text x="36" y="171" fill="#22c55e" font-size="9" font-family="monospace">✓ Farcaster</text>
+              <!-- Arrow to AI -->
+              <path d="M168 130 Q210 130 210 130" stroke="#222" stroke-width="1.5" marker-end="url(#arr)"/>
+              <defs>
+                <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#333"/>
+                </marker>
+              </defs>
+              <!-- AI node -->
+              <circle cx="210" cy="130" r="0" fill="#111" stroke="#222">
+                <animate attributeName="r" values="0;22" dur="0.4s" begin="0.5s" fill="freeze"/>
+              </circle>
+              <text x="204" y="126" fill="#fff" font-size="8" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>AI
+              </text>
+              <text x="199" y="138" fill="#555" font-size="7" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>thinking</text>
+              <!-- Thinking dots -->
+              <circle cx="202" cy="148" r="2" fill="#555" opacity="0">
+                <animate attributeName="opacity" values="0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="210" cy="148" r="2" fill="#555" opacity="0">
+                <animate attributeName="opacity" values="0;0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="218" cy="148" r="2" fill="#555" opacity="0">
+                <animate attributeName="opacity" values="0;0;0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Verdict card -->
+              <rect x="250" y="72" width="148" height="120" rx="8" fill="#0f1f0f" stroke="#1a4a1a" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.4s" begin="2.2s" fill="freeze"/>
+              </rect>
+              <text x="264" y="96" fill="#22c55e" font-size="11" font-weight="600" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.4s" fill="freeze"/>HUMAN
+              </text>
+              <text x="264" y="114" fill="#444" font-size="8" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.5s" fill="freeze"/>confidence</text>
+              <!-- Confidence bar -->
+              <rect x="264" y="120" width="112" height="6" rx="3" fill="#111" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.1s" begin="2.6s" fill="freeze"/>
+              </rect>
+              <rect x="264" y="120" width="0" height="6" rx="3" fill="#22c55e" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.1s" begin="2.6s" fill="freeze"/>
+                <animate attributeName="width" values="0;87" dur="0.8s" begin="2.6s" fill="freeze"/>
+              </rect>
+              <text x="264" y="146" fill="#555" font-size="7.5" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.7s" fill="freeze"/>87% · 4/5 signals pass</text>
+              <text x="264" y="162" fill="#2a2a2a" font-size="7" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.8s" fill="freeze"/>PAXG holder is</text>
+              <text x="264" y="174" fill="#2a2a2a" font-size="7" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.8s" fill="freeze"/>strongest signal.</text>
+            </svg>
           </div>
-          <div class="utility-card">
-            <div class="utility-icon"><Activity :size="48" /></div>
-            <div class="utility-name">Stake</div>
-            <div class="utility-desc">Stake POH to amplify your vote weight in method scoring. Higher stake = more influence over which detection signals matter.</div>
-            <button class="utility-link" @click="showSection('staking')">Stake POH →</button>
+        </section>
+
+        <section class="feat-screen feat-screen--alt">
+          <div class="feat-right">
+            <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="400" height="300" rx="14" fill="#090909" stroke="#1a1a1a"/>
+              <!-- Method card -->
+              <rect x="28" y="28" width="364" height="160" rx="9" fill="#0d0d0d" stroke="#1e1e1e"/>
+              <text x="44" y="52" fill="#666" font-size="9" font-family="monospace">METHOD #47</text>
+              <text x="44" y="70" fill="#ddd" font-size="12" font-family="sans-serif">Pax Gold (PAXG) holder</text>
+              <text x="44" y="88" fill="#444" font-size="9" font-family="monospace">balanceOf(address) &gt; 0  ·  Ethereum</text>
+              <!-- Score bar -->
+              <text x="44" y="112" fill="#555" font-size="8" font-family="monospace">community score</text>
+              <rect x="44" y="118" width="220" height="5" rx="2" fill="#111"/>
+              <rect x="44" y="118" width="148" height="5" rx="2" fill="#22c55e" id="score-bar"/>
+              <text x="274" y="122" fill="#22c55e" font-size="8" font-family="monospace">+6.7</text>
+              <!-- Vote buttons -->
+              <rect x="44" y="148" width="82" height="30" rx="6" fill="#0a1f0a" stroke="#1a3a1a"/>
+              <text x="66" y="168" fill="#22c55e" font-size="11" font-family="monospace">✓ Human</text>
+              <rect x="134" y="148" width="74" height="30" rx="6" fill="#111" stroke="#222"/>
+              <text x="149" y="168" fill="#ef4444" font-size="11" font-family="monospace">✗ Skip</text>
+              <!-- Animated vote + score update -->
+              <rect x="44" y="148" width="82" height="30" rx="6" fill="#22c55e" opacity="0">
+                <animate attributeName="opacity" values="0;0.18;0" dur="0.6s" begin="1.8s" repeatCount="indefinite" repeatDur="6s"/>
+              </rect>
+              <rect x="44" y="118" width="0" height="5" rx="2" fill="#22c55e" opacity="0">
+                <animate attributeName="opacity" values="0;1;1;0" dur="3s" begin="2.2s" repeatCount="indefinite" repeatDur="6s"/>
+                <animate attributeName="width" values="148;164;164;148" dur="3s" begin="2.2s" repeatCount="indefinite" repeatDur="6s"/>
+              </rect>
+              <!-- Feedback textarea -->
+              <rect x="28" y="202" width="364" height="50" rx="7" fill="#080808" stroke="#161616"/>
+              <text x="44" y="224" fill="#2a2a2a" font-size="9" font-family="monospace">Gold-backed asset requires real identity...</text>
+              <!-- Submit row -->
+              <text x="44" y="272" fill="#333" font-size="9" font-family="monospace">342 votes cast  ·  stake weight: 1.4×</text>
+              <rect x="330" y="256" width="62" height="26" rx="6" fill="#161616" stroke="#222"/>
+              <text x="341" y="273" fill="#888" font-size="9" font-family="monospace">Next →</text>
+            </svg>
+          </div>
+          <div class="feat-left">
+            <div class="feat-tag">COMMUNITY</div>
+            <h2 class="feat-title">You decide what<br>counts as human</h2>
+            <p class="feat-body">Every detection method goes through community consensus. Sign a message with your wallet to vote. Your staked POH amplifies your influence. Leave feedback — the AI Learner reads it and adjusts signal weights.</p>
+            <button class="feat-cta" @click="showSection('votes'); loadVoting()">Open Vote Queue →</button>
+          </div>
+        </section>
+
+        <section class="feat-screen">
+          <div class="feat-left">
+            <div class="feat-tag">API</div>
+            <h2 class="feat-title">One call.<br>Instant answer.</h2>
+            <p class="feat-body">Drop-in HTTP API for any app. Single wallet returns a synchronous result. Upload a CSV of 1,000 addresses and get a job ID to poll. First 100 scans free per wallet, no token required.</p>
+            <button class="feat-cta" @click="showSection('api')">API Reference →</button>
+          </div>
+          <div class="feat-right">
+            <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="400" height="300" rx="14" fill="#080808" stroke="#1a1a1a"/>
+              <!-- Terminal bar -->
+              <rect x="10" y="10" width="400" height="28" rx="14" fill="#111" stroke="#1a1a1a"/>
+              <rect x="10" y="24" width="400" height="14" fill="#111"/>
+              <circle cx="32" cy="24" r="5" fill="#333"/>
+              <circle cx="50" cy="24" r="5" fill="#333"/>
+              <circle cx="68" cy="24" r="5" fill="#333"/>
+              <!-- Request lines -->
+              <text x="28" y="60" fill="#555" font-size="9" font-family="monospace">POST /checker</text>
+              <text x="28" y="76" fill="#1e3a1e" font-size="9" font-family="monospace">{</text>
+              <text x="28" y="90" fill="#2a2a2a" font-size="9" font-family="monospace">  "input": "0xd8dA6BF26964..."</text>
+              <text x="28" y="104" fill="#2a2a2a" font-size="9" font-family="monospace">  "apiKey": "pk_live_xxx"</text>
+              <text x="28" y="118" fill="#1e3a1e" font-size="9" font-family="monospace">}</text>
+              <!-- Blinking cursor -->
+              <rect x="46" y="108" width="6" height="10" fill="#333">
+                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Divider -->
+              <line x1="28" y1="134" x2="392" y2="134" stroke="#161616"/>
+              <!-- Response -->
+              <text x="28" y="152" fill="#555" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1s" fill="freeze"/>200 OK  · 340ms</text>
+              <text x="28" y="168" fill="#1a3a1a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.2s" fill="freeze">{</text>
+              <text x="28" y="182" fill="#2a3a2a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.35s" fill="freeze">  "verdict": "HUMAN",</text>
+              <text x="28" y="196" fill="#2a3a2a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.5s" fill="freeze">  "confidence": 0.87,</text>
+              <text x="28" y="210" fill="#2a3a2a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.65s" fill="freeze">  "passed": 4,</text>
+              <text x="28" y="224" fill="#2a3a2a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.8s" fill="freeze">  "total": 5,</text>
+              <text x="28" y="238" fill="#2a3a2a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.95s" fill="freeze">  "freeScansLeft": 96</text>
+              <text x="28" y="252" fill="#1a3a1a" font-size="9" font-family="monospace" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.2s" begin="2.1s" fill="freeze">}</text>
+              <!-- Highlight verdict value -->
+              <rect x="100" y="174" width="52" height="14" rx="3" fill="#0f2a0f" opacity="0">
+                <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.4s" fill="freeze"/>
+              </rect>
+            </svg>
           </div>
         </section>
 
@@ -1074,7 +1344,7 @@ onUnmounted(() => {
               <div class="roadmap-dot"></div>
               <div class="roadmap-content">
                 <div class="roadmap-date">May-Jun 2026</div>
-                <div class="roadmap-desc">Quantum Resistant </div>
+                <div class="roadmap-desc">Human-verified proof with fully private evidence and quantum-resistant encryption</div>
                 <div class="roadmap-desc">POH token launch (date TBA)</div>
               </div>
             </div>
@@ -1105,14 +1375,7 @@ onUnmounted(() => {
             <div class="roadmap-item">
               <div class="roadmap-dot"></div>
               <div class="roadmap-content">
-                <div class="roadmap-date">Q3–Q4 2026</div>
-                <div class="roadmap-desc">Enterprise onboarding</div>
-              </div>
-            </div>
-            <div class="roadmap-item">
-              <div class="roadmap-dot"></div>
-              <div class="roadmap-content">
-                <div class="roadmap-date">2027</div>
+                <div class="roadmap-date">Q4 2026</div>
                 <div class="roadmap-desc">TBA</div>
               </div>
             </div>
@@ -1406,7 +1669,7 @@ onUnmounted(() => {
         <div v-if="loading" class="empty-state"><p>Loading...</p></div>
 
         <div v-else-if="!currentVoteItem" class="empty-state">
-          <ShieldCheck :size="28" />
+          <Code :size="28" />
           <p>{{ votingList.length ? 'All methods reviewed.' : 'Queue is empty.' }}</p>
           <button v-if="votingList.length" class="utility-link" @click="voteIndex = 0">Start over</button>
         </div>
@@ -1983,57 +2246,95 @@ const results = await pollJob(jobId)</pre>
 }
 
 /* Utilities grid */
-.landing-utilities {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  border: 1px solid #111;
-  border-radius: 8px;
-  overflow: hidden;
+/* ── Feature screens ─────────────────────────────────────────────────────── */
+.feat-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 6rem 0;
+  border-bottom: 1px solid #0f0f0f;
 }
+.feat-screen--alt { flex-direction: row-reverse; }
 
-.utility-card {
-  background: #000;
-  padding: 1.75rem 1.5rem;
+.feat-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1.5rem;
+  max-width: 460px;
+}
+.feat-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.utility-icon { color: #fff; }
-
-.utility-name {
-  margin-top: 25px;
-  font-size: 1.25rem;
+.feat-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: #333;
   font-weight: 600;
+}
+.feat-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
   color: #fff;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.feat-body {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+}
+.feat-cta {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.feat-cta:hover { color: #fff; }
+
+.feat-svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  overflow: visible;
 }
 
-.utility-desc {
-  margin-top: 25px;
-  font-size: 1.25rem;
-  color: #555;
-  line-height: 1.6;
-  flex-grow: 1;
+@media (max-width: 768px) {
+  .feat-screen {
+    flex-direction: column !important;
+    min-height: auto;
+    padding: 4rem 0;
+    gap: 2.5rem;
+  }
+  .feat-left {
+    max-width: 100%;
+  }
+  .feat-svg {
+    max-width: 100%;
+  }
 }
 
 .utility-link {
-  margin-top: 25px;
   background: none;
   border: none;
   color: #888;
-  font-size: 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
   padding: 0;
   text-align: left;
   transition: color 0.15s;
 }
-
-.no-margin {
-  margin: 0 !important;
-}
-
 .utility-link:hover { color: #fff; }
 
 /* Token section */
