@@ -7,7 +7,7 @@ const path = require('path');
 const multer = require('multer');
 const { parse } = require('csv-parse/sync');
 const { getVoteTokenStake, verifyTxSuccess } = require('../utils/solana');
-const { recordVote, getMyVotes, hasVoted } = require('../utils/profiles');
+const { recordVote, getMyVotes, hasVoted, isTxUsed, recordTx } = require('../utils/profiles');
 const brain = require('../utils/brain');
 
 const METHODS_PATH = path.join(__dirname, '../../data/methods.json');
@@ -145,10 +145,14 @@ router.post('/verifyer/vote', async (req, res, next) => {
   try {
     const { methodId, type, vote, walletAddress, txHash, feedback } = req.body;
     // type: 'description' | 'method' | 'risk'
-    // vote: true | false (or yes/no)
+    // vote: true | false
     // feedback: optional natural-language reasoning from the voter
 
-    if (!txHash) return res.status(400).json({ error: 'txHash required' });
+    if (!walletAddress) return res.status(400).json({ error: 'walletAddress required' });
+    if (!txHash)        return res.status(400).json({ error: 'txHash required' });
+
+    // Prevent replaying a txHash that was already accepted for any action
+    if (isTxUsed(txHash)) return res.status(409).json({ error: 'Transaction already used' });
 
     const isConfirmed = await verifyTxSuccess(txHash);
     if (!isConfirmed) return res.status(402).json({ error: 'Transaction not confirmed' });
@@ -157,7 +161,7 @@ router.post('/verifyer/vote', async (req, res, next) => {
     const method = methods.find(m => m.id === methodId);
     if (!method) return res.status(404).json({ error: 'Method not found' });
 
-    if (walletAddress && hasVoted(walletAddress, methodId)) {
+    if (hasVoted(walletAddress, methodId)) {
       return res.status(409).json({ error: 'Already voted on this method' });
     }
 
@@ -174,7 +178,8 @@ router.post('/verifyer/vote', async (req, res, next) => {
 
     saveMethods(methods);
 
-    if (walletAddress) recordVote(walletAddress, methodId, vote);
+    recordTx(txHash, { action: 'vote', wallet: walletAddress, methodId });
+    recordVote(walletAddress, methodId, vote);
 
     appendToDataset({
       instruction: `Voter assessment for method: ${method.description}`,

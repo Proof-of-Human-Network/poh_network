@@ -5,6 +5,7 @@ const path = require('path');
 
 const PROFILES_PATH = path.join(__dirname, '../../data/profiles.json');
 const REWARDS_PATH  = path.join(__dirname, '../../data/rewards.json');
+const USED_TX_PATH  = path.join(__dirname, '../../data/used_tx.json');
 
 // ── Profiles ──────────────────────────────────────────────────────────────────
 
@@ -162,6 +163,22 @@ function hasVoted(address, methodId) {
   return !!p?.votes?.[methodId];
 }
 
+// ── txHash replay prevention ──────────────────────────────────────────────────
+
+function _loadUsedTx() {
+  try { return JSON.parse(fs.readFileSync(USED_TX_PATH, 'utf-8')); } catch { return {}; }
+}
+
+function isTxUsed(txHash) {
+  return !!_loadUsedTx()[txHash];
+}
+
+function recordTx(txHash, context) {
+  const used = _loadUsedTx();
+  used[txHash] = { at: new Date().toISOString(), ...context };
+  fs.writeFileSync(USED_TX_PATH, JSON.stringify(used, null, 2));
+}
+
 module.exports = {
   getProfile, upsertProfile, getProfiles,
   getRewards, saveRewards,
@@ -169,5 +186,6 @@ module.exports = {
   calcScanCost, distributeRewards, distributeStakerRewards,
   isIpAbuse, recordIp,
   recordVote, getMyVotes, hasVoted,
+  isTxUsed, recordTx,
   FREE_SCANS_PER_WALLET,
 };
