@@ -280,11 +280,11 @@ onMounted(async () => {
 .nav-brand { display: flex; align-items: center; margin-right: auto; }
 .nav-logo { height: 64px; opacity: 0.9; }
 .nav-links { display: flex; gap: 1.5rem; }
-.nav-link { color: #555; font-size: 0.85rem; text-decoration: none; transition: color 0.15s; }
+.nav-link { color: #555; font-size: 1.1rem; text-decoration: none; transition: color 0.15s; }
 .nav-link:hover { color: #fff; }
 .nav-cta {
   background: #111; border: 1px solid #222; border-radius: 7px;
-  color: #888; font-size: 0.82rem; padding: 0.45rem 1rem;
+  color: #888; font-size: 1.07rem; padding: 0.45rem 1rem;
   text-decoration: none; transition: color 0.15s, border-color 0.15s;
   white-space: nowrap;
 }
@@ -303,12 +303,12 @@ onMounted(async () => {
   flex-direction: column;
   gap: 1.5rem;
 }
-.problem-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; color: #333; }
-.problem-title { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; color: #fff; line-height: 1.08; letter-spacing: -0.03em; margin: 0; }
+.problem-tag { font-size: 0.91rem; font-weight: 700; letter-spacing: 0.2em; color: #333; }
+.problem-title { font-size: clamp(2.86rem, 6.5vw, 4.94rem); font-weight: 700; color: #fff; line-height: 1.08; letter-spacing: -0.03em; margin: 0; }
 .problem-accent { color: #22c55e; }
-.problem-quote { border-left: 2px solid #1e1e1e; margin: 0; padding: 0.75rem 1.25rem; color: #444; font-style: italic; font-size: 0.95rem; line-height: 1.6; }
-.problem-quote cite { display: block; margin-top: 0.5rem; font-size: 0.82rem; color: #333; font-style: normal; }
-.problem-desc { color: #555; font-size: 1.05rem; line-height: 1.7; margin: 0; }
+.problem-quote { border-left: 2px solid #1e1e1e; margin: 0; padding: 0.75rem 1.25rem; color: #444; font-style: italic; font-size: 1.24rem; line-height: 1.6; }
+.problem-quote cite { display: block; margin-top: 0.5rem; font-size: 1.07rem; color: #333; font-style: normal; }
+.problem-desc { color: #555; font-size: 1.37rem; line-height: 1.7; margin: 0; }
 
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
 .neon-btn {
@@ -318,7 +318,7 @@ onMounted(async () => {
   border: none;
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
-  font-size: 0.95rem;
+  font-size: 1.24rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -339,10 +339,10 @@ onMounted(async () => {
 .feat-screen--alt { flex-direction: row-reverse; }
 .feat-left { flex: 1; display: flex; flex-direction: column; gap: 1.5rem; max-width: 460px; }
 .feat-right { flex: 1; display: flex; align-items: center; justify-content: center; }
-.feat-tag { font-size: 0.7rem; letter-spacing: 0.18em; color: #333; font-weight: 600; }
-.feat-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.03em; margin: 0; }
-.feat-body { font-size: 1.05rem; color: #555; line-height: 1.7; margin: 0; }
-.feat-cta { align-self: flex-start; background: none; border: none; color: #666; font-size: 0.95rem; cursor: pointer; padding: 0; transition: color 0.15s; text-decoration: none; }
+.feat-tag { font-size: 0.91rem; letter-spacing: 0.18em; color: #333; font-weight: 600; }
+.feat-title { font-size: clamp(2.6rem, 5.2vw, 3.9rem); font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.03em; margin: 0; }
+.feat-body { font-size: 1.37rem; color: #555; line-height: 1.7; margin: 0; }
+.feat-cta { align-self: flex-start; background: none; border: none; color: #666; font-size: 1.24rem; cursor: pointer; padding: 0; transition: color 0.15s; text-decoration: none; }
 .feat-cta:hover { color: #fff; }
 .feat-svg { width: 100%; max-width: 768px; height: auto; overflow: visible; }
 

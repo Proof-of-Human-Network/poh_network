@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import * as d3 from 'd3'
 
 const props = defineProps({ methods: { type: Array, default: () => [] } })
@@ -307,7 +307,7 @@ function resize() {
   canvasRef.value.height = H
   canvasRef.value.style.width  = W + 'px'
   canvasRef.value.style.height = H + 'px'
-  if (prevW !== W && nodes.length > 0) rebuild()
+  if (prevW !== W) rebuild()
 }
 
 // ── Tooltip on hover ──────────────────────────────────────────────────────────
@@ -351,7 +351,8 @@ watch(() => props.methods, (next, prev) => {
 
 const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => { resize(); renderFrame() }) : null
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
   resize()
   rebuild()
   loop()
