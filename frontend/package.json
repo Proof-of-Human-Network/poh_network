@@ -9,20 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@coral-xyz/anchor": "^0.32.1",
-    "@solana/spl-token": "^0.4.14",
-    "@solana/wallet-adapter-base": "^0.9.27",
-    "@solana/wallet-adapter-phantom": "^0.9.28",
-    "@solana/wallet-adapter-solflare": "^0.6.32",
-    "@solana/wallet-adapter-vue": "^0.4.5",
-    "@solana/wallet-adapter-vue-ui": "^0.2.4",
-    "@solana/wallet-adapter-wallets": "^0.19.37",
-    "@solana/web3.js": "^1.98.4",
     "axios": "^1.13.6",
-    "buffer": "^6.0.3",
     "d3": "^7.9.0",
     "lucide-vue-next": "^0.575.0",
-    "vite-plugin-node-polyfills": "^0.25.0",
     "vue": "^3.5.25"
   },
   "devDependencies": {
