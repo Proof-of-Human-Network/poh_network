@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import * as d3 from 'd3'
 
 const props = defineProps({ methods: { type: Array, default: () => [] } })
@@ -99,6 +99,8 @@ function initSim() {
     .alphaDecay(0.015)
     .velocityDecay(0.4)
     .on('tick', renderFrame)
+
+  sim.tick(80)
 }
 
 // ── Rendering ─────────────────────────────────────────────────────────────────
@@ -351,14 +353,15 @@ watch(() => props.methods, (next, prev) => {
 
 const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => { resize(); renderFrame() }) : null
 
-onMounted(async () => {
-  await nextTick()
-  resize()
-  rebuild()
+onMounted(() => {
   loop()
   pulseTimer = setInterval(firePulse, 1800)
   ro?.observe(wrapRef.value)
   window.addEventListener('resize', resize)
+  requestAnimationFrame(() => {
+    resize()
+    rebuild()
+  })
 })
 
 onUnmounted(() => {

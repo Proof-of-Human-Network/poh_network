@@ -25,7 +25,7 @@ import Landing from './components/Landing.vue'
 .footer-link {
   color: #444;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   transition: color 0.15s;
 }
 .footer-link:hover { color: #aaa; }
