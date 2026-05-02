@@ -324,36 +324,6 @@ Supported languages: **JS · Go · Rust · PHP · Java** (all normalised to JS s
 
 ---
 
-## Roadmap
-
-### Done
-- [x] Multi-chain EVM scanner (32 chains) + Solana + REST identity APIs
-- [x] Community vote queue with stake-weighted scoring and ed25519 signature auth
-- [x] Three-role local AI brain (Evaluator · Learner · Compiler) via Qvac + Ollama
-- [x] Method listing with LLM pre-validation and on-chain payment (Anchor)
-- [x] Staking contract integration — stake POH, earn from scan fees
-- [x] Job queue for bulk CSV scanning with async polling
-- [x] RWA detection methods: EVM (PAXG, Ondo, Goldfinch, RealT, Backed, Matrixdock, …) + Solana (Parcl, Artrade, Helium, Credix, …)
-- [x] web3.bio social graph methods (Twitter, GitHub, Farcaster, Lens, ENS)
-- [x] Galxe identity methods (humanityType, connected socials, Worldcoin, Solana address)
-- [x] Vote feedback LLM validation — blocks gibberish comments
-- [x] Vote confirmation modal — irreversible vote warning
-- [x] Wallet adapter — all major Solana wallets via Wallet Standard
-- [x] Devnet POH faucet (10 000 POH, 24h cooldown)
-- [x] Profile system — API keys, off-chain balance, scan earnings, leaderboard
-- [x] Nginx + Let's Encrypt SSL on proofofhuman.ge
-- [x] Landing-only branch — standalone marketing page, no wallet/scanner surface
-
-### Planned
-- [ ] EVM wallet support (MetaMask / WalletConnect) for cross-chain identity
-- [ ] Public API key dashboard with rate limits and usage stats
-- [ ] Method marketplace — buy/sell detection method weights
-- [ ] Browser extension — one-click POH badge on any wallet address
-- [ ] DAO governance for method whitelist and score threshold changes
-- [ ] ZK proof of humanness — export verifiable credential without revealing wallet
-
----
-
 ## Community
 
 - Telegram: https://t.me/poh_network_group  
