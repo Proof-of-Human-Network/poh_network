@@ -15,7 +15,12 @@ cd frontend && npm install && cd ..
 cp .env.example .env
 # Edit .env — minimum required: SOLANA_RPC, FEE_RECIPIENT
 
-# Start everything (Redis + Ollama + backend + frontend)
+# Pull AI models
+ollama pull qwen2.5:1.5b      # Learner role
+ollama pull deepseek-r1:1.5b  # Evaluator fallback
+ollama pull mixtral            # Compiler role
+
+# Start everything (Redis + Ollama + Qvac + backend + frontend)
 npm run dev:all        # hot-reload (nodemon + vite dev server)
 npm run start:all      # production build
 
@@ -37,6 +42,7 @@ poh/dev/
 │   ├── routes/
 │   │   ├── checker.js         POST /checker — scan address against all methods
 │   │   ├── methods.js         POST /methods/listing, GET/POST /methods/verifyer
+│   │   ├── profile.js         GET/POST /profile — signup, API keys, rewards, faucet
 │   │   ├── abi.js             GET /abi/evm, GET /abi/solana (ABI/IDL fetch)
 │   │   ├── evm.js             POST /evm — raw EVM contract eval
 │   │   └── rest.js            POST /rest — raw REST eval
@@ -44,6 +50,7 @@ poh/dev/
 │   │   └── evaluator.js       Multi-language expression sandbox (JS/Go/Rust/PHP/Java)
 │   └── utils/
 │       ├── brain.js           Multi-role AI brain (Evaluator · Learner · Compiler)
+│       ├── profiles.js        Profile storage — API keys, balances, votes, rewards
 │       ├── jobQueue.js        Async job queue — bulk scans, 2 concurrent jobs, 5 wallets/batch
 │       ├── scheduler.js       Hourly brain consolidation via node-cron
 │       ├── redis.js           Response cache (falls back to in-memory)
@@ -51,14 +58,19 @@ poh/dev/
 │       └── evm.js             EVM RPC helpers (callContract, toHexSelector)
 ├── frontend/
 │   └── src/components/
-│       └── HumanPower.vue     Vue 3 SPA — Landing / Scanner / Listing / Votes
+│       └── HumanPower.vue     Vue 3 SPA — Landing / Scanner / Listing / Votes / Profile
 ├── data/
 │   ├── methods.json           Registered detection methods
 │   ├── weights.json           Per-method AI weights (updated by Learner role)
 │   ├── dataset.json           Scan + vote training records (Alpaca format)
+│   ├── profiles.json          User profiles, API keys, balances
+│   ├── rewards.json           Per-method scan earnings and pending withdrawals
+│   ├── method_health.json     Per-method pass/fail stats
 │   └── brain_state.md         Compiler output — compact system summary (updated hourly)
 └── scripts/
-    ├── launch.js              Orchestrator: Redis · Ollama · backend · frontend
+    ├── setup.sh               Server provisioning — installs Node, Ollama, Qvac, Redis, builds app
+    ├── deploy.sh              One-command deploy to remote server via SSH
+    ├── launch.js              Orchestrator: Redis · Ollama · Qvac · backend · frontend
     ├── start-ollama.js        Ensures dedicated Ollama instance on :11434
     └── start-qvac.js          Ensures Qvac OpenAI-compatible server on :11435
 ```
@@ -124,6 +136,13 @@ Poll for the async AI verdict after a single-wallet scan. `brainKey` is returned
 }
 ```
 
+### `GET /checker/pricing?count=N`
+Returns cost breakdown for a given batch size before committing.
+
+```json
+{ "count": 100, "perAddress": 0.55, "total": 55000000, "tiers": [...] }
+```
+
 ### `POST /methods/listing`
 Register a new detection method. Costs **0.01 SOL** per method.
 
@@ -133,7 +152,7 @@ Supported types: `evm` · `solana` · `rest`
 Returns all registered methods for the community voting queue.
 
 ### `POST /methods/verifyer/vote`
-Community vote on a method. Vote weight is proportional to POH token stake.
+Community vote on a method. Vote weight is proportional to POH token stake. Uses ed25519 `signMessage` — no on-chain transaction required.
 
 | Field | Type |
 |---|---|
@@ -141,13 +160,53 @@ Community vote on a method. Vote weight is proportional to POH token stake.
 | `type` | `description` \| `method` \| `risk` |
 | `vote` | boolean |
 | `walletAddress` | string |
-| `txHash` | string (0.001 SOL gas fee) |
+| `signature` | string — base58 ed25519 signature of `poh-vote-v1:{methodId}:{vote}:{timestamp}` |
+| `message` | string — the signed message |
+| `feedback` | string (optional) — LLM-validated before storing |
+
+### `POST /methods/verifyer/validate-feedback`
+LLM pre-check for vote feedback and method descriptions. Rejects gibberish, spam, and off-topic content.
+
+```json
+{ "feedback": "your comment", "context": "vote | description" }
+→ { "valid": true | false, "reason": "..." }
+```
 
 ### `GET /abi/evm?address=&chainId=`
 Fetches verified ABI from Etherscan → Sourcify fallback. Returns function list with input/output types for the listing UI picker.
 
 ### `GET /abi/solana?programId=`
 Fetches Anchor IDL from apr.dev registry or on-chain IDL account.
+
+---
+
+## Profile API
+
+### `POST /profile/signup`
+Create or update a profile. Requires ed25519 signature of `poh-profile-v1:{address}:{timestamp}`.
+
+Returns `{ profile: { apiKey, balance, freeScansLeft, totalScans, stakedAmount } }`.
+
+### `GET /profile/:address`
+Returns profile stats, submitted methods, and reward totals.
+
+### `GET /profile/:address/votes`
+Returns the wallet's full vote history with method descriptions and feedback.
+
+### `POST /profile/deposit`
+Credit profile balance from a verified POH token transfer.
+
+### `POST /profile/claim`
+Withdraw off-chain balance + scan earnings as on-chain POH tokens.
+
+### `POST /profile/apikey/rotate`
+Rotate the API key for a profile.
+
+### `GET /profile`
+Leaderboard — top 20 method earners by total POH earned.
+
+### `POST /profile/faucet`
+**Devnet only.** Sends 10 000 POH to the caller. 24-hour cooldown per address.
 
 ---
 
@@ -260,7 +319,7 @@ Supported languages: **JS · Go · Rust · PHP · Java** (all normalised to JS s
 | AI (Learner · Compiler) | Ollama — local inference |
 | Cache | Redis (in-memory fallback) |
 | Scheduler | node-cron (hourly brain consolidation) |
-| Wallet | @solana/wallet-adapter (Phantom · Solflare · Backpack · Coinbase · Trust · Ledger · Nightly + Wallet Standard) |
+| Wallet | @solana/wallet-adapter (Phantom · Solflare · Coinbase · Trust · Ledger · Torus · Nightly + Wallet Standard) |
 | Multi-chain | 32 EVM chains via Alchemy + built-in RPC registry |
 
 ---
@@ -281,11 +340,9 @@ Supported languages: **JS · Go · Rust · PHP · Java** (all normalised to JS s
 - [x] Vote confirmation modal — irreversible vote warning
 - [x] Wallet adapter — all major Solana wallets via Wallet Standard
 - [x] Devnet POH faucet (10 000 POH, 24h cooldown)
+- [x] Profile system — API keys, off-chain balance, scan earnings, leaderboard
 - [x] Nginx + Let's Encrypt SSL on proofofhuman.ge
-
-### In Progress
-- [ ] Frontend refactor — split monolithic HumanPower.vue into composables + scoped components
-- [ ] Landing-only build (separate branch, no wallet/scanner/API surface)
+- [x] Landing-only branch — standalone marketing page, no wallet/scanner surface
 
 ### Planned
 - [ ] EVM wallet support (MetaMask / WalletConnect) for cross-chain identity
