@@ -68,6 +68,9 @@ const {
   runCheck, handleFileSelect, claimFaucet,
 } = checker
 
+const showEvidencePass = ref(true)
+const showEvidenceFail = ref(false)
+
 // Proxy error from checker to top-level error ref
 watch(checker.error, val => { if (val) error.value = val })
 
@@ -941,24 +944,47 @@ onUnmounted(() => {
         </div>
 
         <div v-if="checkerResults" class="results-accordion">
-          <button class="results-accordion-header" @click="showEvidence = !showEvidence">
+          <div class="evidence-header">
+            <div class="accordion-dots">
+              <span v-for="r in checkerResults.slice(0, 12)" :key="r.methodId"
+                :class="['acc-dot', r.result ? 'pass' : 'fail']"></span>
+            </div>
+            <span class="evidence-title">Evidence</span>
+            <span class="accordion-summary">{{ checkerResults.filter(r => r.result).length }}/{{ checkerResults.length }} passed</span>
+          </div>
+
+          <!-- Pass accordion -->
+          <button class="results-accordion-header sub" @click="showEvidencePass = !showEvidencePass">
             <div class="accordion-left">
-              <div class="accordion-dots">
-                <span v-for="r in checkerResults.slice(0, 12)" :key="r.methodId"
-                  :class="['acc-dot', r.result ? 'pass' : 'fail']"></span>
-              </div>
-              <span class="accordion-summary">
-                Evidence — {{ checkerResults.filter(r => r.result).length }}/{{ checkerResults.length }} passed
-              </span>
+              <div class="result-dot pass"></div>
+              <span class="accordion-summary">Pass ({{ checkerResults.filter(r => r.result).length }})</span>
             </div>
-            <span class="accordion-chevron" :class="{ open: showEvidence }">›</span>
+            <span class="accordion-chevron" :class="{ open: showEvidencePass }">›</span>
           </button>
-          <div v-show="showEvidence" class="results-list">
-            <div v-for="res in checkerResults" :key="res.methodId" class="result-row">
-              <div class="result-dot" :class="res.result ? 'pass' : 'fail'"></div>
+          <div v-show="showEvidencePass" class="results-list">
+            <div v-for="res in checkerResults.filter(r => r.result)" :key="res.methodId" class="result-row">
+              <div class="result-dot pass"></div>
               <span class="result-desc">{{ res.description }}</span>
-              <span :class="['status-badge', res.result ? 'human' : 'ai']">{{ res.result ? 'PASS' : 'FAIL' }}</span>
+              <span class="status-badge human">PASS</span>
             </div>
+            <div v-if="!checkerResults.filter(r => r.result).length" class="result-row result-empty">No signals passed</div>
+          </div>
+
+          <!-- Fail accordion -->
+          <button class="results-accordion-header sub" @click="showEvidenceFail = !showEvidenceFail">
+            <div class="accordion-left">
+              <div class="result-dot fail"></div>
+              <span class="accordion-summary">Fail ({{ checkerResults.filter(r => !r.result).length }})</span>
+            </div>
+            <span class="accordion-chevron" :class="{ open: showEvidenceFail }">›</span>
+          </button>
+          <div v-show="showEvidenceFail" class="results-list">
+            <div v-for="res in checkerResults.filter(r => !r.result)" :key="res.methodId" class="result-row">
+              <div class="result-dot fail"></div>
+              <span class="result-desc">{{ res.description }}</span>
+              <span class="status-badge ai">FAIL</span>
+            </div>
+            <div v-if="!checkerResults.filter(r => !r.result).length" class="result-row result-empty">No signals failed</div>
           </div>
         </div>
 
@@ -2441,6 +2467,22 @@ const results = await pollJob(jobId)</pre>
   overflow: hidden;
 }
 
+.evidence-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1rem 0.75rem;
+  background: #0a0a0a;
+  border-bottom: 1px solid #111;
+}
+
+.evidence-title {
+  font-size: 1rem;
+  color: #888;
+  font-weight: 500;
+  flex: 1;
+}
+
 .results-accordion-header {
   width: 100%;
   display: flex;
@@ -2454,6 +2496,16 @@ const results = await pollJob(jobId)</pre>
   transition: background 0.15s;
 }
 .results-accordion-header:hover { background: #0f0f0f; }
+.results-accordion-header.sub {
+  padding: 0.65rem 1rem 0.65rem 1.25rem;
+  border-top: 1px solid #111;
+}
+
+.result-empty {
+  color: #333;
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
 
 .accordion-left {
   display: flex;

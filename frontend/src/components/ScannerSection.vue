@@ -1,5 +1,9 @@
 <script setup>
+import { ref } from 'vue'
 import { FileUp, Trash2 } from 'lucide-vue-next'
+
+const showEvidencePass = ref(true)
+const showEvidenceFail = ref(false)
 
 const props = defineProps({
   scanInput:            { type: String,  default: '' },
@@ -84,24 +88,47 @@ const emit = defineEmits([
     </div>
 
     <div v-if="checkerResults" class="results-accordion">
-      <button class="results-accordion-header" @click="emit('update:showEvidence', !showEvidence)">
+      <div class="evidence-header">
+        <div class="accordion-dots">
+          <span v-for="r in checkerResults.slice(0, 12)" :key="r.methodId"
+            :class="['acc-dot', r.result ? 'pass' : 'fail']"></span>
+        </div>
+        <span class="evidence-title">Evidence</span>
+        <span class="accordion-summary">{{ checkerResults.filter(r => r.result).length }}/{{ checkerResults.length }} passed</span>
+      </div>
+
+      <!-- Pass accordion -->
+      <button class="results-accordion-header sub" @click="showEvidencePass = !showEvidencePass">
         <div class="accordion-left">
-          <div class="accordion-dots">
-            <span v-for="r in checkerResults.slice(0, 12)" :key="r.methodId"
-              :class="['acc-dot', r.result ? 'pass' : 'fail']"></span>
-          </div>
-          <span class="accordion-summary">
-            Evidence — {{ checkerResults.filter(r => r.result).length }}/{{ checkerResults.length }} passed
-          </span>
+          <div class="result-dot pass"></div>
+          <span class="accordion-summary">Pass ({{ checkerResults.filter(r => r.result).length }})</span>
         </div>
-        <span class="accordion-chevron" :class="{ open: showEvidence }">›</span>
+        <span class="accordion-chevron" :class="{ open: showEvidencePass }">›</span>
       </button>
-      <div v-show="showEvidence" class="results-list">
-        <div v-for="res in checkerResults" :key="res.methodId" class="result-row">
-          <div class="result-dot" :class="res.result ? 'pass' : 'fail'"></div>
+      <div v-show="showEvidencePass" class="results-list">
+        <div v-for="res in checkerResults.filter(r => r.result)" :key="res.methodId" class="result-row">
+          <div class="result-dot pass"></div>
           <span class="result-desc">{{ res.description }}</span>
-          <span :class="['status-badge', res.result ? 'human' : 'ai']">{{ res.result ? 'PASS' : 'FAIL' }}</span>
+          <span class="status-badge human">PASS</span>
         </div>
+        <div v-if="!checkerResults.filter(r => r.result).length" class="result-row result-empty">No signals passed</div>
+      </div>
+
+      <!-- Fail accordion -->
+      <button class="results-accordion-header sub" @click="showEvidenceFail = !showEvidenceFail">
+        <div class="accordion-left">
+          <div class="result-dot fail"></div>
+          <span class="accordion-summary">Fail ({{ checkerResults.filter(r => !r.result).length }})</span>
+        </div>
+        <span class="accordion-chevron" :class="{ open: showEvidenceFail }">›</span>
+      </button>
+      <div v-show="showEvidenceFail" class="results-list">
+        <div v-for="res in checkerResults.filter(r => !r.result)" :key="res.methodId" class="result-row">
+          <div class="result-dot fail"></div>
+          <span class="result-desc">{{ res.description }}</span>
+          <span class="status-badge ai">FAIL</span>
+        </div>
+        <div v-if="!checkerResults.filter(r => !r.result).length" class="result-row result-empty">No signals failed</div>
       </div>
     </div>
 
