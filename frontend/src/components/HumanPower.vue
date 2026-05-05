@@ -579,31 +579,221 @@ onUnmounted(() => {
           <div class="benefit-header">
           </div>
           <div class="benefit-cards">
+            <!-- Trading volume: animated candlestick chart -->
             <div class="benefit-card">
-              <CandlestickChart style="
-                color: #808080;
-                max-width:250px;
-                stroke-width: 1px;
-                width:100%; height:100%;
-              "/>
+              <svg class="benefit-svg" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="240" height="200" rx="12" fill="#090909" stroke="#1a1a1a"/>
+                <!-- grid lines -->
+                <line x1="20" y1="40"  x2="220" y2="40"  stroke="#1a1a1a" stroke-width="1"/>
+                <line x1="20" y1="80"  x2="220" y2="80"  stroke="#1a1a1a" stroke-width="1"/>
+                <line x1="20" y1="120" x2="220" y2="120" stroke="#1a1a1a" stroke-width="1"/>
+                <line x1="20" y1="160" x2="220" y2="160" stroke="#1a1a1a" stroke-width="1"/>
+                <!-- label -->
+                <text x="20" y="22" fill="#666" font-size="8" font-family="monospace">VOLUME ANALYSIS</text>
+                <!-- candle 1 — bot wash trade (red) -->
+                <line x1="48"  y1="55"  x2="48"  y2="45"  stroke="#ef4444" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;55" dur="0.4s" begin="0.2s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;45" dur="0.4s" begin="0.2s" fill="freeze"/>
+                </line>
+                <rect x="40" y="60" width="16" height="35" rx="1" fill="#1a0808" stroke="#ef4444" stroke-width="1.2">
+                  <animate attributeName="y" values="95;60" dur="0.4s" begin="0.2s" fill="freeze"/>
+                  <animate attributeName="height" values="0;35" dur="0.4s" begin="0.2s" fill="freeze"/>
+                </rect>
+                <line x1="48"  y1="95"  x2="48"  y2="108" stroke="#ef4444" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;95"  dur="0.2s" begin="0.5s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;108" dur="0.2s" begin="0.5s" fill="freeze"/>
+                </line>
+                <!-- candle 2 — bot (red) -->
+                <line x1="80" y1="50" x2="80" y2="42" stroke="#ef4444" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;50" dur="0.4s" begin="0.45s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;42" dur="0.4s" begin="0.45s" fill="freeze"/>
+                </line>
+                <rect x="72" y="55" width="16" height="40" rx="1" fill="#1a0808" stroke="#ef4444" stroke-width="1.2">
+                  <animate attributeName="y" values="95;55" dur="0.4s" begin="0.45s" fill="freeze"/>
+                  <animate attributeName="height" values="0;40" dur="0.4s" begin="0.45s" fill="freeze"/>
+                </rect>
+                <line x1="80" y1="95" x2="80" y2="110" stroke="#ef4444" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;95"  dur="0.2s" begin="0.75s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;110" dur="0.2s" begin="0.75s" fill="freeze"/>
+                </line>
+                <!-- candle 3 — real (green) -->
+                <line x1="112" y1="72" x2="112" y2="58" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;72" dur="0.4s" begin="0.7s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;58" dur="0.4s" begin="0.7s" fill="freeze"/>
+                </line>
+                <rect x="104" y="76" width="16" height="28" rx="1" fill="#0d1a0d" stroke="#22c55e" stroke-width="1.2">
+                  <animate attributeName="y" values="100;76" dur="0.4s" begin="0.7s" fill="freeze"/>
+                  <animate attributeName="height" values="0;28" dur="0.4s" begin="0.7s" fill="freeze"/>
+                </rect>
+                <line x1="112" y1="104" x2="112" y2="115" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;104" dur="0.2s" begin="0.9s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;115" dur="0.2s" begin="0.9s" fill="freeze"/>
+                </line>
+                <!-- candle 4 — real (green) -->
+                <line x1="144" y1="65" x2="144" y2="52" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;65" dur="0.4s" begin="0.9s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;52" dur="0.4s" begin="0.9s" fill="freeze"/>
+                </line>
+                <rect x="136" y="70" width="16" height="32" rx="1" fill="#0d1a0d" stroke="#22c55e" stroke-width="1.2">
+                  <animate attributeName="y" values="100;70" dur="0.4s" begin="0.9s" fill="freeze"/>
+                  <animate attributeName="height" values="0;32" dur="0.4s" begin="0.9s" fill="freeze"/>
+                </rect>
+                <line x1="144" y1="102" x2="144" y2="112" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;102" dur="0.2s" begin="1.1s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;112" dur="0.2s" begin="1.1s" fill="freeze"/>
+                </line>
+                <!-- candle 5 — real (green) -->
+                <line x1="176" y1="58" x2="176" y2="46" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;58" dur="0.4s" begin="1.1s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;46" dur="0.4s" begin="1.1s" fill="freeze"/>
+                </line>
+                <rect x="168" y="62" width="16" height="38" rx="1" fill="#0d1a0d" stroke="#22c55e" stroke-width="1.2">
+                  <animate attributeName="y" values="100;62" dur="0.4s" begin="1.1s" fill="freeze"/>
+                  <animate attributeName="height" values="0;38" dur="0.4s" begin="1.1s" fill="freeze"/>
+                </rect>
+                <line x1="176" y1="100" x2="176" y2="115" stroke="#22c55e" stroke-width="1.5">
+                  <animate attributeName="y1" values="100;100" dur="0.2s" begin="1.3s" fill="freeze"/>
+                  <animate attributeName="y2" values="100;115" dur="0.2s" begin="1.3s" fill="freeze"/>
+                </line>
+                <!-- scan line sweep -->
+                <line x1="20" y1="30" x2="20" y2="165" stroke="#22c55e44" stroke-width="1">
+                  <animate attributeName="x1" values="20;220;220" dur="2s" begin="0s" repeatCount="indefinite"/>
+                  <animate attributeName="x2" values="20;220;220" dur="2s" begin="0s" repeatCount="indefinite"/>
+                </line>
+                <!-- bot label -->
+                <text x="32" y="140" fill="#ef444480" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>BOT</text>
+                <text x="64" y="140" fill="#ef444480" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.9s" fill="freeze"/>BOT</text>
+                <text x="98" y="140" fill="#22c55e80" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.1s" fill="freeze"/>REAL</text>
+                <text x="130" y="140" fill="#22c55e80" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.2s" fill="freeze"/>REAL</text>
+                <text x="162" y="140" fill="#22c55e80" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.3s" fill="freeze"/>REAL</text>
+                <!-- baseline -->
+                <line x1="20" y1="160" x2="220" y2="160" stroke="#333" stroke-width="1"/>
+              </svg>
               <p class="benefit-label">Detect Fake and real<br>Trading Volume</p>
             </div>
+
+            <!-- Bot/Human classification: scanning fingerprint -->
             <div class="benefit-card">
-              <FingerprintIcon style="
-                color: #808080;
-                max-width:250px;
-                stroke-width: 1px;
-                width:100%; height:100%;
-              "/>
+              <svg class="benefit-svg" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="240" height="200" rx="12" fill="#090909" stroke="#1a1a1a"/>
+                <text x="20" y="22" fill="#666" font-size="8" font-family="monospace">IDENTITY SCAN</text>
+                <!-- left column: bot -->
+                <rect x="20" y="35" width="88" height="110" rx="6" fill="#0d0d0d" stroke="#1e1e1e"/>
+                <!-- robot head -->
+                <rect x="44" y="50" width="40" height="30" rx="3" stroke="#ef4444" stroke-width="1.2" fill="none"/>
+                <line x1="64" y1="50" x2="64" y2="44" stroke="#ef4444" stroke-width="1.2"/>
+                <line x1="58" y1="44" x2="70" y2="44" stroke="#ef4444" stroke-width="1.2"/>
+                <rect x="50" y="58" width="8" height="6" rx="1" stroke="#ef4444" stroke-width="1" fill="none"/>
+                <rect x="70" y="58" width="8" height="6" rx="1" stroke="#ef4444" stroke-width="1" fill="none"/>
+                <line x1="54" y1="72" x2="74" y2="72" stroke="#ef4444" stroke-width="1"/>
+                <!-- bot label -->
+                <text x="52" y="100" fill="#ef444480" font-size="8" font-family="monospace">BOT</text>
+                <!-- verdict -->
+                <text x="34" y="134" fill="#ef4444" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.4s" begin="1.2s" fill="freeze"/>✗ NOT HUMAN</text>
+
+                <!-- right column: human -->
+                <rect x="132" y="35" width="88" height="110" rx="6" fill="#0d1a0d" stroke="#1a3a1a"/>
+                <!-- human figure -->
+                <circle cx="176" cy="62" r="12" stroke="#22c55e" stroke-width="1.2" fill="none"/>
+                <path d="M156 108 Q156 86 176 86 Q196 86 196 108" stroke="#22c55e" stroke-width="1.2" fill="none"/>
+                <!-- human label -->
+                <text x="158" y="122" fill="#22c55e80" font-size="8" font-family="monospace">HUMAN</text>
+                <!-- verdict -->
+                <text x="138" y="134" fill="#22c55e" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.4s" begin="1.5s" fill="freeze"/>✓ VERIFIED</text>
+
+                <!-- scanning beam -->
+                <rect x="20" y="35" width="200" height="4" rx="1" fill="#22c55e22" opacity="0">
+                  <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite"/>
+                  <animate attributeName="y" values="35;145;145;35" dur="2.5s" repeatCount="indefinite"/>
+                </rect>
+
+                <!-- confidence bar -->
+                <text x="20" y="163" fill="#666" font-size="7" font-family="monospace">confidence</text>
+                <rect x="20" y="168" width="200" height="4" rx="2" fill="#111"/>
+                <rect x="20" y="168" width="0" height="4" rx="2" fill="#22c55e">
+                  <animate attributeName="width" values="0;148" dur="1s" begin="1.8s" fill="freeze"/>
+                </rect>
+                <text x="172" y="175" fill="#22c55e80" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.7s" fill="freeze"/>74%</text>
+              </svg>
               <p class="benefit-label">Bot / Human Classification<br>and Digital Identities on Solana</p>
             </div>
+
+            <!-- AI portrait: wallet → signals → profile -->
             <div class="benefit-card">
-              <Waypoints style="
-                color: #808080;
-                max-width:250px;
-                stroke-width: 1px;
-                width:100%; height:100%;
-              "/>
+              <svg class="benefit-svg" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="240" height="200" rx="12" fill="#090909" stroke="#1a1a1a"/>
+                <text x="20" y="22" fill="#666" font-size="8" font-family="monospace">WALLET PORTRAIT</text>
+                <!-- wallet address input -->
+                <rect x="14" y="32" width="148" height="22" rx="4" fill="#0d0d0d" stroke="#222"/>
+                <text x="22" y="47" fill="#ffffff40" font-size="8" font-family="monospace">0xd8dA6BF26964...</text>
+                <!-- signal nodes on left -->
+                <circle cx="30" cy="90" r="7" stroke="#22c55e" stroke-width="1.2" fill="#0d1a0d" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.5s" fill="freeze"/>
+                </circle>
+                <text x="24" y="93" fill="#22c55e" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.5s" fill="freeze"/>ETH</text>
+                <circle cx="30" cy="115" r="7" stroke="#22c55e" stroke-width="1.2" fill="#0d1a0d" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.7s" fill="freeze"/>
+                </circle>
+                <text x="24" y="118" fill="#22c55e" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.7s" fill="freeze"/>SOL</text>
+                <circle cx="30" cy="140" r="7" stroke="#ef4444" stroke-width="1.2" fill="#1a0808" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.9s" fill="freeze"/>
+                </circle>
+                <text x="26" y="143" fill="#ef4444" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.9s" fill="freeze"/>X</text>
+                <circle cx="30" cy="165" r="7" stroke="#22c55e" stroke-width="1.2" fill="#0d1a0d" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.1s" fill="freeze"/>
+                </circle>
+                <text x="22" y="168" fill="#22c55e" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.1s" fill="freeze"/>ENS</text>
+                <!-- lines from nodes to AI -->
+                <line x1="37" y1="90"  x2="100" y2="125" stroke="#22c55e30" stroke-width="1" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.6s" fill="freeze"/>
+                </line>
+                <line x1="37" y1="115" x2="100" y2="125" stroke="#22c55e30" stroke-width="1" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>
+                </line>
+                <line x1="37" y1="140" x2="100" y2="125" stroke="#ef444430" stroke-width="1" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.0s" fill="freeze"/>
+                </line>
+                <line x1="37" y1="165" x2="100" y2="125" stroke="#22c55e30" stroke-width="1" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.2s" fill="freeze"/>
+                </line>
+                <!-- AI node -->
+                <circle cx="110" cy="125" r="16" fill="#111" stroke="#333" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.4s" begin="1.3s" fill="freeze"/>
+                </circle>
+                <text x="104" y="122" fill="#fff" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.5s" fill="freeze"/>AI</text>
+                <text x="100" y="133" fill="#ffffff60" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.5s" fill="freeze"/>brain</text>
+                <!-- arrow to profile card -->
+                <line x1="126" y1="125" x2="148" y2="125" stroke="#22c55e80" stroke-width="1.2" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.8s" fill="freeze"/>
+                </line>
+                <!-- profile card -->
+                <rect x="148" y="88" width="78" height="74" rx="6" fill="#0d1a0d" stroke="#1a4a1a" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.4s" begin="2s" fill="freeze"/>
+                </rect>
+                <circle cx="170" cy="108" r="10" stroke="#22c55e" stroke-width="1" fill="none" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.1s" fill="freeze"/>
+                </circle>
+                <text x="156" y="130" fill="#22c55e" font-size="7" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.2s" fill="freeze"/>HUMAN</text>
+                <text x="156" y="142" fill="#ffffff60" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.3s" fill="freeze"/>87% · 4/5</text>
+                <text x="156" y="153" fill="#ffffff40" font-size="6" font-family="monospace" opacity="0">
+                  <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.4s" fill="freeze"/>DeFi power</text>
+              </svg>
               <p class="benefit-label">AI-powered user portrait<br>from crypto wallet address</p>
             </div>
           </div>
@@ -1706,11 +1896,16 @@ const results = await pollJob(jobId)</pre>
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
   flex: 1;
-  gap: 5rem;;
+  min-width: 220px;
+  max-width: 280px;
 }
-.benefit-icon {
+.benefit-svg {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  border-radius: 12px;
 }
 .benefit-label {
   color: #ffffffcc;
