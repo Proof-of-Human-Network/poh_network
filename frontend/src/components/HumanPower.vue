@@ -10,7 +10,7 @@ import ApiDocsSection from './ApiDocsSection.vue'
 import {
   Search, PlusSquare, Vote,
   Activity, SquareArrowDown, PersonStanding, FolderCode, CreditCard, Bitcoin, Waypoints, FingerprintPattern, CandlestickChart,
-  FingerprintIcon
+  FingerprintIcon, FileUp, Trash2
 } from 'lucide-vue-next'
 import {
   Transaction,
