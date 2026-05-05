@@ -20,6 +20,7 @@ const QVAC_MODEL = process.env.QVAC_MODEL || EVALUATOR_MODEL;
 const BRAIN_STATE_PATH = path.join(__dirname, '../../data/brain_state.md');
 const DATASET_PATH     = path.join(__dirname, '../../data/dataset.json');
 const WEIGHTS_PATH     = path.join(__dirname, '../../data/weights.json');
+const FEEDBACK_PATH    = path.join(__dirname, '../../data/feedback.json');
 
 // ── Ollama request queue (serializes all calls — Ollama is single-instance) ───
 let _ollamaQueue = Promise.resolve();
@@ -59,6 +60,27 @@ function getWeights() {
 
 function saveWeights(w) {
   fs.writeFileSync(WEIGHTS_PATH, JSON.stringify(w, null, 2));
+}
+
+function getFeedback() {
+  if (!fs.existsSync(FEEDBACK_PATH)) return [];
+  try { return JSON.parse(fs.readFileSync(FEEDBACK_PATH, 'utf-8')); }
+  catch { return []; }
+}
+
+function saveFeedback(list) {
+  fs.writeFileSync(FEEDBACK_PATH, JSON.stringify(list, null, 2));
+}
+
+// Returns the last N human corrections as a compact string for prompt injection
+function recentCorrectionsStr(n = 5) {
+  const corrections = getFeedback()
+    .filter(f => f.correction)
+    .slice(-n);
+  if (!corrections.length) return '';
+  return corrections
+    .map(f => `- ${f.address?.slice(0, 8)}… AI said ${f.aiVerdict}, user says ${f.correction}${f.comment ? ': "' + f.comment.slice(0, 80) + '"' : ''}`)
+    .join('\n');
 }
 
 
@@ -229,11 +251,16 @@ async function analyzeHumanness(address, methodResults, methods) {
     .map(s => `[${s.pass ? 'PASS' : 'FAIL'}] ${s.name} (w:${s.w})`)
     .join('\n');
 
+  const corrections = recentCorrectionsStr(5);
+  const correctionBlock = corrections
+    ? `\nRecent human corrections (learn from these mistakes):\n${corrections}\n`
+    : '';
+
   const prompt = `Proof of Human evaluator. Is wallet ${address} HUMAN, AI, or UNCERTAIN?
 
 Signals (${passed.length} passed, ${failed.length} failed shown):
 ${signalsStr}
-
+${correctionBlock}
 Return ONLY valid JSON with verdict HUMAN|AI|UNCERTAIN, confidence 0.0-1.0, and reasoning:
 {"verdict":"...","confidence":0.0,"reasoning":"..."}`;
 
@@ -512,4 +539,74 @@ or
   return result || { valid: true, reason: 'Validation unavailable — skipped' };
 }
 
-module.exports = { analyzeHumanness, onNewMethod, onVote, consolidate, getWeights, validateDescription, validateFeedback };
+// ── 7. onVerdictFeedback — user corrects AI verdict ──────────────────────────
+
+async function onVerdictFeedback(address, aiVerdict, correction, comment, signals = []) {
+  // Persist the correction
+  const list = getFeedback();
+  list.push({
+    address,
+    aiVerdict,
+    correction,   // 'HUMAN' | 'AI'
+    comment: comment || null,
+    signals: signals.map(s => ({ id: s.methodId, pass: s.result, desc: (s.description || '').slice(0, 60) })),
+    ts: new Date().toISOString(),
+  });
+  saveFeedback(list);
+
+  // Only adjust weights if there's a clear disagreement
+  if (!correction || correction === aiVerdict) return;
+
+  const weights = getWeights();
+  // Signals that should have been weighted differently:
+  // AI said HUMAN but user says AI → passed signals were misleading → reduce their weight
+  // AI said AI but user says HUMAN → failed signals might be misleading → reduce failed, boost passed
+  const misleading = correction === 'AI'
+    ? signals.filter(s => s.result === true)   // passed but shouldn't count
+    : signals.filter(s => s.result === false);  // failed but shouldn't disqualify
+
+  const supportive = correction === 'HUMAN'
+    ? signals.filter(s => s.result === true)
+    : [];
+
+  const updated = { ...weights };
+  for (const s of misleading) {
+    const cur = updated[s.methodId] ?? 1.0;
+    updated[s.methodId] = Math.min(3.0, Math.max(0.1, +(cur - 0.03).toFixed(3)));
+  }
+  for (const s of supportive) {
+    const cur = updated[s.methodId] ?? 1.0;
+    updated[s.methodId] = Math.min(3.0, Math.max(0.1, +(cur + 0.02).toFixed(3)));
+  }
+  saveWeights(updated);
+
+  // Ask the learner what it thinks about this mistake
+  const signalsSummary = signals
+    .slice(0, 8)
+    .map(s => `[${s.result ? 'PASS' : 'FAIL'}] ${(s.description || s.methodId || '').slice(0, 50)}`)
+    .join('\n');
+
+  const prompt = `A verdict was wrong. Learn from this.
+
+Wallet: ${address}
+AI verdict: ${aiVerdict}
+Correct verdict (user): ${correction}
+${comment ? `User comment: "${comment.slice(0, 200)}"` : ''}
+
+Signals:
+${signalsSummary}
+
+Which signal type was most misleading? One sentence max.
+{"insight":"..."}`;
+
+  const insight = await ollamaChatJSON(prompt, ['insight'], {
+    model: LEARNER_MODEL, maxTokens: 80, timeLimit: 20000,
+  });
+
+  const note = `\n\n### Verdict Correction — ${new Date().toISOString()}\nAddress: ${address}\nAI said: ${aiVerdict} → User says: ${correction}\n${comment ? `Comment: "${comment}"\n` : ''}${insight?.insight ? `Insight: ${insight.insight}` : ''}`;
+  saveBrainState((getBrainState() + note).trim());
+
+  console.log(`[brain] Feedback recorded: ${aiVerdict}→${correction} for ${address}`);
+}
+
+module.exports = { analyzeHumanness, onNewMethod, onVote, onVerdictFeedback, consolidate, getWeights, validateDescription, validateFeedback };

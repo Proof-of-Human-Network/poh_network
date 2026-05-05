@@ -55,5 +55,15 @@
     "address": "G8bFssuQsNxmMopW9bjYgA4iuUZ7z8uELiNL6UKvSjyy",
     "updatedAt": "2026-04-24T13:40:33.506Z",
     "balance": 0
+  },
+  "E1spgozw4CMdvnSBrxFTp3v35DUqmt7dFPuVN5xBjpFw": {
+    "registeredAt": "2026-05-05T13:52:12.818Z",
+    "apiKey": "8f4caeb0-17e5-4e5e-b13e-07f11d7ba085",
+    "balance": 0,
+    "freeScansLeft": 100,
+    "totalScans": 0,
+    "stakedAmount": 0,
+    "address": "E1spgozw4CMdvnSBrxFTp3v35DUqmt7dFPuVN5xBjpFw",
+    "updatedAt": "2026-05-05T13:52:12.818Z"
   }
 }

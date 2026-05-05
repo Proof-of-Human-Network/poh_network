@@ -128,13 +128,37 @@ function dismissNetworkSuggestion() {
 const checker = useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, SOLANA_RPC, signAndSendTransaction })
 const {
   scanInput, resolvedInputDisplay, checkerResults, showEvidence,
-  brainVerdict, brainPolling, batchFile, batchRowCount, batchRows,
+  brainVerdict, brainPolling, brainKey, batchFile, batchRowCount, batchRows,
   isResolving, detectedChain, faucetLoading, faucetMsg,
   runCheck, handleFileSelect, claimFaucet,
 } = checker
 
 const showEvidencePass = ref(true)
 const showEvidenceFail = ref(false)
+
+// ── Verdict feedback ──────────────────────────────────────────────────────────
+const feedbackSent      = ref(false)
+const feedbackSubmitting = ref(false)
+
+async function submitFeedback(correction, comment = '') {
+  if (feedbackSubmitting.value || feedbackSent.value || !brainVerdict.value) return
+  feedbackSubmitting.value = true
+  try {
+    await axios.post('/checker/feedback', {
+      brainKey:  brainKey.value,
+      address:   resolvedInputDisplay.value || scanInput.value,
+      aiVerdict: brainVerdict.value.verdict,
+      correction,
+      comment:   comment || undefined,
+    })
+    feedbackSent.value = true
+  } catch { /* silent */ } finally {
+    feedbackSubmitting.value = false
+  }
+}
+
+// Reset feedback state when a new scan starts
+watch(checkerResults, () => { feedbackSent.value = false })
 
 // Proxy error from checker to top-level error ref
 watch(checker.error, val => { if (val) error.value = val })
@@ -1214,6 +1238,28 @@ onUnmounted(() => {
           </div>
           <p class="brain-reasoning">{{ brainVerdict.reasoning }}</p>
           <div class="brain-conf">Confidence: {{ Math.round((brainVerdict.confidence || 0) * 100) }}%</div>
+
+          <!-- Verdict feedback -->
+          <div class="brain-feedback">
+            <template v-if="feedbackSent">
+              <span class="brain-feedback-thanks">Thanks — the AI will learn from this.</span>
+            </template>
+            <template v-else>
+              <span class="brain-feedback-label">Was this correct?</span>
+              <button
+                class="brain-feedback-btn brain-feedback-yes"
+                :disabled="feedbackSubmitting"
+                @click="submitFeedback(brainVerdict.verdict)"
+                title="Yes, verdict is correct"
+              >👍 Yes</button>
+              <button
+                class="brain-feedback-btn brain-feedback-no"
+                :disabled="feedbackSubmitting"
+                @click="submitFeedback(brainVerdict.verdict === 'HUMAN' ? 'AI' : 'HUMAN')"
+                :title="'No, this is actually ' + (brainVerdict.verdict === 'HUMAN' ? 'a bot' : 'a human')"
+              >👎 No — it's {{ brainVerdict.verdict === 'HUMAN' ? 'a bot' : 'a human' }}</button>
+            </template>
+          </div>
         </div>
       </div>
 
@@ -2738,6 +2784,31 @@ const results = await pollJob(jobId)</pre>
 
 .brain-conf { font-size: 1.25rem; color: #808080; margin-top: 0.5rem; }
 
+.brain-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #1a1a1a;
+  flex-wrap: wrap;
+}
+.brain-feedback-label { color: #666; font-size: 0.8rem; margin-right: 0.25rem; }
+.brain-feedback-btn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #111;
+  color: #ccc;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.brain-feedback-yes:hover  { background: #0d1a0d; border-color: #22c55e60; color: #22c55e; }
+.brain-feedback-no:hover   { background: #1a0808; border-color: #ef444460; color: #ef4444; }
+.brain-feedback-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.brain-feedback-thanks { color: #22c55e; font-size: 0.82rem; }
+
 .results-accordion {
   border: 1px solid #1a1a1a;
   border-radius: 8px;
@@ -3425,6 +3496,8 @@ const results = await pollJob(jobId)</pre>
   margin: 0 auto 5rem;
   animation: fadeUp 0.3s ease-out;
   width: 100%;
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 @keyframes fadeUp {
@@ -3545,6 +3618,10 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.25rem;
   color: #808080;
   padding-left: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .resolved-address {
@@ -3709,6 +3786,8 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.44rem;
   color: #777;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .brain-analyzing {

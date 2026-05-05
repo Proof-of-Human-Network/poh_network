@@ -10,6 +10,7 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
   const showEvidence         = ref(false)
   const brainVerdict         = ref(null)
   const brainPolling         = ref(false)
+  const brainKey             = ref(null)
   const faucetLoading        = ref(false)
   const faucetMsg            = ref(null)
   const batchFile            = ref(null)
@@ -155,14 +156,16 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
       const res = await axios.post('/checker', formData)
       checkerResults.value = res.data.result
       brainVerdict.value = null
+      brainKey.value     = null
       showEvidence.value = false
 
-      const brainKey = res.data.brainKey
-      if (brainKey) {
+      const _brainKey = res.data.brainKey
+      if (_brainKey) {
+        brainKey.value = _brainKey
         brainPolling.value = true
         const poll = setInterval(async () => {
           try {
-            const b = await axios.get(`/checker/brain/${encodeURIComponent(brainKey)}`)
+            const b = await axios.get(`/checker/brain/${encodeURIComponent(_brainKey)}`)
             if (b.data.status === 'done' || b.data.status === 'error') {
               brainVerdict.value = b.data
               brainPolling.value = false
@@ -188,6 +191,7 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
     showEvidence,
     brainVerdict,
     brainPolling,
+    brainKey,
     faucetLoading,
     faucetMsg,
     batchFile,

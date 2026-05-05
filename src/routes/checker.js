@@ -311,7 +311,7 @@ router.post('/', upload.single('csv'), async (req, res, next) => {
 
     brain.analyzeHumanness(scanKey, results, allMethods)
       .then(verdict => {
-        brainPending[scanKey] = { status: 'done', ...verdict };
+        brainPending[scanKey] = { status: 'done', ...verdict, signals: results };
         console.log(`[brain] Verdict for ${scanKey}: ${verdict.verdict} (${(verdict.confidence * 100).toFixed(0)}%)`);
       })
       .catch(err => {
@@ -348,6 +348,29 @@ router.get('/brain/:key', (req, res) => {
   const entry = brainPending[req.params.key];
   if (!entry) return res.json({ status: 'not_found' });
   res.json(entry);
+});
+
+// ── POST /checker/feedback ────────────────────────────────────────────────────
+// Body: { brainKey, address, aiVerdict, correction: 'HUMAN'|'AI', comment? }
+
+router.post('/feedback', async (req, res) => {
+  const { brainKey, address, aiVerdict, correction, comment } = req.body || {};
+  if (!address || !aiVerdict || !correction) {
+    return res.status(400).json({ error: 'address, aiVerdict and correction are required' });
+  }
+  if (!['HUMAN', 'AI', 'UNCERTAIN'].includes(correction)) {
+    return res.status(400).json({ error: 'correction must be HUMAN, AI, or UNCERTAIN' });
+  }
+
+  // Grab the signals from the stored verdict if available
+  const entry = brainKey ? brainPending[brainKey] : null;
+  const signals = entry?.signals || [];
+
+  // Fire-and-forget — don't block the response on LLM call
+  brain.onVerdictFeedback(address, aiVerdict, correction, comment || null, signals)
+    .catch(err => console.error('[feedback] onVerdictFeedback failed:', err.message));
+
+  res.json({ ok: true });
 });
 
 // ── GET /checker/pricing?count=N ─────────────────────────────────────────────
