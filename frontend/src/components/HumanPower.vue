@@ -27,6 +27,9 @@ import {
   castVote as castVoteOnChain, claimStakerRewards,
 } from '../pohProgram.js'
 
+// ── Devnet network suggestion — set to false to disable ───────────────────────
+const SUGGEST_DEVNET_NETWORK = true
+
 // ── UI State ──────────────────────────────────────────────────────────────────
 const currentSection = ref('landing')
 const mobileMenuOpen = ref(false)
@@ -57,8 +60,29 @@ const {
     loadProfile()
     if (POH_MINT.value) loadPohBalance()
     if (currentSection.value === 'votes') loadVoting()
+    if (SUGGEST_DEVNET_NETWORK) suggestDevnetNetwork()
   },
 })
+
+// ── Devnet network suggestion ─────────────────────────────────────────────────
+const networkSuggestion = ref(null) // null | 'switching' | 'manual'
+
+async function suggestDevnetNetwork() {
+  networkSuggestion.value = null
+  try {
+    // Phantom and most Solana wallets expose a provider on window.solana or window.phantom.solana
+    const provider = window.phantom?.solana ?? window.solana
+    if (!provider) { networkSuggestion.value = 'manual'; return }
+    // wallet_switchSolanaCluster is supported by Phantom (and ignored/rejected by others)
+    await provider.request({ method: 'wallet_switchSolanaCluster', params: { cluster: 'devnet' } })
+    // success — wallet switched silently, no banner needed
+  } catch {
+    // wallet rejected or doesn't support the method → show manual instructions
+    networkSuggestion.value = 'manual'
+  }
+}
+
+function dismissNetworkSuggestion() { networkSuggestion.value = null }
 
 // ── Checker ───────────────────────────────────────────────────────────────────
 const checker = useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, SOLANA_RPC, signAndSendTransaction })
@@ -315,6 +339,18 @@ onUnmounted(() => {
         >{{ faucetLoading ? 'Sending…' : 'Claim 10K POH' }}</button>
       </div>
     </div>
+
+    <!-- Network suggestion banner (shown when wallet is not on devnet) -->
+    <Transition name="net-suggest">
+      <div v-if="networkSuggestion === 'manual'" class="net-suggest-bar">
+        <span class="net-suggest-icon">⚠</span>
+        <span class="net-suggest-text">
+          Switch your wallet to <strong>Devnet</strong> — go to wallet settings → Network → Devnet
+        </span>
+        <button class="net-suggest-retry" @click="suggestDevnetNetwork">Try auto-switch</button>
+        <button class="net-suggest-dismiss" @click="dismissNetworkSuggestion">✕</button>
+      </div>
+    </Transition>
 
     <header class="header">
       <div @click="showSection('landing')" class="logo">
@@ -2974,6 +3010,36 @@ const results = await pollJob(jobId)</pre>
   display: flex;
   flex-direction: column;
 }
+
+/* ── Network suggestion banner ───────────────────────────────────────────── */
+.net-suggest-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1.25rem;
+  background: #1c1400;
+  border-bottom: 1px solid #f59e0b40;
+  font-size: 0.82rem;
+  color: #fcd34d;
+  flex-wrap: wrap;
+}
+.net-suggest-icon { font-size: 0.9rem; flex-shrink: 0; }
+.net-suggest-text { flex: 1; min-width: 0; }
+.net-suggest-text strong { color: #fbbf24; font-weight: 600; }
+.net-suggest-retry {
+  background: #f59e0b22; border: 1px solid #f59e0b60; color: #fbbf24;
+  padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.78rem; cursor: pointer;
+  white-space: nowrap; transition: background 0.15s;
+}
+.net-suggest-retry:hover { background: #f59e0b44; }
+.net-suggest-dismiss {
+  background: none; border: none; color: #f59e0b80; font-size: 1rem;
+  cursor: pointer; padding: 0 0.25rem; line-height: 1; flex-shrink: 0;
+}
+.net-suggest-dismiss:hover { color: #fbbf24; }
+.net-suggest-enter-active, .net-suggest-leave-active { transition: max-height 0.25s ease, opacity 0.2s; overflow: hidden; }
+.net-suggest-enter-from, .net-suggest-leave-to { max-height: 0; opacity: 0; }
+.net-suggest-enter-to, .net-suggest-leave-from { max-height: 60px; opacity: 1; }
 
 /* ── Devnet banner ───────────────────────────────────────────────────────── */
 .devnet-bar {
