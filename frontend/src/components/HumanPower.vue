@@ -295,6 +295,13 @@ onUnmounted(() => {
       <span class="devnet-label">DEVNET</span>
       <span class="devnet-sep">·</span>
       <span class="devnet-hint">Test environment — tokens have no real value</span>
+      <a href="https://faucet.solana.com/"
+         target="_blank"
+         style="
+          color: rgb(245 158 11);
+          text-decoration: none;
+          font-size: 1rem;"
+      >Claim Devnet SOL here</a>
       <div class="devnet-bar-right">
         <span v-if="faucetMsg" :class="['devnet-faucet-msg', faucetMsg.ok ? 'devnet-faucet-msg--ok' : 'devnet-faucet-msg--err']">
           {{ faucetMsg.text }}
@@ -452,8 +459,13 @@ onUnmounted(() => {
             <div class="problem-tag">THE PROBLEM</div>
             <h2 class="problem-title">Soon, there will be more AI-agents, than <span class="problem-accent">people</span></h2>
             <blockquote class="problem-quote">
-              "The company already has a lot more cybersecurity AI agents than people working on cybersecurity."
-              <cite>— Jensen Huang, CEO of NVIDIA</cite>
+              <div class="problem-quote-inner">
+                <img src="/jensen-huang.jpg" alt="Jensen Huang" class="problem-quote-avatar" />
+                <div>
+                  <span class="problem-quote-name">Jensen Huang, CEO of NVIDIA</span>
+                  <p class="problem-quote-text">"The company already has a lot more cybersecurity AI agents than people working on cybersecurity."</p>
+                </div>
+              </div>
             </blockquote>
             <p class="problem-desc">Wallets, votes, and on-chain identities can no longer be trusted at face value. <br>POH verifies humanity through evidence — not promises.</p>
             <button class="neon-btn" @click="showSection('checker')">Scan a Wallet →</button>
@@ -512,7 +524,7 @@ onUnmounted(() => {
               <span class="split-label">Team &amp; Contributors</span>
               <span class="split-pct">20%</span>
             </div>
-            <div class="split-bar"><div class="split-fill" style="width:20%; background:#555"></div></div>
+            <div class="split-bar"><div class="split-fill" style="width:20%; background:#ffffff80"></div></div>
             <div class="split-note">1 month cliff · 6 month linear vesting</div>
           </div>
 
@@ -570,7 +582,7 @@ onUnmounted(() => {
               <rect x="10" y="10" width="400" height="300" rx="14" fill="#090909" stroke="#1a1a1a"/>
               <!-- Input bar -->
               <rect x="28" y="30" width="310" height="36" rx="7" fill="#111" stroke="#222"/>
-              <text x="42" y="53" fill="#555" font-size="11" font-family="monospace">0xd8dA6BF26964aF9D7eEd9e03E534...</text>
+              <text x="42" y="53" fill="#ffffff80" font-size="11" font-family="monospace">0xd8dA6BF26964aF9D7eEd9e03E534...</text>
               <rect x="346" y="30" width="52" height="36" rx="7" fill="#161616" stroke="#222"/>
               <text x="355" y="53" fill="#666" font-size="11" font-family="monospace">Scan</text>
               <!-- Divider -->
@@ -579,31 +591,31 @@ onUnmounted(() => {
               <g class="scan-row-1">
                 <rect x="28" y="90" width="364" height="28" rx="5" fill="#0d0d0d"/>
                 <circle cx="42" cy="104" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/></circle>
-                <text x="54" y="108" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/>SOL balance &gt; 0.01</text>
+                <text x="54" y="108" fill="#ffffff80" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/>SOL balance &gt; 0.01</text>
                 <text x="346" y="108" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.4s" fill="freeze"/>✓</text>
               </g>
               <g class="scan-row-2">
                 <rect x="28" y="122" width="364" height="28" rx="5" fill="#0d0d0d"/>
                 <circle cx="42" cy="136" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/></circle>
-                <text x="54" y="140" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/>ENS name registered</text>
+                <text x="54" y="140" fill="#ffffff80" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/>ENS name registered</text>
                 <text x="346" y="140" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.75s" fill="freeze"/>✓</text>
               </g>
               <g>
                 <rect x="28" y="154" width="364" height="28" rx="5" fill="#0d0d0d"/>
                 <circle cx="42" cy="168" r="4" fill="#ef4444"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/></circle>
-                <text x="54" y="172" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/>Farcaster profile</text>
+                <text x="54" y="172" fill="#ffffff80" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/>Farcaster profile</text>
                 <text x="340" y="172" fill="#ef4444" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.05s" fill="freeze"/>✗</text>
               </g>
               <g>
                 <rect x="28" y="186" width="364" height="28" rx="5" fill="#0d0d0d"/>
                 <circle cx="42" cy="200" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/></circle>
-                <text x="54" y="204" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/>Galxe identity</text>
+                <text x="54" y="204" fill="#ffffff80" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/>Galxe identity</text>
                 <text x="346" y="204" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.35s" fill="freeze"/>✓</text>
               </g>
               <g>
                 <rect x="28" y="218" width="364" height="28" rx="5" fill="#0d0d0d"/>
                 <circle cx="42" cy="232" r="4" fill="#22c55e"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/></circle>
-                <text x="54" y="236" fill="#555" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/>Artrade tokenised real-world art marketplace...</text>
+                <text x="54" y="236" fill="#ffffff80" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/>Artrade tokenised real-world art marketplace...</text>
                 <text x="346" y="236" fill="#22c55e" font-size="10" font-family="monospace"><animate attributeName="opacity" values="0;1" dur="0.3s" begin="1.6s" fill="freeze"/>✓</text>
               </g>
               <!-- Verdict badge -->
@@ -661,9 +673,9 @@ onUnmounted(() => {
               <rect x="28" y="28" width="364" height="160" rx="9" fill="#0d0d0d" stroke="#1e1e1e"/>
               <text x="44" y="52" fill="#666" font-size="9" font-family="monospace">METHOD #47</text>
               <text x="44" y="70" fill="#ddd" font-size="12" font-family="sans-serif">Artrade tokenised real-world art marketplace on Solana</text>
-              <text x="44" y="88" fill="#555" font-size="9" font-family="monospace">balanceOf(address) &gt; 0  ·  Ethereum</text>
+              <text x="44" y="88" fill="#ffffff80" font-size="9" font-family="monospace">balanceOf(address) &gt; 0  ·  Ethereum</text>
               <!-- Score bar -->
-              <text x="44" y="112" fill="#555" font-size="8" font-family="monospace">community score</text>
+              <text x="44" y="112" fill="#ffffff80" font-size="8" font-family="monospace">community score</text>
               <rect x="44" y="118" width="220" height="5" rx="2" fill="#111"/>
               <rect x="44" y="118" width="148" height="5" rx="2" fill="#22c55e" id="score-bar"/>
               <text x="274" y="122" fill="#22c55e" font-size="8" font-family="monospace">+6.7</text>
@@ -682,9 +694,9 @@ onUnmounted(() => {
               </rect>
               <!-- Feedback textarea -->
               <rect x="28" y="202" width="364" height="50" rx="7" fill="#080808" stroke="#161616"/>
-              <text x="44" y="224" fill="#555" font-size="9" font-family="monospace">Interest in the real world art marketplace...</text>
+              <text x="44" y="224" fill="#ffffff80" font-size="9" font-family="monospace">Interest in the real world art marketplace...</text>
               <!-- Submit row -->
-              <text x="44" y="272" fill="#555" font-size="9" font-family="monospace">342 votes cast  ·  stake weight: 1.4×</text>
+              <text x="44" y="272" fill="#ffffff80" font-size="9" font-family="monospace">342 votes cast  ·  stake weight: 1.4×</text>
               <rect x="330" y="256" width="62" height="26" rx="6" fill="#161616" stroke="#222"/>
               <text x="341" y="273" fill="#888" font-size="9" font-family="monospace">Next →</text>
             </svg>
@@ -708,7 +720,7 @@ onUnmounted(() => {
             <svg class="feat-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="10" y="10" width="400" height="230" rx="14" fill="#090909" stroke="#1a1a1a"/>
               <!-- Signals in -->
-              <text x="28" y="42" fill="#555" font-size="9" font-family="monospace">SIGNALS</text>
+              <text x="28" y="42" fill="#ffffff80" font-size="9" font-family="monospace">SIGNALS</text>
               <rect x="28" y="52" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
               <text x="36" y="67" fill="#22c55e" font-size="9" font-family="monospace">✓ ETH balance</text>
               <rect x="28" y="78" width="140" height="22" rx="4" fill="#0d1a0d" stroke="#1a3a1a"/>
@@ -723,7 +735,7 @@ onUnmounted(() => {
               <path d="M168 130 Q210 130 210 130" stroke="#222" stroke-width="1.5" marker-end="url(#arr)"/>
               <defs>
                 <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                  <path d="M0,0 L6,3 L0,6 Z" fill="#555"/>
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#ffffff80"/>
                 </marker>
               </defs>
               <!-- AI node -->
@@ -733,16 +745,16 @@ onUnmounted(() => {
               <text x="210" y="126" fill="#fff" font-size="8" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>AI
               </text>
-              <text x="199" y="138" fill="#555" font-size="7" font-family="monospace" opacity="0">
+              <text x="199" y="138" fill="#ffffff80" font-size="7" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0.8s" fill="freeze"/>thinking</text>
               <!-- Thinking dots -->
-              <!-- <circle cx="202" cy="148" r="2" fill="#555" opacity="0">
+              <!-- <circle cx="202" cy="148" r="2" fill="#ffffff80" opacity="0">
                 <animate attributeName="opacity" values="0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
               </circle>
-              <circle cx="210" cy="148" r="2" fill="#555" opacity="0">
+              <circle cx="210" cy="148" r="2" fill="#ffffff80" opacity="0">
                 <animate attributeName="opacity" values="0;0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
               </circle>
-              <circle cx="218" cy="148" r="2" fill="#555" opacity="0">
+              <circle cx="218" cy="148" r="2" fill="#ffffff80" opacity="0">
                 <animate attributeName="opacity" values="0;0;0;0;1;0" dur="1.2s" begin="0.9s" repeatCount="indefinite"/>
               </circle> -->
               <!-- Verdict card -->
@@ -752,7 +764,7 @@ onUnmounted(() => {
               <text x="264" y="96" fill="#22c55e" font-size="11" font-weight="600" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.4s" fill="freeze"/>HUMAN
               </text>
-              <text x="264" y="114" fill="#555" font-size="8" font-family="monospace" opacity="0">
+              <text x="264" y="114" fill="#ffffff80" font-size="8" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.5s" fill="freeze"/>confidence</text>
               <!-- Confidence bar -->
               <rect x="264" y="120" width="112" height="6" rx="3" fill="#111" opacity="0">
@@ -764,9 +776,9 @@ onUnmounted(() => {
               </rect>
               <text x="264" y="146" fill="#fff" font-size="7.5" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.7s" fill="freeze"/>87% · 4/5 signals pass</text>
-              <text x="264" y="162" fill="#555" font-size="7" font-family="monospace" opacity="0">
+              <text x="264" y="162" fill="#ffffff80" font-size="7" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.8s" fill="freeze"/>PAXG holder is</text>
-              <text x="264" y="174" fill="#555" font-size="7" font-family="monospace" opacity="0">
+              <text x="264" y="174" fill="#ffffff80" font-size="7" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.8s" fill="freeze"/>strongest signal.</text>
             </svg>
           </div>
@@ -785,23 +797,23 @@ onUnmounted(() => {
               <!-- Terminal bar -->
               <rect x="10" y="10" width="400" height="28" rx="14" fill="#111" stroke="#1a1a1a"/>
               <rect x="10" y="24" width="400" height="14" fill="#111"/>
-              <circle cx="32" cy="24" r="5" fill="#555"/>
-              <circle cx="50" cy="24" r="5" fill="#555"/>
-              <circle cx="68" cy="24" r="5" fill="#555"/>
+              <circle cx="32" cy="24" r="5" fill="#ffffff80"/>
+              <circle cx="50" cy="24" r="5" fill="#ffffff80"/>
+              <circle cx="68" cy="24" r="5" fill="#ffffff80"/>
               <!-- Request lines -->
-              <text x="28" y="60" fill="#555" font-size="9" font-family="monospace">POST /checker</text>
+              <text x="28" y="60" fill="#ffffff80" font-size="9" font-family="monospace">POST /checker</text>
               <text x="28" y="76" fill="#1e3a1e" font-size="9" font-family="monospace">&#123;</text>
-              <text x="28" y="90" fill="#555" font-size="9" font-family="monospace">  "input": "0xd8dA6BF26964..."</text>
-              <text x="28" y="104" fill="#555" font-size="9" font-family="monospace">  "apiKey": "pk_live_xxx"</text>
+              <text x="28" y="90" fill="#ffffff80" font-size="9" font-family="monospace">  "input": "0xd8dA6BF26964..."</text>
+              <text x="28" y="104" fill="#ffffff80" font-size="9" font-family="monospace">  "apiKey": "pk_live_xxx"</text>
               <text x="28" y="118" fill="#1e3a1e" font-size="9" font-family="monospace">&#125;</text>
               <!-- Blinking cursor -->
-              <rect x="46" y="108" width="6" height="10" fill="#555">
+              <rect x="46" y="108" width="6" height="10" fill="#ffffff80">
                 <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
               </rect>
               <!-- Divider -->
               <line x1="28" y1="134" x2="392" y2="134" stroke="#161616"/>
               <!-- Response -->
-              <text x="28" y="152" fill="#555" font-size="9" font-family="monospace" opacity="0">
+              <text x="28" y="152" fill="#ffffff80" font-size="9" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.3s" begin="1s" fill="freeze"/>200 OK  · 340ms</text>
               <text x="28" y="168" fill="#1a3a1a" font-size="9" font-family="monospace" opacity="0">
                 <animate attributeName="opacity" values="0;1" dur="0.2s" begin="1.2s" fill="freeze"/>&#123;</text>
@@ -1725,7 +1737,7 @@ const results = await pollJob(jobId)</pre>
 }
 .problem-inner { max-width: 680px; text-align: center; }
 .problem-tag {
-  font-size: 0.7rem; letter-spacing: 0.18em; color: #555;
+  font-size: 0.7rem; letter-spacing: 0.18em; color: #ffffff80;
   font-family: 'JetBrains Mono', monospace; margin-bottom: 2rem;
 }
 .problem-title {
@@ -1734,11 +1746,17 @@ const results = await pollJob(jobId)</pre>
 }
 .problem-accent { color: #fff; }
 .problem-quote {
-  border-left: 2px solid #222; margin: 0 0 2rem; padding: 1rem 1.5rem;
-  text-align: left; color: #555; font-style: italic; font-size: 1.25rem; line-height: 1.6;
+  border-left: 2px solid #333; margin: 0 0 2rem; padding: 1.25rem 1.5rem;
+  text-align: left; background: #ffffff08; border-radius: 0 8px 8px 0;
 }
-.problem-quote cite { display: block; margin-top: 0.5rem; font-style: normal; color: #555; font-size: 0.82rem; }
-.problem-desc { color: #555; font-size: 1.25rem; line-height: 1.7; margin-bottom: 2.5rem; }
+.problem-quote-inner { display: flex; align-items: flex-start; gap: 1rem; }
+.problem-quote-avatar {
+  width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: top center;
+  flex-shrink: 0; border: 1px solid #ffffff20;
+}
+.problem-quote-name { display: block; font-style: normal; font-weight: 600; color: #ffffffcc; font-size: 0.88rem; margin-bottom: 0.4rem; }
+.problem-quote-text { margin: 0; color: #ffffff80; font-style: italic; font-size: 1.1rem; line-height: 1.6; }
+.problem-desc { color: #ffffff80; font-size: 1.25rem; line-height: 1.7; margin-bottom: 2.5rem; }
 
 /* ── Roadmap ──────────────────────────────────────────────────────────────── */
 .roadmap-section { padding: 5rem 0 6rem; border-top: 1px solid #111; }
@@ -1752,13 +1770,13 @@ const results = await pollJob(jobId)</pre>
   width: 1px; background: #1a1a1a;
 }
 .roadmap-dot {
-  width: 11px; height: 11px; border-radius: 50%; border: 1px solid #555;
+  width: 11px; height: 11px; border-radius: 50%; border: 1px solid #ffffff80;
   background: #0d0d0d; flex-shrink: 0; margin-top: 3px;
 }
-.roadmap-active .roadmap-dot { border-color: #555; background: #1a1a1a; box-shadow: 0 0 6px #555; }
-.roadmap-date { font-size: 2rem; color: #555; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.2rem; }
+.roadmap-active .roadmap-dot { border-color: #ffffff80; background: #1a1a1a; box-shadow: 0 0 6px #ffffff80; }
+.roadmap-date { font-size: 2rem; color: #ffffff80; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.2rem; }
 .roadmap-active .roadmap-date { color: #888; }
-.roadmap-desc { font-size: 1.25rem; color: #555; padding: 5px 0px; }
+.roadmap-desc { font-size: 1.25rem; color: #ffffff80; padding: 5px 0px; }
 .roadmap-active .roadmap-desc { color: #666; }
 
 .landing-hero {
@@ -1770,7 +1788,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #555;
+  color: #ffffff80;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
@@ -1786,7 +1804,7 @@ const results = await pollJob(jobId)</pre>
 
 .landing-sub {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   line-height: 1.7;
   margin-bottom: 2rem;
 }
@@ -1836,7 +1854,7 @@ const results = await pollJob(jobId)</pre>
 .feat-tag {
   font-size: 0.7rem;
   letter-spacing: 0.18em;
-  color: #555;
+  color: #ffffff80;
   font-weight: 600;
 }
 .feat-title {
@@ -1849,7 +1867,7 @@ const results = await pollJob(jobId)</pre>
 }
 .feat-body {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   line-height: 1.7;
   margin: 0;
 }
@@ -1924,12 +1942,12 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #555;
+  color: #ffffff80;
 }
 
 .token-desc {
   font-size: 1.44rem;
-  color: #555;
+  color: #ffffff80;
   line-height: 1.6;
   margin-bottom: 3.75rem;
 }
@@ -1973,7 +1991,7 @@ const results = await pollJob(jobId)</pre>
 
 .token-feat {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   border: 1px solid #1a1a1a;
   border-radius: 4px;
   padding: 0.3rem 1rem;
@@ -1986,7 +2004,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 0.81rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #555;
+  color: #ffffff80;
   text-transform: uppercase;
   margin-bottom: 2rem;
   text-align: center;
@@ -2029,7 +2047,7 @@ const results = await pollJob(jobId)</pre>
 
 .how-list li {
   font-size: 1rem;
-  color: #555;
+  color: #ffffff80;
   line-height: 1.55;
   padding-left: 0.9rem;
   position: relative;
@@ -2039,7 +2057,7 @@ const results = await pollJob(jobId)</pre>
   content: '—';
   position: absolute;
   left: 0;
-  color: #555;
+  color: #ffffff80;
 }
 
 .how-tag {
@@ -2048,7 +2066,7 @@ const results = await pollJob(jobId)</pre>
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #555;
+  color: #ffffff80;
   border: 1px solid #1a1a1a;
   border-radius: 3px;
   padding: 0.1rem 0.35rem;
@@ -2070,7 +2088,7 @@ const results = await pollJob(jobId)</pre>
 .net-subtitle {
   text-align: center;
   font-size: 1.1rem;
-  color: #555;
+  color: #ffffff80;
   margin: -2rem 0 2.5rem;
   letter-spacing: 0.03em;
 }
@@ -2096,7 +2114,7 @@ const results = await pollJob(jobId)</pre>
   stroke-dasharray: 3 11;
   animation: net-flow 2s linear infinite;
 }
-.net-edge--evm    { stroke: #555; }
+.net-edge--evm    { stroke: #ffffff80; }
 .net-edge--rest   { stroke: #222; }
 .net-edge--solana { stroke: #2a1a44; }
 
@@ -2104,8 +2122,8 @@ const results = await pollJob(jobId)</pre>
   stroke-width: 1.8;
   animation-duration: 0.45s !important;
 }
-.net-edge--active.net-edge--evm    { stroke: #555; }
-.net-edge--active.net-edge--rest   { stroke: #555; }
+.net-edge--active.net-edge--evm    { stroke: #ffffff80; }
+.net-edge--active.net-edge--rest   { stroke: #ffffff80; }
 .net-edge--active.net-edge--solana { stroke: #9945ff88; }
 
 @keyframes net-flow {
@@ -2127,13 +2145,13 @@ const results = await pollJob(jobId)</pre>
   stroke-width: 1.5;
   transition: fill 0.25s, filter 0.25s;
 }
-.net-ngroup--evm    circle { stroke: #555; }
+.net-ngroup--evm    circle { stroke: #ffffff80; }
 .net-ngroup--rest   circle { stroke: #1e1e1e; }
 .net-ngroup--solana circle { stroke: #4a2a7a; }
 
 .net-ngroup--active circle { fill: #111; }
-.net-ngroup--active.net-ngroup--evm    circle { stroke: #666;      filter: drop-shadow(0 0 5px #555); }
-.net-ngroup--active.net-ngroup--rest   circle { stroke: #555;      filter: drop-shadow(0 0 5px #555); }
+.net-ngroup--active.net-ngroup--evm    circle { stroke: #666;      filter: drop-shadow(0 0 5px #ffffff80); }
+.net-ngroup--active.net-ngroup--rest   circle { stroke: #ffffff80;      filter: drop-shadow(0 0 5px #ffffff80); }
 .net-ngroup--active.net-ngroup--solana circle { stroke: #9945ff;   filter: drop-shadow(0 0 6px #9945ff88); }
 
 .net-nlabel {
@@ -2193,7 +2211,7 @@ const results = await pollJob(jobId)</pre>
 .net-role-lbl {
   font-size: 7px;
   font-weight: 700;
-  fill: #555;
+  fill: #ffffff80;
   font-family: -apple-system, monospace;
   pointer-events: none;
 }
@@ -2216,7 +2234,7 @@ const results = await pollJob(jobId)</pre>
   pointer-events: none;
 }
 .net-verdict--human + .net-verdict-lbl,
-.net-verdict-lbl { fill: #555; }
+.net-verdict-lbl { fill: #ffffff80; }
 
 /* ── Legend ── */
 .net-legend {
@@ -2254,7 +2272,7 @@ const results = await pollJob(jobId)</pre>
   flex-shrink: 0;
   border: 1px solid transparent;
 }
-.nl-dot--evm    { background: #1a1a1a; border-color: #555; }
+.nl-dot--evm    { background: #1a1a1a; border-color: #ffffff80; }
 .nl-dot--solana { background: #0d0019; border-color: #4a2a7a; }
 .nl-dot--rest   { background: #0d0d0d; border-color: #222; }
 .nl-dot--eval   { background: #0a1a0a; border-color: #1a4a1a; }
@@ -2291,7 +2309,7 @@ const results = await pollJob(jobId)</pre>
   display: block;
   font-size: 0.72rem;
   font-weight: 500;
-  color: #555;
+  color: #ffffff80;
   margin-bottom: 0.4rem;
   letter-spacing: 0.02em;
 }
@@ -2303,7 +2321,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 0.68rem;
 }
 
-.field-hint { font-size: 0.72rem; color: #555; margin-top: 0.3rem; }
+.field-hint { font-size: 0.72rem; color: #ffffff80; margin-top: 0.3rem; }
 .field-hint--warn { color: #666; }
 
 .type-tabs {
@@ -2315,7 +2333,7 @@ const results = await pollJob(jobId)</pre>
 .type-tab {
   background: none;
   border: 1px solid #1a1a1a;
-  color: #555;
+  color: #ffffff80;
   padding: 0.4rem 1rem;
   border-radius: 6px;
   font-size: 0.8rem;
@@ -2325,7 +2343,7 @@ const results = await pollJob(jobId)</pre>
   white-space: nowrap;
 }
 
-.type-tab:hover { border-color: #555; color: #aaa; }
+.type-tab:hover { border-color: #ffffff80; color: #aaa; }
 .type-tab.active { background: #fff; color: #000; border-color: #fff; font-weight: 600; }
 
 .form-row {
@@ -2378,7 +2396,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 0.81rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #555;
+  color: #ffffff80;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
@@ -2393,7 +2411,7 @@ const results = await pollJob(jobId)</pre>
 
 .scan-sub {
   font-size: 1.56rem;
-  color: #555;
+  color: #ffffff80;
   line-height: 1.6;
 }
 
@@ -2414,7 +2432,7 @@ const results = await pollJob(jobId)</pre>
   transition: border-color 0.15s;
 }
 
-.scan-input-row:focus-within { border-color: #555; }
+.scan-input-row:focus-within { border-color: #ffffff80; }
 
 .scan-input {
   flex: 1;
@@ -2426,7 +2444,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.12rem;
 }
 
-.scan-input::placeholder { color: #555; }
+.scan-input::placeholder { color: #ffffff80; }
 
 .scan-upload {
   display: flex;
@@ -2435,7 +2453,7 @@ const results = await pollJob(jobId)</pre>
   width: 44px;
   border-left: 1px solid #1a1a1a;
   cursor: pointer;
-  color: #555;
+  color: #ffffff80;
   transition: color 0.15s;
   flex-shrink: 0;
 }
@@ -2466,7 +2484,7 @@ const results = await pollJob(jobId)</pre>
   border-left: 3px solid #222;
 }
 
-.brain-pending { border-left-color: #555; }
+.brain-pending { border-left-color: #ffffff80; }
 .brain-human   { border-left-color: var(--green); }
 .brain-bot     { border-left-color: var(--red); }
 
@@ -2477,7 +2495,7 @@ const results = await pollJob(jobId)</pre>
   margin-bottom: 0.5rem;
 }
 
-.brain-conf { font-size: 1.25rem; color: #555; margin-top: 0.5rem; }
+.brain-conf { font-size: 1.25rem; color: #ffffff80; margin-top: 0.5rem; }
 
 .results-accordion {
   border: 1px solid #1a1a1a;
@@ -2547,13 +2565,13 @@ const results = await pollJob(jobId)</pre>
 
 .accordion-summary {
   font-size: 1rem;
-  color: #555;
+  color: #ffffff80;
   white-space: nowrap;
 }
 
 .accordion-chevron {
   font-size: 1.1rem;
-  color: #555;
+  color: #ffffff80;
   transform: rotate(0deg);
   transition: transform 0.2s;
   flex-shrink: 0;
@@ -2583,7 +2601,7 @@ const results = await pollJob(jobId)</pre>
 }
 
 .result-dot.pass { background: var(--green); }
-.result-dot.fail { background: #555; }
+.result-dot.fail { background: #ffffff80; }
 
 .result-desc {
   flex: 1;
@@ -2629,7 +2647,7 @@ const results = await pollJob(jobId)</pre>
 
 .vote-progress-label {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
@@ -2652,7 +2670,7 @@ const results = await pollJob(jobId)</pre>
 
 .vcs-chain {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   letter-spacing: 0.05em;
 }
 
@@ -2660,7 +2678,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #555;
+  color: #ffffff80;
   border: 1px solid #1a1a1a;
   padding: 0.15rem 0.45rem;
   border-radius: 3px;
@@ -2668,7 +2686,7 @@ const results = await pollJob(jobId)</pre>
 
 .vmc-score {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   font-variant-numeric: tabular-nums;
   margin-left: auto;
 }
@@ -2688,7 +2706,7 @@ const results = await pollJob(jobId)</pre>
 
 .vcs-detail-label {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
@@ -2698,7 +2716,7 @@ const results = await pollJob(jobId)</pre>
 
 .vcs-detail-val {
   font-size: 0.94rem;
-  color: #555;
+  color: #ffffff80;
   font-family: 'JetBrains Mono', monospace;
   word-break: break-all;
 }
@@ -2722,7 +2740,7 @@ const results = await pollJob(jobId)</pre>
 
 .vcs-score-fill {
   height: 100%;
-  background: #555;
+  background: #ffffff80;
   border-radius: 1px;
 }
 
@@ -2742,8 +2760,8 @@ const results = await pollJob(jobId)</pre>
   box-sizing: border-box;
   transition: border-color 0.2s;
 }
-.vcs-feedback::placeholder { color: #555; }
-.vcs-feedback:focus { border-color: #555; color: #aaa; }
+.vcs-feedback::placeholder { color: #ffffff80; }
+.vcs-feedback:focus { border-color: #ffffff80; color: #aaa; }
 
 .vcs-actions {
   display: flex;
@@ -2785,10 +2803,10 @@ const results = await pollJob(jobId)</pre>
 }
 
 .vcs-btn-skip {
-  color: #555;
+  color: #ffffff80;
   padding: 0.65rem 1.1rem;
 }
-.vcs-btn-skip:hover { color: #888; border-color: #555; }
+.vcs-btn-skip:hover { color: #888; border-color: #ffffff80; }
 
 /* ── Layout ──────────────────────────────────────────────────────────────── */
 .app-container {
@@ -2805,10 +2823,10 @@ const results = await pollJob(jobId)</pre>
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 1.5rem;
-  background: #0d0d0d;
+  padding: 1.5rem 0rem;
+  /* background: #0d0d0d; */
   border-bottom: 1px solid #1a1a1a;
-  font-size: 0.7rem;
+  font-size: 1.25rem;
   flex-wrap: wrap;
 }
 .devnet-label {
@@ -2947,7 +2965,7 @@ const results = await pollJob(jobId)</pre>
 .disconnect-link {
   background: none;
   border: none;
-  color: #555;
+  color: #ffffff80;
   font-size: 1.25rem;
   cursor: pointer;
   padding: 0;
@@ -3030,14 +3048,14 @@ const results = await pollJob(jobId)</pre>
   text-transform: uppercase;
 }
 .wallet-badge--detected { background: #0f2a0f; color: #22c55e; }
-.wallet-badge--install  { background: #1a1a1a; color: #555; }
+.wallet-badge--install  { background: #1a1a1a; color: #ffffff80; }
 
 .modal-close {
   width: 100%;
   padding: 1rem;
   background: none;
   border: 1px solid #1e1e1e;
-  color: #555;
+  color: #ffffff80;
   border-radius: 6px;
   margin-top: 0.25rem;
   cursor: pointer;
@@ -3045,7 +3063,7 @@ const results = await pollJob(jobId)</pre>
   transition: color 0.15s, border-color 0.15s;
 }
 
-.modal-close:hover { color: #aaa; border-color: #555; }
+.modal-close:hover { color: #aaa; border-color: #ffffff80; }
 
 .modal-actions {
   display: flex;
@@ -3071,18 +3089,18 @@ const results = await pollJob(jobId)</pre>
 .vote-confirm-comment-label {
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  color: #555;
+  color: #ffffff80;
   text-transform: uppercase;
 }
 .vote-confirm-comment-text {
   font-size: 1.2rem;
-  color: #555;
+  color: #ffffff80;
   font-style: italic;
   line-height: 1.5;
 }
 .mlist-feedback {
   font-size: 0.8rem;
-  color: #555;
+  color: #ffffff80;
   font-style: italic;
   padding: 0.2rem 0 0.1rem;
   line-height: 1.4;
@@ -3106,7 +3124,7 @@ const results = await pollJob(jobId)</pre>
 
 .hero .subtitle {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   max-width: 520px;
   margin: 0 auto;
   line-height: 1.7;
@@ -3171,13 +3189,13 @@ const results = await pollJob(jobId)</pre>
 }
 
 .premium-input::placeholder,
-.premium-textarea::placeholder { color: #555; }
+.premium-textarea::placeholder { color: #ffffff80; }
 
 .premium-input:focus,
 .premium-select:focus,
 .premium-textarea:focus {
   outline: none;
-  border-color: #555;
+  border-color: #ffffff80;
   background: #0c0c0c;
 }
 
@@ -3204,11 +3222,11 @@ const results = await pollJob(jobId)</pre>
   border: 1px solid #1e1e1e;
   border-radius: 7px;
   cursor: pointer;
-  color: #555;
+  color: #ffffff80;
   transition: color 0.15s, border-color 0.15s;
 }
 
-.file-label:hover { color: #aaa; border-color: #555; }
+.file-label:hover { color: #aaa; border-color: #ffffff80; }
 .hidden-input { display: none; }
 
 .file-info {
@@ -3238,7 +3256,7 @@ const results = await pollJob(jobId)</pre>
 }
 
 .chain-pill--evm {
-  color: #555;
+  color: #ffffff80;
   border-color: #222;
   background: #0a0a0a;
 }
@@ -3251,7 +3269,7 @@ const results = await pollJob(jobId)</pre>
 
 .resolved-display {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   padding-left: 0.25rem;
 }
 
@@ -3264,7 +3282,7 @@ const results = await pollJob(jobId)</pre>
 .mini-btn {
   background: #080808;
   border: 1px solid #1e1e1e;
-  color: #555;
+  color: #ffffff80;
   padding: 0.6rem 0.85rem;
   border-radius: 6px;
   cursor: pointer;
@@ -3275,7 +3293,7 @@ const results = await pollJob(jobId)</pre>
   align-self: flex-end;
 }
 
-.mini-btn:hover { color: #aaa; border-color: #555; }
+.mini-btn:hover { color: #aaa; border-color: #ffffff80; }
 .mini-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 /* ── ABI picker ──────────────────────────────────────────────────────────── */
@@ -3299,10 +3317,10 @@ const results = await pollJob(jobId)</pre>
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #555;
+  color: #ffffff80;
 }
 
-.abi-picker-count { font-size: 0.72rem; color: #555; }
+.abi-picker-count { font-size: 0.72rem; color: #ffffff80; }
 
 .abi-picker-list { max-height: 10rem; overflow-y: auto; }
 
@@ -3409,7 +3427,7 @@ const results = await pollJob(jobId)</pre>
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 700;
-  color: #555;
+  color: #ffffff80;
   margin-right: 10px;
 }
 
@@ -3421,7 +3439,7 @@ const results = await pollJob(jobId)</pre>
 
 .brain-analyzing {
   font-size: 1.25rem;
-  color: #555;
+  color: #ffffff80;
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -3455,7 +3473,7 @@ const results = await pollJob(jobId)</pre>
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  color: #555;
+  color: #ffffff80;
   font-size: 1.25rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3475,7 +3493,7 @@ const results = await pollJob(jobId)</pre>
   font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #555;
+  color: #ffffff80;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
@@ -3497,7 +3515,7 @@ const results = await pollJob(jobId)</pre>
   margin-bottom: 0.5rem;
 }
 
-.vote-score-label { font-size: 1.25rem; color: #555; }
+.vote-score-label { font-size: 1.25rem; color: #ffffff80; }
 .vote-score-value { font-size: 1.25rem; color: #666; font-variant-numeric: tabular-nums; }
 
 .vote-actions {
@@ -3512,7 +3530,7 @@ const results = await pollJob(jobId)</pre>
   align-items: center;
   gap: 1rem;
   padding: 5rem 0;
-  color: #555;
+  color: #ffffff80;
   font-size: 1.56rem;
 }
 
@@ -3647,7 +3665,7 @@ const results = await pollJob(jobId)</pre>
 
 .outline-btn {
   background: transparent;
-  border: 1px solid #555;
+  border: 1px solid #ffffff80;
   color: #888;
   padding: 1rem 2rem;
   border-radius: 6px;
@@ -3656,7 +3674,7 @@ const results = await pollJob(jobId)</pre>
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s;
 }
-.outline-btn:hover { border-color: #555; color: #ccc; }
+.outline-btn:hover { border-color: #ffffff80; color: #ccc; }
 
 /* ── Token economics ─────────────────────────────────────────────────────── */
 .token-economics {
@@ -3674,7 +3692,7 @@ const results = await pollJob(jobId)</pre>
   gap: 1rem;
 }
 .econ-row:last-child { border-bottom: none; }
-.econ-label { color: #555; font-size: 1rem; white-space: nowrap; }
+.econ-label { color: #ffffff80; font-size: 1rem; white-space: nowrap; }
 .econ-val { color: #999; font-size: 1rem; text-align: right; }
 
 /* ── Profile page ────────────────────────────────────────────────────────── */
@@ -3687,7 +3705,7 @@ const results = await pollJob(jobId)</pre>
   border-radius: 10px;
   margin-top: 2rem;
 }
-.prompt-text { color: #555; margin-bottom: 1.25rem; font-size: 1.0625rem; }
+.prompt-text { color: #ffffff80; margin-bottom: 1.25rem; font-size: 1.0625rem; }
 
 .profile-signup-card {
   border: 1px solid #1a1a1a;
@@ -3696,7 +3714,7 @@ const results = await pollJob(jobId)</pre>
   margin-top: 1.5rem;
   text-align: center;
 }
-.signup-desc { color: #555; margin-bottom: 1.5rem; line-height: 1.6; }
+.signup-desc { color: #ffffff80; margin-bottom: 1.5rem; line-height: 1.6; }
 
 .profile-error {
   background: #1a0000;
@@ -3721,16 +3739,16 @@ const results = await pollJob(jobId)</pre>
   text-align: center;
 }
 .pstat-card.deposit-stat { cursor: pointer; transition: border-color 0.2s; }
-.pstat-card.deposit-stat:hover { border-color: #555; }
-.pstat-deposit-hint { font-size: 0.7rem; color: #555; margin-left: 0.35rem; }
+.pstat-card.deposit-stat:hover { border-color: #ffffff80; }
+.pstat-deposit-hint { font-size: 0.7rem; color: #ffffff80; margin-left: 0.35rem; }
 .pstat-val { font-size: 1.75rem; font-weight: 700; color: #fff; }
-.pstat-label { font-size: 0.8125rem; color: #555; margin-top: 0.25rem; }
+.pstat-label { font-size: 0.8125rem; color: #ffffff80; margin-top: 0.25rem; }
 
 .vote-badge { font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; }
 .vote-human { color: #2aaa2a; background: #0a1a0a; }
 .vote-bot   { color: #aa2a2a; background: #1a0a0a; }
 
-.modal-desc { font-size: 1.2rem; color: #555; margin: 0.5rem 0 0; line-height: 1.5; }
+.modal-desc { font-size: 1.2rem; color: #ffffff80; margin: 0.5rem 0 0; line-height: 1.5; }
 .deposit-msg { font-size: 1rem; padding: 0.5rem; border-radius: 4px; margin-bottom: 0.75rem; }
 .deposit-ok  { color: #2aaa2a; background: #0a1a0a; }
 .deposit-err { color: #aa4444; background: #1a0a0a; }
@@ -3780,10 +3798,10 @@ const results = await pollJob(jobId)</pre>
   color: #888;
   word-break: break-all;
 }
-.profile-hint { font-size: 0.8125rem; color: #555; margin-top: 0.5rem; }
+.profile-hint { font-size: 0.8125rem; color: #ffffff80; margin-top: 0.5rem; }
 .profile-hint code { background: #111; padding: 0.1rem 0.3rem; border-radius: 3px; color: #888; }
 
-.profile-empty { color: #555; font-size: 1.3rem; display: flex; gap: 0.5rem; align-items: center; }
+.profile-empty { color: #ffffff80; font-size: 1.3rem; display: flex; gap: 0.5rem; align-items: center; }
 
 .method-list-profile { display: flex; flex-direction: column; gap: 0.5rem; }
 .mlist-row {
@@ -3800,7 +3818,7 @@ const results = await pollJob(jobId)</pre>
 .mlist-type {
   font-size: 0.6875rem;
   font-weight: 700;
-  color: #555;
+  color: #ffffff80;
   background: #0c0c0c;
   border: 1px solid #1e1e1e;
   padding: 0.1rem 0.35rem;
@@ -3809,7 +3827,7 @@ const results = await pollJob(jobId)</pre>
 }
 .mlist-desc { font-size: 1.3rem; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .mlist-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; white-space: nowrap; }
-.mlist-score { font-size: 0.8125rem; color: #555; }
+.mlist-score { font-size: 0.8125rem; color: #ffffff80; }
 .mlist-earned { font-size: 0.8125rem; color: #888; }
 
 /* ── API page ────────────────────────────────────────────────────────────── */
@@ -3841,13 +3859,13 @@ const results = await pollJob(jobId)</pre>
 .api-params { padding: 0.75rem 1.25rem; border-bottom: 1px solid #111; display: flex; flex-direction: column; gap: 0.4rem; }
 .param-row { display: flex; align-items: baseline; gap: 0.75rem; font-size: 1.2rem; }
 .param-row code { color: #fff; font-size: 1rem; background: #0c0c0c; border: 1px solid #1e1e1e; padding: 0.1rem 0.35rem; border-radius: 3px; white-space: nowrap; }
-.param-row span { color: #555; }
+.param-row span { color: #ffffff80; }
 
 .code-block { border-top: 1px solid #111; }
 .code-lang {
   padding: 0.35rem 1.25rem;
   font-size: 0.75rem;
-  color: #555;
+  color: #ffffff80;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3879,15 +3897,15 @@ const results = await pollJob(jobId)</pre>
   gap: 1rem;
 }
 .pt-row:last-child { border-bottom: none; }
-.pt-head { font-size: 0.8125rem; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.05em; background: #050505; }
+.pt-head { font-size: 0.8125rem; font-weight: 600; color: #ffffff80; text-transform: uppercase; letter-spacing: 0.05em; background: #050505; }
 .pt-free { background: #0a0f0a; color: #5a8a5a; }
 .pt-row span:nth-child(2) { color: #aaa; }
-.pt-row span:nth-child(3) { color: #555; }
+.pt-row span:nth-child(3) { color: #ffffff80; }
 
 .api-cta {
   text-align: center;
   padding: 2rem;
-  color: #555;
+  color: #ffffff80;
   font-size: 1.0625rem;
 }
 
@@ -3932,7 +3950,7 @@ const results = await pollJob(jobId)</pre>
   text-align: center;
 }
 .sbal-val { font-size: 1.25rem; font-weight: 700; color: #fff; }
-.sbal-label { font-size: 0.75rem; color: #555; margin-top: 0.2rem; }
+.sbal-label { font-size: 0.75rem; color: #ffffff80; margin-top: 0.2rem; }
 .sbal-claimable .sbal-val { color: #5a8a5a; }
 
 .stake-action-row {
@@ -3944,7 +3962,7 @@ const results = await pollJob(jobId)</pre>
 .max-btn {
   background: none;
   border: 1px solid #222;
-  color: #555;
+  color: #ffffff80;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.4rem 0.6rem;
@@ -3953,7 +3971,7 @@ const results = await pollJob(jobId)</pre>
   white-space: nowrap;
   transition: border-color 0.15s, color 0.15s;
 }
-.max-btn:hover { border-color: #555; color: #aaa; }
+.max-btn:hover { border-color: #ffffff80; color: #aaa; }
 
 .stake-claim-row {
   display: flex;
