@@ -290,6 +290,24 @@ onUnmounted(() => {
 
 <template>
   <div class="app-container">
+    <!-- Devnet banner -->
+    <div class="devnet-bar">
+      <span class="devnet-label">DEVNET</span>
+      <span class="devnet-sep">·</span>
+      <span class="devnet-hint">Test environment — tokens have no real value</span>
+      <div class="devnet-bar-right">
+        <span v-if="faucetMsg" :class="['devnet-faucet-msg', faucetMsg.ok ? 'devnet-faucet-msg--ok' : 'devnet-faucet-msg--err']">
+          {{ faucetMsg.text }}
+        </span>
+        <button
+          class="devnet-faucet-btn"
+          :disabled="faucetLoading || !connected"
+          @click="claimFaucet"
+          :title="connected ? 'Claim 10 000 test POH tokens' : 'Connect wallet first'"
+        >{{ faucetLoading ? 'Sending…' : 'Claim 10K POH' }}</button>
+      </div>
+    </div>
+
     <header class="header">
       <div @click="showSection('landing')" class="logo">
         <img src="/poh-icon.png" alt="POH Logo">
@@ -2781,6 +2799,57 @@ const results = await pollJob(jobId)</pre>
   display: flex;
   flex-direction: column;
 }
+
+/* ── Devnet banner ───────────────────────────────────────────────────────── */
+.devnet-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1.5rem;
+  background: #0d0d0d;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 0.7rem;
+  flex-wrap: wrap;
+}
+.devnet-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #f59e0b;
+  background: rgba(245,158,11,0.12);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+  flex-shrink: 0;
+}
+.devnet-sep { color: #333; flex-shrink: 0; }
+.devnet-hint { color: #444; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.devnet-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.devnet-faucet-btn {
+  background: rgba(245,158,11,0.1);
+  border: 1px solid rgba(245,158,11,0.3);
+  color: #f59e0b;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.devnet-faucet-btn:hover:not(:disabled) {
+  background: rgba(245,158,11,0.2);
+  border-color: rgba(245,158,11,0.5);
+}
+.devnet-faucet-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.devnet-faucet-msg { font-size: 0.65rem; }
+.devnet-faucet-msg--ok  { color: #4ade80; }
+.devnet-faucet-msg--err { color: #f87171; }
 
 /* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
