@@ -26,7 +26,8 @@ sudo apt-get update -qq
 sudo apt-get install -y -qq \
   curl git build-essential redis-server \
   ca-certificates gnupg lsb-release \
-  zstd pv wget tar gzip
+  zstd pv wget tar gzip \
+  libvulkan1
 
 ok "System packages installed"
 
