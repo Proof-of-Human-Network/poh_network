@@ -2145,5 +2145,34 @@
     "score": 0,
     "ownerWallet": null,
     "created_at": "2026-05-05T00:00:00.000Z"
+  },
+  {
+    "type": "solana",
+    "address": "GT2zuHVaZQYZSyQMgJPLzvkmyztfyXg2NJunqFp4p3A4",
+    "method": "getTokenBalance",
+    "expression": "result > 0",
+    "lang": "js",
+    "description": "Seeker Genesis token \u2014 soulbound SPL token proving ownership of a physical Solana Mobile Seeker device (non-transferable, one per device)",
+    "abiTypes": "",
+    "returnTypes": "",
+    "headers": "{}",
+    "id": "1777939300001seeker_genesis",
+    "score": 0,
+    "ownerWallet": null,
+    "created_at": "2026-05-05T00:00:00.000Z"
+  },
+  {
+    "type": "rest",
+    "address": "https://api.alldomains.id/v1/domains?owner={address}&tld=skr",
+    "method": "GET",
+    "headers": "{}",
+    "expression": "Array.isArray(data?.domains) && data.domains.length > 0",
+    "lang": "js",
+    "description": ".skr domain (AllDomains) \u2014 wallet owns at least one .skr name on Solana, indicating registered on-chain identity",
+    "id": "1777939300002skr_domain",
+    "score": 0,
+    "ownerWallet": null,
+    "created_at": "2026-05-05T00:00:00.000Z",
+    "addressType": "solana"
   }
 ]
