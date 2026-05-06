@@ -7,10 +7,10 @@ const path = require('path');
 // ── Model config ──────────────────────────────────────────────────────────────
 // Override per-role via env. All default to OLLAMA_MODEL so it works out-of-box.
 const OLLAMA_URL       = process.env.OLLAMA_URL        || 'http://localhost:11434';
-const BASE_MODEL       = process.env.OLLAMA_MODEL      || 'llama3.2';
-const EVALUATOR_MODEL  = process.env.EVALUATOR_MODEL   || BASE_MODEL; // DeepSeek R1 / Qvac
-const LEARNER_MODEL    = process.env.LEARNER_MODEL     || BASE_MODEL; // Qwen 2.5
-const COMPILER_MODEL   = process.env.COMPILER_MODEL    || BASE_MODEL; // Mixtral
+const BASE_MODEL       = process.env.OLLAMA_MODEL      || 'qwen2.5:1.5b';
+const EVALUATOR_MODEL  = process.env.EVALUATOR_MODEL   || 'deepseek-r1:1.5b';
+const LEARNER_MODEL    = process.env.LEARNER_MODEL     || 'qwen2.5:1.5b';
+const COMPILER_MODEL   = process.env.COMPILER_MODEL    || 'mixtral:latest';
 
 // ── Qvac config (OpenAI-compatible evaluator — set QVAC_URL to enable) ────────
 // Run: qvac serve openai --port 11435
