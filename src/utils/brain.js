@@ -164,21 +164,41 @@ async function qvacChat(prompt, { model = QVAC_MODEL, maxTokens = 256, timeLimit
   }
 
   return queueQvac(async () => {
+    const body = {
+      model,
+      messages: [
+        { role: 'system', content: 'You are a JSON-only responder. Output only valid JSON. No explanations, no markdown, no preamble.' },
+        { role: 'user', content: prompt + '\n/no_think' }, // suppresses Qwen3 chain-of-thought
+      ],
+      max_tokens: maxTokens,
+      temperature: 0.1,
+      stream: false,
+    };
+
+    const doPost = () => axios.post(`${QVAC_URL}/v1/chat/completions`, body, { timeout: timeLimit });
+
     try {
-      const body = {
-        model,
-        messages: [
-          { role: 'system', content: 'You are a JSON-only responder. Output only valid JSON. No explanations, no markdown, no preamble.' },
-          { role: 'user', content: prompt + '\n/no_think' }, // suppresses Qwen3 chain-of-thought
-        ],
-        max_tokens: maxTokens,
-        temperature: 0.1,
-        stream: false,
-      };
-      const res = await axios.post(`${QVAC_URL}/v1/chat/completions`, body, { timeout: timeLimit });
-      _qvacFailures = 0; // reset on success
+      let res;
+      try {
+        res = await doPost();
+      } catch (firstErr) {
+        // 503 = model still loading after restart — wait and retry once, don't count as failure
+        if (firstErr.response?.status === 503) {
+          console.warn('[brain] Qvac 503 (model loading) — retrying in 10s');
+          await new Promise(r => setTimeout(r, 10000));
+          res = await doPost();
+        } else {
+          throw firstErr;
+        }
+      }
+      _qvacFailures = 0;
       return res.data.choices?.[0]?.message?.content?.trim() || '';
     } catch (err) {
+      // Don't trip the circuit breaker for transient loading errors
+      if (err.response?.status === 503) {
+        console.warn('[brain] Qvac still loading — skipping, will retry next scan');
+        return null;
+      }
       _qvacFailures++;
       if (_qvacFailures >= QVAC_CIRCUIT_OPEN_AFTER) {
         _qvacCircuitOpenAt = Date.now();
