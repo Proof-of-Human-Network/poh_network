@@ -14,6 +14,7 @@ const { verifyPohTransfer }       = require('../utils/solana');
 const brain                       = require('../utils/brain');
 const { recordMethodResult }      = require('../utils/methodHealth');
 const { analyzeTransactionGraph } = require('../utils/txGraph');
+const { checkHumanityVerified }   = require('../utils/humanityProtocol');
 const { createJob, getJob }       = require('../utils/jobQueue');
 const {
   getProfile, getProfiles, consumeFreeScan, calcScanCost,
@@ -192,9 +193,10 @@ async function scanWallet(rawInput, { allMethods, chainFilter }) {
 
   console.log(`[checker] Scanning ${methods.length} methods for ${address}`);
 
-  const [settled, graphResults] = await Promise.all([
+  const [settled, graphResults, humanityResult] = await Promise.all([
     Promise.allSettled(methods.map(m => executeMethod(m, address))),
     analyzeTransactionGraph(address),
+    checkHumanityVerified(address),
   ]);
 
   const results = settled.map((s, i) => {
@@ -212,6 +214,7 @@ async function scanWallet(rawInput, { allMethods, chainFilter }) {
   });
 
   results.push(...graphResults);
+  if (humanityResult) results.push(humanityResult);
 
   await setCachedResponse(cacheKey, { data: results, methodCount: methods.length });
   return results;

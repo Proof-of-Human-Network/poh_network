@@ -2,9 +2,13 @@
   "serve": {
     "models": {
       "evaluator": {
-        "model": "QWEN3_600M_INST_Q4",
+        "model": "QWEN3_8B_INST_Q4_K_M",
         "default": true,
-        "preload": true
+        "preload": true,
+        "config": {
+          "ctx_size": 8192,
+          "flash_attn": true
+        }
       }
     }
   }

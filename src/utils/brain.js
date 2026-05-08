@@ -156,7 +156,7 @@ const QVAC_CIRCUIT_OPEN_AFTER = 3;  // disable after this many consecutive failu
 let _qvacCircuitOpenAt = 0;         // timestamp when circuit opened (0 = closed)
 const QVAC_RETRY_AFTER_MS = 5 * 60 * 1000; // re-probe after 5 minutes
 
-async function qvacChat(prompt, { model = QVAC_MODEL, maxTokens = 512, timeLimit = 120000, jsonMode = false } = {}) {
+async function qvacChat(prompt, { model = QVAC_MODEL, maxTokens = 256, timeLimit = 120000, jsonMode = false } = {}) {
   // Circuit breaker: skip if too many recent failures; re-probe after cooldown
   if (_qvacCircuitOpenAt) {
     if (Date.now() - _qvacCircuitOpenAt < QVAC_RETRY_AFTER_MS) return null;
