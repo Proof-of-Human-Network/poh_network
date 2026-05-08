@@ -6,17 +6,17 @@ const { Connection, PublicKey } = require('@solana/web3.js');
 const TX_LIMIT = 50;
 const MIN_TXS  = 5;
 
-// Etherscan v2 unified API — one key, chainid param selects chain
-// Free tier covers ETH, Base, Arbitrum. BNB requires paid plan → use Alchemy instead.
-const ETHERSCAN_V2 = 'https://api.etherscan.io/v2/api';
+// Etherscan v2 free tier covers ETH + Arbitrum. Base + BNB require paid plan.
+// Base → Blockscout (free, no key). BNB → Alchemy (existing key via RPC_56).
+const ETHERSCAN_V2  = 'https://api.etherscan.io/v2/api';
+const BLOCKSCOUT_BASE = 'https://base.blockscout.com/api';
 
 const ETHERSCAN_CHAINS = [
   { id: 1,     name: 'ETH' },
-  { id: 8453,  name: 'Base' },
   { id: 42161, name: 'Arbitrum' },
 ];
 
-// ── Etherscan v2: fetch last TX_LIMIT normal transactions ─────────────────────
+// ── Etherscan v2: ETH + Arbitrum ─────────────────────────────────────────────
 
 async function fetchEtherscanTxs(address, chainId) {
   const apikey = process.env.ETHERSCAN_API_KEY;
@@ -25,6 +25,23 @@ async function fetchEtherscanTxs(address, chainId) {
     const res = await axios.get(ETHERSCAN_V2, {
       params: { chainid: chainId, module: 'account', action: 'txlist',
                 address, page: 1, offset: TX_LIMIT, sort: 'desc', apikey },
+      timeout: 8000,
+    });
+    if (res.data?.status !== '1' || !Array.isArray(res.data.result)) return null;
+    return res.data.result.map(tx => ({
+      from: tx.from, to: tx.to,
+      ts: parseInt(tx.timeStamp, 10),
+    }));
+  } catch { return null; }
+}
+
+// ── Blockscout: Base (free, no key) ──────────────────────────────────────────
+
+async function fetchBlockscoutTxs(address) {
+  try {
+    const res = await axios.get(BLOCKSCOUT_BASE, {
+      params: { module: 'account', action: 'txlist',
+                address, page: 1, offset: TX_LIMIT, sort: 'desc' },
       timeout: 8000,
     });
     if (res.data?.status !== '1' || !Array.isArray(res.data.result)) return null;
@@ -130,7 +147,7 @@ function buildResult(address, chainName, m) {
 
 async function analyzeEvm(address) {
   const tasks = [
-    // ETH, Base, Arbitrum via Etherscan v2
+    // ETH + Arbitrum via Etherscan v2
     ...ETHERSCAN_CHAINS.map(({ id, name }) => async () => {
       const txs = await fetchEtherscanTxs(address, id);
       if (!txs || txs.length < MIN_TXS) return null;
@@ -138,6 +155,14 @@ async function analyzeEvm(address) {
       console.log(`[txGraph] ${name}: ${m.txCount} txs, ${m.uniqueCounterparties} unique, CV=${m.timingCv}`);
       return buildResult(address, name, m);
     }),
+    // Base via Blockscout (Etherscan free tier doesn't cover Base)
+    async () => {
+      const txs = await fetchBlockscoutTxs(address);
+      if (!txs || txs.length < MIN_TXS) return null;
+      const m = computeMetrics(address, txs);
+      console.log(`[txGraph] Base: ${m.txCount} txs, ${m.uniqueCounterparties} unique, CV=${m.timingCv}`);
+      return buildResult(address, 'Base', m);
+    },
     // BNB via Alchemy (Etherscan free tier doesn't support BNB)
     async () => {
       const txs = await fetchAlchemyTxs(address);

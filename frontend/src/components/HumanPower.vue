@@ -131,6 +131,8 @@ const {
   brainVerdict, brainPolling, brainKey, batchFile, batchRowCount, batchRows,
   isResolving, detectedChain, faucetLoading, faucetMsg,
   runCheck, handleFileSelect, claimFaucet,
+  batchPolling, batchProgress,
+  loading: checkerLoading,
 } = checker
 
 const showEvidencePass = ref(true)
@@ -904,7 +906,7 @@ onUnmounted(() => {
                 <text x="156" y="153" fill="#ffffff40" font-size="6" font-family="monospace" opacity="0">
                   <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2.4s" fill="freeze"/>DeFi power</text>
               </svg>
-              <p class="benefit-label">AI-powered user portrait<br>from crypto wallet address</p>
+              <p class="benefit-label">AML and Whitelabel</p>
             </div>
           </div>
         </section>
@@ -1174,9 +1176,12 @@ onUnmounted(() => {
             <span class="file-name">{{ batchFile.name }} — {{ batchRowCount }} addresses</span>
             <button @click="batchFile = null; batchRowCount = 0; batchRows = []" class="mini-btn"><Trash2 :size="12" /></button>
           </div>
-          <button @click="connected ? runCheck() : showWalletModal = true" :disabled="loading || isResolving || brainPolling || (checkerResults && !brainVerdict?.reasoning)" class="submit-listing-btn">
-            {{ isResolving ? 'Resolving...' : loading ? 'Scanning...' : (brainPolling || (checkerResults && !brainVerdict?.reasoning)) ? 'AI analyzing...' : batchFile ? 'Scan Batch' : connected ? 'Scan Wallet' : 'Connect Wallet' }}
+          <button @click="connected ? runCheck() : showWalletModal = true" :disabled="checkerLoading || isResolving || brainPolling || batchPolling || (checkerResults && !batchFile && !brainVerdict?.reasoning)" class="submit-listing-btn">
+            {{ isResolving ? 'Resolving...' : checkerLoading ? 'Scanning...' : batchPolling ? `Analyzing… (${batchProgress?.done ?? 0}/${batchProgress?.total ?? '?'})` : (brainPolling || (checkerResults && !brainVerdict?.reasoning)) ? 'AI analyzing...' : batchFile ? 'Scan Batch' : connected ? 'Scan Wallet' : 'Connect Wallet' }}
           </button>
+          <div v-if="batchPolling && batchProgress" class="batch-progress-bar">
+            <div class="batch-progress-fill" :style="{ width: (batchProgress.percent ?? 0) + '%' }"></div>
+          </div>
         </div>
 
         <div v-if="checkerResults" class="results-accordion">
@@ -3587,6 +3592,19 @@ const results = await pollJob(jobId)</pre>
 }
 
 .file-name { font-size: 1.25rem; color: #666; }
+
+.batch-progress-bar {
+  height: 3px;
+  background: #1e1e1e;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.batch-progress-fill {
+  height: 100%;
+  background: #4ade80;
+  transition: width 0.4s ease;
+}
 
 .chain-pill-row {
   padding-left: 0.1rem;

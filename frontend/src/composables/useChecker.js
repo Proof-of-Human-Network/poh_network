@@ -19,6 +19,9 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
   const isResolving          = ref(false)
   const loading              = ref(false)
   const error                = ref(null)
+  const batchJobId           = ref(null)
+  const batchPolling         = ref(false)
+  const batchProgress        = ref(null) // { done, total, percent }
 
   const detectedChain = computed(() => {
     const v = scanInput.value?.trim()
@@ -154,26 +157,48 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
       if (txHash) formData.append('txHash', txHash)
 
       const res = await axios.post('/checker', formData)
-      checkerResults.value = res.data.result
-      brainVerdict.value = null
-      brainKey.value     = null
-      showEvidence.value = false
 
-      const _brainKey = res.data.brainKey
-      if (_brainKey) {
-        brainKey.value = _brainKey
-        brainPolling.value = true
-        const poll = setInterval(async () => {
+      if (res.data.jobId) {
+        batchJobId.value    = res.data.jobId
+        batchPolling.value  = true
+        batchProgress.value = { done: 0, total: res.data.total, percent: 0 }
+        checkerResults.value = null
+        const jobPoll = setInterval(async () => {
           try {
-            const b = await axios.get(`/checker/brain/${encodeURIComponent(_brainKey)}`)
-            if (b.data.status === 'done' || b.data.status === 'error') {
-              brainVerdict.value = b.data
-              brainPolling.value = false
-              clearInterval(poll)
+            const job = await axios.get(`/checker/job/${res.data.jobId}`)
+            batchProgress.value = { done: job.data.done ?? 0, total: job.data.total, percent: job.data.percent ?? 0 }
+            if (Array.isArray(job.data.results) && job.data.results.length) {
+              checkerResults.value = job.data.results
             }
-          } catch { clearInterval(poll); brainPolling.value = false }
-        }, 4000)
-        setTimeout(() => { clearInterval(poll); brainPolling.value = false }, 180000)
+            if (job.data.status === 'done') {
+              batchPolling.value = false
+              clearInterval(jobPoll)
+            }
+          } catch { batchPolling.value = false; clearInterval(jobPoll) }
+        }, 3000)
+        setTimeout(() => { clearInterval(jobPoll); batchPolling.value = false }, 2 * 60 * 60 * 1000)
+      } else {
+        checkerResults.value = res.data.result
+        brainVerdict.value = null
+        brainKey.value     = null
+        showEvidence.value = false
+
+        const _brainKey = res.data.brainKey
+        if (_brainKey) {
+          brainKey.value = _brainKey
+          brainPolling.value = true
+          const poll = setInterval(async () => {
+            try {
+              const b = await axios.get(`/checker/brain/${encodeURIComponent(_brainKey)}`)
+              if (b.data.status === 'done' || b.data.status === 'error') {
+                brainVerdict.value = b.data
+                brainPolling.value = false
+                clearInterval(poll)
+              }
+            } catch { clearInterval(poll); brainPolling.value = false }
+          }, 4000)
+          setTimeout(() => { clearInterval(poll); brainPolling.value = false }, 180000)
+        }
       }
     } catch (err) {
       console.log(err.data, err.message, err.response)
@@ -205,5 +230,8 @@ export function useChecker({ walletAddress, connected, POH_MINT, FEE_RECIPIENT, 
     handleFileSelect,
     claimFaucet,
     runCheck,
+    batchJobId,
+    batchPolling,
+    batchProgress,
   }
 }
