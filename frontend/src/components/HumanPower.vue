@@ -1146,13 +1146,19 @@ onUnmounted(() => {
             ></textarea>
 
             <div class="vcs-actions">
-              <button class="vcs-btn vcs-btn-yes" :disabled="voteSubmitting || feedbackValidating" @click="castVote(true)">
+              <button class="vcs-btn vcs-btn-yes" :disabled="voteSubmitting || feedbackValidating"
+                
+              >
                 {{ feedbackValidating ? 'Checking…' : voteSubmitting ? '…' : '✓ Human' }}
               </button>
-              <button class="vcs-btn vcs-btn-no" :disabled="voteSubmitting || feedbackValidating" @click="castVote(false)">
+              <button class="vcs-btn vcs-btn-no" :disabled="voteSubmitting || feedbackValidating"
+                
+              >
                 {{ feedbackValidating ? 'Checking…' : '✗ Robot' }}
               </button>
-              <button class="vcs-btn vcs-btn-skip" :disabled="feedbackValidating" @click="castVote('skip')">
+              <button class="vcs-btn vcs-btn-skip" :disabled="feedbackValidating"
+                
+              >
                 Skip →
               </button>
             </div>

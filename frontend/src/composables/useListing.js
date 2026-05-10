@@ -75,17 +75,17 @@ export function useListing({ walletAddress, walletProvider, connected, POH_MINT,
     }
     if (!listing.value.description?.trim()) { error.value = 'Description is required'; return }
 
-    loading.value = true
-    try {
-      const validation = await axios.post('/methods/listing/validate-description', { description: listing.value.description })
-      if (!validation.data.valid) {
-        error.value = `Description rejected: ${validation.data.reason}`
-        loading.value = false
-        return
-      }
-    } catch {
-      // If validation service is down, proceed
-    }
+    // loading.value = true
+    // try {
+    //   const validation = await axios.post('/methods/listing/validate-description', { description: listing.value.description })
+    //   if (!validation.data.valid) {
+    //     error.value = `Description rejected: ${validation.data.reason}`
+    //     loading.value = false
+    //     return
+    //   }
+    // } catch {
+    //   // If validation service is down, proceed
+    // }
 
     try {
       const methodId = crypto.randomUUID().replace(/-/g, '')
