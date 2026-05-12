@@ -7,10 +7,11 @@ import ListingSection from './ListingSection.vue'
 import VoteQueueSection from './VoteQueueSection.vue'
 import ProfileSection from './ProfileSection.vue'
 import ApiDocsSection from './ApiDocsSection.vue'
+import EcosystemSection from './EcosystemSection.vue'
 import {
   Search, PlusSquare, Vote,
   Activity, SquareArrowDown, PersonStanding, FolderCode, CreditCard, Bitcoin, Waypoints, FingerprintPattern, CandlestickChart,
-  FingerprintIcon, FileUp, Trash2
+  FingerprintIcon, FileUp, Trash2, Globe
 } from 'lucide-vue-next'
 import {
   Transaction,
@@ -460,6 +461,9 @@ onUnmounted(() => {
         <button :class="['nav-btn', { active: currentSection === 'api' }]" @click="showSection('api')">
           <FolderCode class="icon" :size="14" /> API
         </button>
+        <button :class="['nav-btn', { active: currentSection === 'ecosystem' }]" @click="showSection('ecosystem')">
+          <Globe class="icon" :size="14" /> Ecosystem
+        </button>
       </nav>
 
       <div class="header-right">
@@ -490,6 +494,7 @@ onUnmounted(() => {
         <button :class="['mobile-nav-btn', { active: currentSection === 'listing' }]" @click="showSection('listing')">Train</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'votes' }]" @click="showSection('votes'); loadVoting()">Feedback</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'api' }]" @click="showSection('api')">API</button>
+        <button :class="['mobile-nav-btn', { active: currentSection === 'ecosystem' }]" @click="showSection('ecosystem')">Ecosystem</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'staking' }]" @click="showSection('staking')">Stake</button>
         <button :class="['mobile-nav-btn', { active: currentSection === 'profile' }]" @click="showSection('profile'); loadProfile(); loadMyVotes()">Profile</button>
         <div class="mobile-menu-divider"></div>
@@ -1546,6 +1551,9 @@ const results = await pollJob(jobId)</pre>
           </template>
         </div>
       </div>
+
+      <!-- Ecosystem -->
+      <EcosystemSection v-if="currentSection === 'ecosystem'" />
 
     </main>
 
