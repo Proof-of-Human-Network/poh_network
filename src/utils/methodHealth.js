@@ -59,7 +59,11 @@ function delistStaleMethod() {
     }
   }
 
-  if (changed) fs.writeFileSync(METHODS_PATH, JSON.stringify(methods, null, 2));
+  if (changed) {
+    const tmp = METHODS_PATH + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(methods, null, 2));
+    fs.renameSync(tmp, METHODS_PATH);
+  }
   saveHealth(h);
 }
 

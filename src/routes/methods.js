@@ -17,7 +17,9 @@ const upload = multer({ dest: 'uploads/' });
 
 // Helper to save methods
 function saveMethods(methods) {
-  fs.writeFileSync(METHODS_PATH, JSON.stringify(methods, null, 2));
+  const tmp = METHODS_PATH + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(methods, null, 2));
+  fs.renameSync(tmp, METHODS_PATH);
 }
 
 // Helper to get methods
