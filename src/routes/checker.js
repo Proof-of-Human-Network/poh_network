@@ -48,7 +48,9 @@ function appendToDataset(record) {
     try { dataset = JSON.parse(fs.readFileSync(DATASET_PATH, 'utf-8')); } catch {}
   }
   dataset.push(record);
-  fs.writeFileSync(DATASET_PATH, JSON.stringify(dataset, null, 2));
+  const tmp = DATASET_PATH + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(dataset, null, 2));
+  fs.renameSync(tmp, DATASET_PATH);
 }
 
 // ── ZNS domain resolution ─────────────────────────────────────────────────────
@@ -87,7 +89,7 @@ async function executeMethod(m, address) {
       const { ethers } = require('ethers');
       const rpcUrl   = getRpcUrl(Number(m.chainId));
       const decimals = m.decimals != null ? Number(m.decimals) : 18;
-      const network  = ethers.Network.from(Number(m.chainId));
+      const network  = new ethers.Network(String(m.chainId), Number(m.chainId));
       let result;
       if (m.method === 'eth_getBalance') {
         const p = new ethers.JsonRpcProvider(rpcUrl, network, { staticNetwork: network });
