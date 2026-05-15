@@ -399,4 +399,111 @@ router.get('/pricing', (req, res) => {
   });
 });
 
+// ── POST /checker/preview ─────────────────────────────────────────────────────
+// Test a method definition against an address without writing to dataset.
+// Body: { address, method: { type, address, method, expression, ... } }
+
+router.post('/preview', async (req, res) => {
+  const { address, method: m } = req.body || {};
+  if (!address || !m) return res.status(400).json({ error: 'address and method required' });
+
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('Timeout after 8s')), 8000)
+  );
+
+  const serialize = v => {
+    if (typeof v === 'bigint') return v.toString();
+    if (Array.isArray(v)) return v.map(serialize);
+    if (v !== null && typeof v === 'object') {
+      return Object.fromEntries(Object.entries(v).map(([k, val]) => [k, serialize(val)]));
+    }
+    return v;
+  };
+
+  const run = (async () => {
+    if (m.type === 'evm') {
+      const { ethers } = require('ethers');
+      const rpcUrl   = getRpcUrl(Number(m.chainId));
+      const decimals = m.decimals != null ? Number(m.decimals) : 18;
+      const network  = new ethers.Network(String(m.chainId), Number(m.chainId));
+      let result;
+      if (m.method === 'eth_getBalance') {
+        const p = new ethers.JsonRpcProvider(rpcUrl, network, { staticNetwork: network });
+        result = [await p.getBalance(address)];
+      } else if (m.method === 'eth_getTransactionCount') {
+        const p = new ethers.JsonRpcProvider(rpcUrl, network, { staticNetwork: network });
+        result = [BigInt(await p.getTransactionCount(address))];
+      } else if (m.method === 'eth_getCode') {
+        const p = new ethers.JsonRpcProvider(rpcUrl, network, { staticNetwork: network });
+        result = [await p.getCode(address)];
+      } else {
+        result = await callContract(rpcUrl, m.address, m.method,
+          JSON.parse(m.abiTypes || '[]'), JSON.parse(m.returnTypes || '[]'), [address], m.chainId);
+      }
+      const expressionResult = await evaluate(m.expression, { result, decimals }, m.lang || 'js');
+      return { rawResult: serialize(result), expressionResult };
+
+    } else if (m.type === 'rest') {
+      const rawUrl    = m.address;
+      const hasHolder = rawUrl.includes('{address}');
+      const url       = hasHolder ? rawUrl.replace(/\{address\}/g, encodeURIComponent(address)) : rawUrl;
+      const method    = (m.method || 'GET').toUpperCase();
+      const headers   = m.headers
+        ? (typeof m.headers === 'string' ? JSON.parse(m.headers) : m.headers)
+        : {};
+      const decimals  = m.decimals != null ? Number(m.decimals) : 18;
+      const validate  = s => s < 500;
+      let response;
+      if (method === 'POST') {
+        const body = JSON.parse((m.body || '{}').replace(/\{address\}/g, address));
+        response = await axios.post(url, body, { headers, timeout: 7000, validateStatus: validate });
+      } else {
+        const params = hasHolder ? {} : { address };
+        response = await axios.get(url, { params, headers, timeout: 7000, validateStatus: validate });
+      }
+      const expressionResult = await evaluate(
+        m.expression, { data: response.data, status: response.status, decimals }, m.lang || 'js'
+      );
+      return { rawResult: { status: response.status, data: response.data }, expressionResult };
+
+    } else if (m.type === 'solana') {
+      const { Connection, PublicKey }              = require('@solana/web3.js');
+      const { getAssociatedTokenAddress, getAccount } = require('@solana/spl-token');
+      const conn     = new Connection(process.env.SOLANA_RPC || 'https://api.mainnet-beta.solana.com', 'confirmed');
+      const pubkey   = new PublicKey(address);
+      const decimals = m.decimals != null ? Number(m.decimals) : 9;
+      let result = null;
+      if (m.method === 'getBalance') {
+        result = await conn.getBalance(pubkey);
+      } else if (m.method === 'getTransactionCount') {
+        result = await conn.getTransactionCount(pubkey);
+      } else if (m.method === 'getTokenBalance' && m.address) {
+        const mint    = new PublicKey(m.address);
+        const ata     = await getAssociatedTokenAddress(mint, pubkey);
+        const account = await getAccount(conn, ata);
+        result = Number(account.amount);
+      } else if (m.method === 'getAccountInfo') {
+        const info = await conn.getAccountInfo(pubkey);
+        result = info?.executable ?? false;
+      } else if (m.method === 'getProgramAccounts' && m.address) {
+        const programId = new PublicKey(m.address);
+        const accounts  = await conn.getProgramAccounts(programId, {
+          filters: [{ memcmp: { offset: 8, bytes: address } }],
+        });
+        result = accounts.length > 0;
+      }
+      const expressionResult = await evaluate(m.expression, { result, decimals }, m.lang || 'js');
+      return { rawResult: serialize(result), expressionResult };
+    }
+    throw new Error('Unknown method type: ' + m.type);
+  })();
+
+  try {
+    const result = await Promise.race([run, timeout]);
+    res.json(result);
+  } catch (err) {
+    res.json({ error: err.message });
+  }
+});
+
 module.exports = router;

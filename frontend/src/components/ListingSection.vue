@@ -1,4 +1,7 @@
 <script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+
 const props = defineProps({
   listing:      { type: Object,  required: true },
   headers:      { type: Array,   required: true },
@@ -28,6 +31,38 @@ function updateListing(key, val) {
 function updateListingAndReset(key, val) {
   emit('update:listing', { ...props.listing, [key]: val })
   // reset abiFns via parent by re-triggering fetch
+}
+
+// ── Preview ───────────────────────────────────────────────────────────────────
+
+const previewAddr    = ref('')
+const previewLoading = ref(false)
+const previewResult  = ref(null)
+const previewError   = ref(null)
+
+async function runPreview() {
+  if (!previewAddr.value?.trim()) return
+  previewLoading.value = true
+  previewResult.value  = null
+  previewError.value   = null
+  try {
+    const m = { ...props.listing }
+    if (m.type === 'rest') {
+      m.method = m.httpMethod
+      const headerObj = (props.headers || []).reduce((a, h) => {
+        if (h.key) a[h.key] = h.value
+        return a
+      }, {})
+      m.headers = JSON.stringify(headerObj)
+    }
+    const { data } = await axios.post('/checker/preview', { address: previewAddr.value.trim(), method: m })
+    if (data.error) previewError.value = data.error
+    else previewResult.value = data
+  } catch (e) {
+    previewError.value = e.response?.data?.error || e.message
+  } finally {
+    previewLoading.value = false
+  }
 }
 </script>
 
@@ -209,6 +244,42 @@ function updateListingAndReset(key, val) {
       </div>
     </div>
 
+    <!-- Preview — shared -->
+    <div class="form-section">
+      <div class="form-label-row">
+        <span class="form-section-label">Preview</span>
+        <span class="field-hint-inline">Test this method before submitting</span>
+      </div>
+      <div class="input-group">
+        <div class="flex-input">
+          <input
+            type="text"
+            v-model="previewAddr"
+            placeholder="Enter an address to test against"
+            class="premium-input flex-grow"
+            @keydown.enter="runPreview"
+          />
+          <button
+            @click="runPreview"
+            :disabled="previewLoading || !previewAddr || !listing.expression"
+            class="mini-btn preview-run-btn"
+          >{{ previewLoading ? '...' : 'Run' }}</button>
+        </div>
+        <div v-if="!listing.expression" class="field-hint">Fill in the expression above first</div>
+        <div v-if="previewError" class="preview-error">{{ previewError }}</div>
+        <div v-if="previewResult" class="preview-result">
+          <div class="preview-verdict" :class="previewResult.expressionResult ? 'verdict-pass' : 'verdict-fail'">
+            <span class="verdict-icon">{{ previewResult.expressionResult ? '✓' : '✗' }}</span>
+            Expression returned <code class="verdict-value">{{ String(previewResult.expressionResult) }}</code>
+          </div>
+          <div class="preview-raw">
+            <span class="preview-raw-label">Raw response</span>
+            <pre class="preview-raw-data">{{ JSON.stringify(previewResult.rawResult, null, 2) }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Description + submit — shared -->
     <div class="form-section">
       <div class="form-label-row"><span class="form-section-label">Description</span></div>
@@ -227,3 +298,86 @@ function updateListingAndReset(key, val) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.preview-run-btn {
+  white-space: nowrap;
+  min-width: 52px;
+}
+
+.preview-error {
+  font-size: 0.82rem;
+  color: #e05c5c;
+  padding: 0.4rem 0;
+}
+
+.preview-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.preview-verdict {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid;
+}
+
+.verdict-pass {
+  color: #4ade80;
+  border-color: #1a3a22;
+  background: #0a1f11;
+}
+
+.verdict-fail {
+  color: #e05c5c;
+  border-color: #3a1a1a;
+  background: #1f0a0a;
+}
+
+.verdict-icon {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.verdict-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  background: rgba(255,255,255,0.06);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+}
+
+.preview-raw {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.preview-raw-label {
+  font-size: 0.75rem;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.preview-raw-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: #888;
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 300px;
+  overflow-y: auto;
+}
+</style>
