@@ -124,11 +124,11 @@ async function ensureQvac() {
   proc.unref();
   proc.on('error', () => log('WARNING: qvac binary not found — run: npm install -g @qvac/cli'));
 
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 150; i++) {
     await sleep(1000);
     if (await isPortOpen(port)) { log('Qvac started.'); return; }
   }
-  log('WARNING: Qvac did not start within 60s — Evaluator will fall back to Ollama');
+  log('WARNING: Qvac did not start within 150s — Evaluator will fall back to Ollama');
 }
 
 function killExisting() {
