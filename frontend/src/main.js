@@ -3,6 +3,7 @@ window.Buffer = Buffer
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import './style.css'
 import './assets/solana-wallet.css'
 
 // Fix corrupted localStorage wallet keys (ensure JSON-quoted format)

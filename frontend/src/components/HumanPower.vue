@@ -184,6 +184,9 @@ const {
 
 watch(voting.error, val => { if (val) error.value = val })
 
+const exprExpanded = ref(false)
+watch(currentVoteItem, () => { exprExpanded.value = false })
+
 // ── Network visualization ─────────────────────────────────────────────────────
 const NET_CX = 400, NET_CY = 210
 
@@ -1140,7 +1143,7 @@ onUnmounted(() => {
             </div>
             <div class="vcs-detail" v-if="currentVoteItem.expression">
               <span class="vcs-detail-label">Expression</span>
-              <code class="vcs-code">{{ currentVoteItem.expression }}</code>
+              <code :class="['vcs-code', exprExpanded ? 'vcs-code--expanded' : 'vcs-code--truncated']" @click="exprExpanded = !exprExpanded" :title="exprExpanded ? 'Click to collapse' : 'Click to expand'">{{ currentVoteItem.expression }}</code>
             </div>
 
             <div class="vcs-score-bar">
@@ -2662,6 +2665,8 @@ const results = await pollJob(jobId)</pre>
   display: flex;
   gap: 1.5rem;
   align-items: baseline;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .vcs-detail-label {
@@ -2682,13 +2687,28 @@ const results = await pollJob(jobId)</pre>
 }
 
 .vcs-code {
-  font-size: 0.94rem;
+  font-size: 0.82rem;
   color: #666;
   font-family: 'JetBrains Mono', monospace;
   background: #080808;
   border: 1px solid #1a1a1a;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
+  cursor: pointer;
+  min-width: 0;
+  flex: 1;
+  display: block;
+  transition: color 0.15s;
+}
+.vcs-code:hover { color: #888; }
+.vcs-code--truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vcs-code--expanded {
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .vcs-score-bar {
